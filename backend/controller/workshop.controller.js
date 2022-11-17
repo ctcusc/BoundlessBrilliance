@@ -1,18 +1,28 @@
-const taskService  = require('../repository/workshop.repository');
+const { connect } = require('../db/db.config');
 
-class WorkshopController {
+
+class workshopController {
+
+    db = {};
+
+    constructor() {
+        this.db = connect();
+    }
 
     async createWorkshop(workshop) {
-        return await taskService.createWorkshop(workshop);
+        // Sprint 0: Olivia
+    
     }
 
     async editWorkshop(workshop) {
-        return await taskService.editWorkshop(workshop);
+        // Sprint 0: Olivia
     }
 
-    async assignUser(user, workship) {
-        return await taskService.assignUser(user, workshop);
+    async assignUser(user, workshop) {
+        // Sprint 0: Natalie
     }
+
 
 }
-module.exports = new WorkshopController();
+
+module.exports = new workshopController();
