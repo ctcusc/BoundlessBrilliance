@@ -1,18 +1,32 @@
-const taskService  = require('../repository/user.repository');
+const { connect } = require('../db/db.config');
 
-class UserController {
+
+class userController {
+
+    db = {};
+
+    constructor() {
+        this.db = connect();
+        // For Development
+        this.db.sequelize.sync({ force: true }).then(() => {
+            console.log("Drop and re-sync db.");
+        });
+    }
 
     async createUser(user) {
-        return await taskService.createUser(user);
+        // Sprint 0: Wonjun
+    
     }
 
     async validateUser(user) {
-        return await taskService.validateUser(user);
+        // Sprint 0: Evans
     }
 
     async approveUser(user) {
-        return await taskService.approveUser(user);
+        // Sprint 0: Fred
     }
 
+
 }
-module.exports = new UserController();
+
+module.exports = new userController();
