@@ -6,21 +6,25 @@ const morgan = require("morgan");
 
 class userController {
 
+    async example(req){
+        // Example of query
+        console.log(req.body.id);
+        const reviews = await db.query(
+            "select assignee from tasks where tasks.id = $1",
+            [req.body.id]
+            );
+
+        console.log(reviews.rows);
+        return reviews.rows
+    }
+
     async createUser(user) {
         // Sprint 0: Wonjun
     
     }
 
-    async validateUser(req) {
-        // Sprint 0: Evans 
-        console.log(req.body.id);
-        const reviews = await db.query(
-            "select assignee from tasks where tasks.id = $1",
-            [req.body.id]
-          );
-
-        console.log(reviews.rows);
-        return reviews.rows
+    async validateUser(user) {
+        // Sprint 0: Evans
     }
 
     async approveUser(user) {

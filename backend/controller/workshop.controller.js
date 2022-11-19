@@ -1,13 +1,10 @@
-const { connect } = require('../db/db.config');
+require("dotenv").config();
+const cors = require("cors");
+const db = require("../db");
+const morgan = require("morgan");
 
 
 class workshopController {
-
-    db = {};
-
-    constructor() {
-        this.db = connect();
-    }
 
     async createWorkshop(workshop) {
         // Sprint 0: Olivia
