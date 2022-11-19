@@ -1,4 +1,5 @@
 const { Sequelize, Model, DataTypes } = require("sequelize");
+const pg = require('pg');
 
 const connect = () => {
 

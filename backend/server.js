@@ -6,6 +6,7 @@ const workshopController = require('./controller/workshop.controller')
 const app = express(); //create instance of express named "app"
 const port = process.env.PORT || 3000; //define port value in .env, default to port 3000
 
+app.use(express.json());
 
 app.get('/api/test', (req, res) => {
     res.status(200).json({
@@ -18,6 +19,15 @@ app.get('/api/test', (req, res) => {
 
 app.post('/api/createUser', (req, res) => {
     userController.createUser().then(data => res.json(data));
+});
+
+app.get('/api/example', (req, res) => {
+    console.log(req.body.id);
+    userController.validateUser(req).then(data => res.json(data)).catch(err=>{
+        return res.sendStatus(500).send({
+            message:err.message|| "some error occured"
+        });
+    });
 });
 
 // app.post('/api/task', (req, res) => {
