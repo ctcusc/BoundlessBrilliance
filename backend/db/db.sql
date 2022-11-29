@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS workshop_assignments
 --     user_password,
 --     user_type)
 -- VALUES (0, 'test first name', 'test last name', 'test ethnicity'
--- , 'test phone number', 'test email', 'test password', 'test type');
+-- , 'test phone number', 'test email', 'test password', 0);
 
 -- TABLESPACE pg_default;
 
