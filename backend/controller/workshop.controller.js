@@ -11,8 +11,9 @@ class workshopController {
         let data = {};
         try {
             data = await this.db.workshop.create(workshop);
+            console.log(data);
         } catch(err) {
-            logger.error('Error::' + err);
+            console.log('Error::' + err);
         }
         return data;
     
@@ -28,7 +29,7 @@ class workshopController {
                 }
             });
         } catch(err) {
-            logger.error('Error::' + err);
+            console.log('Error::' + err);
         }
         return data;
     }

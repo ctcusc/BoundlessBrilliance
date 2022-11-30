@@ -30,6 +30,15 @@ app.get('/api/example', (req, res) => {
     });
 });
 
+// Olivia sprint 0 test
+app.post('/api/createWorkshop', (req, res) => {
+    workshopController.createWorkshop(req.body.workshop).then(data => res.json(data));
+});
+
+app.put('/api/editWorkshop', (req, res) => {
+    workshopController.editWorkshop(req.body.workshop).then(data => res.json(data));
+});
+
 // app.post('/api/task', (req, res) => {
 //     console.log(req.body);
 //     taskController.createTask(req.body.task).then(data => res.json(data));
