@@ -62,11 +62,15 @@ class userController {
             }
         }
 
-    async approveUser(user) {
-        // Sprint 0: Fred
-    }
-
-
-}
-
-module.exports = new userController();
+        async approveUser(user_id) {
+            // Sprint 0: Fred
+            console.log(user_id);
+            const result = await db.query(
+              "UPDATE user_status SET user_status = 1 WHERE user_id = $1;",
+              [user_id]
+            );
+            return result.rows[0];
+          }
+        }
+        
+        module.exports = new userController();
