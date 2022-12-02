@@ -30,6 +30,39 @@ app.get('/api/example', (req, res) => {
     });
 });
 
+// Olivia sprint 0 test
+app.post('/api/createWorkshop', (req, res) => {
+    console.log(req.body.workshop_name);
+    workshopController.createWorkshop(req).then(
+        data => res.status(201).json({
+            status: "success",
+            data: {
+              workshop: data,
+            },
+          })
+        ).catch(err=>{
+        return res.sendStatus(500).send({
+            message:err.message|| "API Error createWorkshop"
+        });;
+    });
+});
+
+app.put('/api/editWorkshop', (req, res) => {
+    console.log(req.body.workshop_name);
+    workshopController.editWorkshop(req, req.body.workshop_id).then(
+        data => res.status(200).json({
+            status: "success",
+            data: {
+                workshop: data,
+            },
+        })
+    ).catch(err=>{
+        return res.sendStatus(500).send({
+            message:err.message|| "API Error editWorkshop"
+        })
+    })
+});
+
 // app.post('/api/task', (req, res) => {
 //     console.log(req.body);
 //     taskController.createTask(req.body.task).then(data => res.json(data));
