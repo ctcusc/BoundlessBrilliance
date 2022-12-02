@@ -13,7 +13,7 @@ class workshopController {
             data = await this.db.workshop.create(workshop);
             console.log(data);
         } catch(err) {
-            console.log('Error::' + err);
+            console.log('Error::' + workshop.firstname);
         }
         return data;
     
