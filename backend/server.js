@@ -32,7 +32,19 @@ app.get('/api/example', (req, res) => {
 
 // Olivia sprint 0 test
 app.post('/api/createWorkshop', (req, res) => {
-    workshopController.createWorkshop(req.body.workshop).then(data => res.json(data));
+    console.log(req.body.workshop_name);
+    workshopController.createWorkshop(req).then(
+        data => res.status(201).json({
+            status: "success",
+            data: {
+              workshop: data,
+            },
+          })
+        ).catch(err=>{
+        return res.sendStatus(500).send({
+            message:err.message|| "API Error createWorkshop"
+        });;
+    });
 });
 
 app.put('/api/editWorkshop', (req, res) => {
