@@ -92,6 +92,28 @@ app.put("/api/approveUser", (req, res) => {
     });
 });
 
+
+// Evans sprint 0 test
+app.get('/api/validateUser', (req, res) => {
+
+    console.log(req.body.user_email);
+
+    userController.validateUser(req).then(
+        data => res.status(200).json({
+            status: "success",
+            data: {
+              validate: data,
+            },
+          })
+        ).catch(err=>{
+        return res.sendStatus(500).send({
+            message:err.message|| "API Error createWorkshop"
+        });;
+    });
+});
+
+
+
 // app.post('/api/task', (req, res) => {
 //     console.log(req.body);
 //     taskController.createTask(req.body.task).then(data => res.json(data));
