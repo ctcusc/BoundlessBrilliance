@@ -48,7 +48,19 @@ app.post('/api/createWorkshop', (req, res) => {
 });
 
 app.put('/api/editWorkshop', (req, res) => {
-    workshopController.editWorkshop(req.body.workshop).then(data => res.json(data));
+    console.log(req.body.workshop_name);
+    workshopController.editWorkshop(req, req.body.workshop_id).then(
+        data => res.status(201).json({
+            status: "success",
+            data: {
+                workshop: data,
+            },
+        })
+    ).catch(err=>{
+        return res.sendStatus(500).send({
+            message:err.message|| "API Error editWorkshop"
+        })
+    })
 });
 
 // app.post('/api/task', (req, res) => {
