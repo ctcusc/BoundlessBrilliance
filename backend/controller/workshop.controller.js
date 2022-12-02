@@ -16,7 +16,6 @@ class workshopController {
             console.log('Error::' + workshop.firstname);
         }
         return data;
-    
     }
 
     async editWorkshop(workshop) {
