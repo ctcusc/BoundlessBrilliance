@@ -8,7 +8,7 @@ const port = process.env.PORT || 3000; //define port value in .env, default to p
 
 app.use(express.json());
 
-app.get("/api/test", (req, res) => {
+app.get("/api/apiTest", (req, res) => {
   res.status(200).json({
     status: "success",
     username: "rkuan",
@@ -17,25 +17,8 @@ app.get("/api/test", (req, res) => {
   console.log("call to /api/test");
 });
 
-app.post("/api/createUser", (req, res) => {
-  userController.createUser().then((data) => res.json(data));
-});
-
-app.get("/api/example", (req, res) => {
-  console.log(req.body.id);
-  userController
-    .validateUser(req)
-    .then((data) => res.json(data))
-    .catch((err) => {
-      return res.sendStatus(500).send({
-        message: err.message || "some error occured",
-      });
-    });
-});
-
-// Olivia sprint 0 test
+// createWorkshop: given workshop params, post data to database
 app.post("/api/createWorkshop", (req, res) => {
-  console.log(req.body.workshop_name);
   workshopController
     .createWorkshop(req)
     .then((data) =>
@@ -53,8 +36,8 @@ app.post("/api/createWorkshop", (req, res) => {
     });
 });
 
+// editWorkshop: updates the workshop given the new workshop params and the workshop id
 app.put("/api/editWorkshop", (req, res) => {
-  console.log(req.body.workshop_name);
   workshopController
     .editWorkshop(req, req.body.workshop_id)
     .then((data) =>
@@ -72,9 +55,8 @@ app.put("/api/editWorkshop", (req, res) => {
     });
 });
 
-// Fred sprint 0
+// approveUser: changes user_status from 0 (waiting approval) to 1 (approved by admin)
 app.put("/api/approveUser", (req, res) => {
-  console.log(req.body.user_id);
   userController
     .approveUser(req.body.user_id)
     .then((data) =>
@@ -92,12 +74,8 @@ app.put("/api/approveUser", (req, res) => {
     });
 });
 
-
-// Evans sprint 0 test
+// validateUser: returns true if the user credentials are valid/user has been approved by admin, else false
 app.get('/api/validateUser', (req, res) => {
-
-    console.log(req.body.user_email);
-
     userController.validateUser(req).then(
         data => res.status(200).json({
             status: "success",
@@ -112,21 +90,7 @@ app.get('/api/validateUser', (req, res) => {
     });
 });
 
-
-
-// app.post('/api/task', (req, res) => {
-//     console.log(req.body);
-//     taskController.createTask(req.body.task).then(data => res.json(data));
-// });
-
-// app.put('/api/task', (req, res) => {
-//     taskController.updateTask(req.body.task).then(data => res.json(data));
-// });
-
-// app.delete('/api/task/:id', (req, res) => {
-//     taskController.deleteTask(req.params.id).then(data => res.json(data));
-// });
-
+// Start Backend Port 
 app.listen(port, () => {
   console.log(`Server listening on the port  ${port}`);
 });
