@@ -6,15 +6,14 @@ const morgan = require("morgan");
 
 class workshopController {
 
-    async createWorkshop(workshop) {
+    async createWorkshop(req) {
         // Sprint 0: Olivia
-        let data = {};
-        try {
-            data = await this.db.workshop.create(workshop);
-        } catch(err) {
-            console.log('Error::' + workshop.firstname);
-        }
-        return data;
+        console.log(req.body.workshop_description);
+        const result = await db.query(
+            "INSERT INTO workshop (workshop_name, workshop_description, workshop_date, workshop_time, workshop_duration, workshop_chapter, workshop_num_presentors, workshop_is_virtual) VALUES ($1, $2, $3, $4, $5, $6, $7, $8);",
+            [req.body.workshop_name, req.body.workshop_description, req.body.workshop_date, req.body.workshop_time, req.body.workshop_duration, req.body.workshop_chapter, req.body.workshop_num_presentors, req.body.workshop_is_virtual]
+            );
+        return result.rows[0];
     }
 
     async editWorkshop(workshop) {
