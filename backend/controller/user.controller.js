@@ -3,9 +3,7 @@ const cors = require("cors");
 const db = require("../db");
 const morgan = require("morgan");
 
-
 class userController {
-
     async example(req) {
         // Example of query
         console.log(req.body.id);
@@ -74,3 +72,4 @@ class userController {
         }
         
         module.exports = new userController();
+        
