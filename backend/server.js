@@ -79,7 +79,7 @@ app.post('/api/createUser', (req, res) => {
   userController.createUser(req).then(
       data => res.status(200).json({
           api_status: "success",
-          err : data
+          error: data
         })
       ).catch(err=>{
       return res.sendStatus(500).send({

@@ -11,6 +11,7 @@ class userController {
     // Sprint 0: Wonjun
     try {
       const hashedPassword = await bcrypt.hash(req.body.user_password, 10);
+
       await db.query(
         "INSERT INTO master_users (user_firstname, user_lastname, user_ethnicity, user_phone_number, user_email, user_password, user_type) VALUES ($1, $2, $3, $4, $5, $6, $7)",
         [req.body.user_firstname, req.body.user_lastname, req.body.user_ethnicity, req.body.user_phone_number, req.body.user_email, hashedPassword, req.body.user_type]
@@ -20,8 +21,8 @@ class userController {
         "select user_id from master_users WHERE user_email = $1",
         [req.body.user_email]
       );
-
       const user_id = idQuery.rows[0].user_id;
+
       await db.query(
         "INSERT INTO user_status (user_id, user_status) VALUES ($1, 0);",
         [user_id]
@@ -72,11 +73,12 @@ class userController {
             }
          } 
          }catch (error){
-             return 3; // other error case
+             return 3; // other error cases
          }
   }
 
   async approveUser(user_id) {
+    // Sprint 0: Fred
     const result = await db.query(
       "UPDATE user_status SET user_status = 1 WHERE user_id = $1;",
       [user_id]
