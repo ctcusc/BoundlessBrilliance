@@ -2,47 +2,77 @@ require("dotenv").config();
 const cors = require("cors");
 const db = require("../db");
 const morgan = require("morgan");
+const bcrypt = require('bcrypt');
+const e = require("cors");
 
 class userController {
 
-  async createUser(user) {
+  async createUser(req) {
     // Sprint 0: Wonjun
+    try {
+      const hashedPassword = await bcrypt.hash(req.body.user_password, 10);
+      await db.query(
+        "INSERT INTO master_users (user_firstname, user_lastname, user_ethnicity, user_phone_number, user_email, user_password, user_type) VALUES ($1, $2, $3, $4, $5, $6, $7)",
+        [req.body.user_firstname, req.body.user_lastname, req.body.user_ethnicity, req.body.user_phone_number, req.body.user_email, hashedPassword, req.body.user_type]
+      );
+
+      const idQuery = await db.query(
+        "select user_id from master_users WHERE user_email = $1",
+        [req.body.user_email]
+      );
+
+      const user_id = idQuery.rows[0].user_id;
+      await db.query(
+        "INSERT INTO user_status (user_id, user_status) VALUES ($1, 0);",
+        [user_id]
+      );
+    } catch (error){
+      return error; 
+    }
   }
 
-  async validateUser(user) {
+  async validateUser(req) {
      // Sprint 0: Evans
-     console.log(req.body.user_password);
      try{
-         const result = await db.query(
-             "select user_id from master_users WHERE user_email = $1 and user_password = $2",
-             [req.body.user_email, req.body.user_password]
+         const idQuery = await db.query(
+             "select user_id from master_users WHERE user_email = $1",
+             [req.body.user_email]
          );
-         console.log(result.rows);
-         if (result.rows.length == 0) {
-             return false;
+
+         if (idQuery.rows.length == 0) { //username doesn't exist
+             return 0;
          }
          else {
-             console.log(result.rows[0].user_id);
+            const user_id = idQuery.rows[0].user_id;
+            
+            const passwordQuery = await db.query( //get password
+              "select user_password from master_users WHERE user_id = $1",
+              [user_id]
+            );
+
+            const password = passwordQuery.rows[0].user_password;
+            const flag = await bcrypt.compare(req.body.user_password, password);
+
+            if (flag == false){ //compare password
+              return 1;
+            }
  
-             const result2 = await db.query(
+             const statusQuery = await db.query( //get user status
                  "select user_status from user_status WHERE user_id = $1",
-                 [result.rows[0].user_id]
+                 [user_id]
              );
  
-             const checkStatus = result2.rows[0].user_status;
- 
-             if (checkStatus == 0){
-                 console.log("waiting approval");
-                 return false;
-             }
-             else{
-                 console.log("success");
-                 return true;
-             }
-         
+            const userStatus = statusQuery.rows[0].user_status;  // 0 = Not Approved, 1 = Approved
+
+            if (userStatus == 0){
+                return 2; // user not approved
+            }
+            else{
+                return -1; 
+            }
          } 
          }catch (error){
-             return false;
+             return 3; // other error case
          }
   }
 

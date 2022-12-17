@@ -69,23 +69,39 @@ app.put("/api/approveUser", (req, res) => {
     )
     .catch((err) => {
       return res.sendStatus(500).send({
-        message: err.message || "API Error editWorkshop",
+        message: err.message || "API Error approveUser",
       });
     });
 });
 
+//createUser : inserts user data into the database
+app.post('/api/createUser', (req, res) => {
+  userController.createUser(req).then(
+      data => res.status(200).json({
+          api_status: "success",
+          err : data
+        })
+      ).catch(err=>{
+      return res.sendStatus(500).send({
+          message:err.message|| "API Error validateUser"
+      });;
+  });
+});
+
 // validateUser: returns true if the user credentials are valid/user has been approved by admin, else false
+// returns:
+// (-1, validation successful), (0, username doesnt exist), (1, password incorrect), (2, user has not been approved by admin), (3, other error)
 app.get('/api/validateUser', (req, res) => {
     userController.validateUser(req).then(
         data => res.status(200).json({
-            status: "success",
-            data: {
-              validate: data,
+            api_status: "success",
+            user: {
+              authentication: data,
             },
           })
         ).catch(err=>{
         return res.sendStatus(500).send({
-            message:err.message|| "API Error createWorkshop"
+            message:err.message|| "API Error validateUser"
         });;
     });
 });
