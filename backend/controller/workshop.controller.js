@@ -22,16 +22,11 @@ class workshopController {
         return result.rows[0];
     }
 
-    async assignUser(user, workshop) {
-        try {
-            await db.query(
-                `INSERT INTO "workshop_assignments" ("user_id", "workshop_id", "has_accepted")  
-                 VALUES ($1, $2, $3)`, [user.id, workshop.id, false]); // sends queries
-            return true;
-        } catch (error) {
-            console.error(error.stack);
-            return false;
-        }
+    async assignUser(user_id, workshop_id) {
+        const result = await db.query(
+            `INSERT INTO "workshop_assignments" ("user_id", "workshop_id", "has_accepted")  
+                VALUES ($1, $2, $3)`, [user_id, workshop_id, false]); // sends queries
+        return result.rows[0];
     }
 
 }
