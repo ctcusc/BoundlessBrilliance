@@ -77,14 +77,14 @@ app.put("/api/approveUser", (req, res) => {
 //createUser : inserts user data into the database
 app.post('/api/createUser', (req, res) => {
   userController.createUser(req).then(
-      data => res.status(200).json({
-          api_status: "success",
-          error: data
-        })
-      ).catch(err=>{
-      return res.sendStatus(500).send({
-          message:err.message|| "API Error validateUser"
-      });;
+    data => res.status(200).json({
+      api_status: "success",
+      error: data
+    })
+  ).catch(err => {
+    return res.sendStatus(500).send({
+      message: err.message || "API Error validateUser"
+    });;
   });
 });
 
@@ -92,19 +92,39 @@ app.post('/api/createUser', (req, res) => {
 // returns:
 // (-1, validation successful), (0, username doesnt exist), (1, password incorrect), (2, user has not been approved by admin), (3, other error)
 app.get('/api/validateUser', (req, res) => {
-    userController.validateUser(req).then(
-        data => res.status(200).json({
-            api_status: "success",
-            user: {
-              authentication: data,
-            },
-          })
-        ).catch(err=>{
-        return res.sendStatus(500).send({
-            message:err.message|| "API Error validateUser"
-        });;
+  userController.validateUser(req).then(
+    data => res.status(200).json({
+      api_status: "success",
+      user: {
+        authentication: data,
+      },
+    })
+  ).catch(err => {
+    return res.sendStatus(500).send({
+      message: err.message || "API Error validateUser"
+    });;
+  });
+});
+
+// associatedWorkshops: given user_id, returns associated workshop ids
+app.get("/api/associatedWorkshops", (req, res) => {
+  workshopController
+    .associatedWorkshops(req)
+    .then((data) =>
+      res.status(200).json({
+        status: "success",
+        data: {
+          workshops: data,
+        },
+      })
+    )
+    .catch((err) => {
+      return res.sendStatus(500).send({
+        message: err.message || "API Error associatedWorkshops",
+      });
     });
 });
+
 
 // Start Backend Port 
 app.listen(port, () => {
