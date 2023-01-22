@@ -120,7 +120,7 @@ app.post("/api/assignUser", (req, res) => {
     )
     .catch((err) => {
       return res.sendStatus(500).send({
-        message: err.message || "API Error editWorkshop",
+        message: err.message || "API Error assignUser",
       });
     });
 });
