@@ -85,6 +85,15 @@ class userController {
     );
     return result.rows[0];
   }
+
+  async rejectUser(user_id) {
+    // Sprint 1: Fred
+    const result = await db.query(
+      "DELETE FROM master_users WHERE user_id = $1;",
+      [user_id]
+    );
+    return result.rows[0];
+  }
 }
         
 module.exports = new userController();   

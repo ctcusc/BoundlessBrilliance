@@ -74,6 +74,25 @@ app.put("/api/approveUser", (req, res) => {
     });
 });
 
+//rejectUser, removes user from master_users table
+app.delete("/api/rejectUser", (req, res) => {
+  userController
+    .rejectUser(req.body.user_id)
+    .then((data) =>
+      res.status(200).json({
+        status: "success",
+        data: {
+          workshop: data,
+        },
+      })
+    )
+    .catch((err) => {
+      return res.sendStatus(500).send({
+        message: err.message || "API Error rejectUser",
+      });
+    });
+});
+
 //createUser : inserts user data into the database
 app.post('/api/createUser', (req, res) => {
   userController.createUser(req).then(
