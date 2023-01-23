@@ -107,6 +107,43 @@ class userController {
     }
     return user_ids;
   }
+  
+  async generateMetrics(req) {
+    // Make queries for users and workshop tables
+    const userQueryResults = await db.query(
+        "SELECT * FROM master_users;"
+    );
+    const workshopQueryResults = await db.query(
+        "SELECT COUNT(*) FROM workshop;"
+    );
+
+    // Access query results
+    const userArray = userQueryResults?.rows ?? [];
+    const workshop_count = workshopQueryResults?.rows?.[0]?.count ?? 0;
+
+    let metrics = {
+      "ethnicity": {},
+      "age": {},
+      "gender": {},
+      "users": userArray.length,
+      "workshops": workshop_count
+    };
+
+    // Loop through users to generate metrics
+    for(const user of userArray) {
+      if (user.user_ethnicity) {
+        metrics["ethnicity"][user.user_ethnicity] = (metrics["ethnicity"][user.user_ethnicity] || 0) + 1;
+      }
+      if (user.user_age) {
+        metrics["age"][user.user_age] = (metrics["age"][user.user_age] || 0) + 1;
+      }
+      if (user.user_gender) {
+        metrics["gender"][user.user_gender] = (metrics["gender"][user.user_gender] || 0) + 1;
+      }
+    }
+
+    return metrics;
+  }
 }
         
 module.exports = new userController();   
