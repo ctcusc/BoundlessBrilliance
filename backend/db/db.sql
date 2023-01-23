@@ -12,6 +12,8 @@ CREATE TABLE IF NOT EXISTS master_users
     user_phone_number VARCHAR,
     user_email VARCHAR,
     user_password VARCHAR,
+    user_gender VARCHAR,
+    user_age integer,
     user_type integer
 );
 
@@ -60,9 +62,11 @@ INSERT INTO master_users (
     user_phone_number,
     user_email,
     user_password,
+    user_gender,
+    user_age,
     user_type)
 VALUES ('Raymond', 'Kuan', 'Asian'
-, '510-000-0000', 'rkuan@usc.edu', 'password', 0);
+, '510-000-0000', 'rkuan@usc.edu', 'password', 'Male', 20, 0);
 
 INSERT INTO master_users (
     user_firstname,
@@ -71,9 +75,11 @@ INSERT INTO master_users (
     user_phone_number,
     user_email,
     user_password,
+    user_gender,
+    user_age,
     user_type)
 VALUES ('Wesley', 'Tong', 'Asian'
-, '626-000-0000', 'wytong@usc.edu', 'password', 0);
+, '626-000-0000', 'wytong@usc.edu', 'password', 'Male', 20, 0);
 
 INSERT INTO master_users (
     user_firstname,
@@ -82,9 +88,11 @@ INSERT INTO master_users (
     user_phone_number,
     user_email,
     user_password,
+    user_gender,
+    user_age,
     user_type)
 VALUES ('Frederick', 'Liu', 'Asian'
-, '858-000-0000', 'liufrede@usc.edu', 'password', 0);
+, '858-000-0000', 'liufrede@usc.edu', 'password', 'Male', 21, 0);
 
 INSERT INTO user_status (user_id, user_status)
 VALUES (1, 0);
