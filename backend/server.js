@@ -180,6 +180,14 @@ app.get('/api/allActiveUsers', (req, res) => {
 });
 
 
+//within server.js
+app.get("/api/generateMetrics", (req, res) => {
+  userController.generateMetrics(req)
+  .then((data) =>
+    res.status(201).json(data)
+  );
+});
+
 // Start Backend Port 
 app.listen(port, () => {
   console.log(`Server listening on the port  ${port}`);
