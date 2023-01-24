@@ -22,6 +22,28 @@ class workshopController {
         return result.rows[0];
     }
 
+    async acceptWorkshop(user_id, workshop_id) {
+        
+        try{
+        const result = await db.query(
+            "INSERT INTO workshop_assignments (user_id, workshop_id, has_accepted) VALUES ($1, $2, true);",
+            [user_id, workshop_id]);
+        } catch(error){
+            return error;
+        }
+    }
+
+    async declineWorkshop(user_id, workshop_id) {
+        try{
+            const result = await db.query(
+                "INSERT INTO workshop_assignments (user_id, workshop_id, has_accepted) VALUES ($1, $2, false);",
+                [user_id, workshop_id]);
+            } catch(error){
+                return error;
+            }
+    }
+
+
     async assignUser(user, workshop) {
         // Sprint 0: Natalie
     }
