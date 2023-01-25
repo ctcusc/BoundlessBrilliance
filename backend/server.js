@@ -106,6 +106,7 @@ app.get('/api/validateUser', (req, res) => {
   });
 });
 
+
 // associatedWorkshops: given user_id, returns associated workshop ids
 app.get("/api/associatedWorkshops", (req, res) => {
   workshopController
