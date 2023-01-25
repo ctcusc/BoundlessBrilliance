@@ -126,6 +126,25 @@ app.get("/api/associatedWorkshops", (req, res) => {
     });
 });
 
+// assignUser: assigns a user to a workshop, returns assignment on success
+app.post("/api/assignUser", (req, res) => {
+  workshopController
+    .assignUser(req.body.user_id, req.body.workshop_id)
+    .then((data) =>
+      res.status(200).json({
+        status: "success",
+        data: {
+          workshop_assignment: data,
+        },
+      })
+    )
+    .catch((err) => {
+      return res.sendStatus(500).send({
+        message: err.message || "API Error assignUser",
+      });
+    });
+});
+
 
 // Start Backend Port 
 app.listen(port, () => {
