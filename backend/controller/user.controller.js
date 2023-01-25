@@ -94,6 +94,19 @@ class userController {
     );
     return result.rows[0];
   }
+
+  async allActiveUsers(req) {
+    // Sprint 1: Olivia
+    const result = await db.query(
+      "select user_id from user_status WHERE user_status = 1;"
+    );
+    // compiles user_ids into an int array
+    var user_ids = [];
+    for (let i = 0;i < result.rows.length;i ++) {
+      user_ids.push(result.rows[i].user_id);
+    }
+    return user_ids;
+  }
 }
         
 module.exports = new userController();   
