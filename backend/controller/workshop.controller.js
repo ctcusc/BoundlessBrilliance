@@ -22,8 +22,11 @@ class workshopController {
         return result.rows[0];
     }
 
-    async assignUser(user, workshop) {
-        // Sprint 0: Natalie
+    async assignUser(user_id, workshop_id) {
+        const result = await db.query(
+            `INSERT INTO "workshop_assignments" ("user_id", "workshop_id", "has_accepted")  
+                VALUES ($1, $2, $3)`, [user_id, workshop_id, false]); // sends queries
+        return result.rows[0];
     }
 
     async associatedWorkshops(req) {
