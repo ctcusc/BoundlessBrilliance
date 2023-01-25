@@ -29,6 +29,14 @@ class workshopController {
         return result.rows[0];
     }
 
+    async associatedWorkshops(req) {
+        const result = await db.query(
+            "SELECT workshop_id FROM workshop_assignments WHERE user_id = $1", [req.body.user_id]
+        );
+        return result.rows;
+    }
+
+
 }
 
 module.exports = new workshopController();

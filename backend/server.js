@@ -106,24 +106,26 @@ app.get('/api/validateUser', (req, res) => {
   });
 });
 
-// assignUser: assigns a user to a workshop, returns assignment on success
-app.post("/api/assignUser", (req, res) => {
+
+// associatedWorkshops: given user_id, returns associated workshop ids
+app.get("/api/associatedWorkshops", (req, res) => {
   workshopController
-    .assignUser(req.body.user_id, req.body.workshop_id)
+    .associatedWorkshops(req)
     .then((data) =>
       res.status(200).json({
         status: "success",
         data: {
-          workshop_assignment: data,
+          workshops: data,
         },
       })
     )
     .catch((err) => {
       return res.sendStatus(500).send({
-        message: err.message || "API Error assignUser",
+        message: err.message || "API Error associatedWorkshops",
       });
     });
 });
+
 
 // Start Backend Port 
 app.listen(port, () => {
