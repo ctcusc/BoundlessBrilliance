@@ -107,6 +107,36 @@ app.post('/api/createUser', (req, res) => {
   });
 });
 
+//acceptWorkshop: 
+
+app.post('/api/acceptWorkshop', (req, res) => {
+  workshopController.acceptWorkshop(req.body.user_id, req.body.workshop_id).then(
+      data => res.status(200).json({
+          api_status: "success",
+          error: data
+        })
+      ).catch(err=>{
+      return res.sendStatus(500).send({
+          message:err.message|| "API Error acceptWorkshop"
+      });;
+  });
+});
+
+//declineWorkshop: 
+
+app.post('/api/declineWorkshop', (req, res) => {
+  workshopController.declineWorkshop(req.body.user_id, req.body.workshop_id).then(
+      data => res.status(200).json({
+          api_status: "success",
+          error: data
+        })
+      ).catch(err=>{
+      return res.sendStatus(500).send({
+          message:err.message|| "API Error declineWorkshop"
+      });;
+  });
+});
+
 // validateUser: returns true if the user credentials are valid/user has been approved by admin, else false
 // returns:
 // (-1, validation successful), (0, username doesnt exist), (1, password incorrect), (2, user has not been approved by admin), (3, other error)
