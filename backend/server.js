@@ -74,17 +74,36 @@ app.put("/api/approveUser", (req, res) => {
     });
 });
 
+//rejectUser, removes user from master_users table
+app.delete("/api/rejectUser", (req, res) => {
+  userController
+    .rejectUser(req.body.user_id)
+    .then((data) =>
+      res.status(200).json({
+        status: "success",
+        data: {
+          workshop: data,
+        },
+      })
+    )
+    .catch((err) => {
+      return res.sendStatus(500).send({
+        message: err.message || "API Error rejectUser",
+      });
+    });
+});
+
 //createUser : inserts user data into the database
 app.post('/api/createUser', (req, res) => {
   userController.createUser(req).then(
-      data => res.status(200).json({
-          api_status: "success",
-          error: data
-        })
-      ).catch(err=>{
-      return res.sendStatus(500).send({
-          message:err.message|| "API Error validateUser"
-      });;
+    data => res.status(200).json({
+      api_status: "success",
+      error: data
+    })
+  ).catch(err => {
+    return res.sendStatus(500).send({
+      message: err.message || "API Error validateUser"
+    });;
   });
 });
 
@@ -122,19 +141,74 @@ app.post('/api/declineWorkshop', (req, res) => {
 // returns:
 // (-1, validation successful), (0, username doesnt exist), (1, password incorrect), (2, user has not been approved by admin), (3, other error)
 app.get('/api/validateUser', (req, res) => {
-    userController.validateUser(req).then(
-        data => res.status(200).json({
-            api_status: "success",
-            user: {
-              authentication: data,
-            },
-          })
-        ).catch(err=>{
-        return res.sendStatus(500).send({
-            message:err.message|| "API Error validateUser"
-        });;
+  userController.validateUser(req).then(
+    data => res.status(200).json({
+      api_status: "success",
+      user: {
+        authentication: data,
+      },
+    })
+  ).catch(err => {
+    return res.sendStatus(500).send({
+      message: err.message || "API Error validateUser"
+    });;
+  });
+});
+
+
+// associatedWorkshops: given user_id, returns associated workshop ids
+app.get("/api/associatedWorkshops", (req, res) => {
+  workshopController
+    .associatedWorkshops(req)
+    .then((data) =>
+      res.status(200).json({
+        status: "success",
+        data: {
+          workshops: data,
+        },
+      })
+    )
+    .catch((err) => {
+      return res.sendStatus(500).send({
+        message: err.message || "API Error associatedWorkshops",
+      });
     });
 });
+
+// assignUser: assigns a user to a workshop, returns assignment on success
+app.post("/api/assignUser", (req, res) => {
+  workshopController
+    .assignUser(req.body.user_id, req.body.workshop_id)
+    .then((data) =>
+      res.status(200).json({
+        status: "success",
+        data: {
+          workshop_assignment: data,
+        },
+      })
+    )
+    .catch((err) => {
+      return res.sendStatus(500).send({
+        message: err.message || "API Error assignUser",
+      });
+    });
+});
+
+app.get('/api/allActiveUsers', (req, res) => {
+  userController.allActiveUsers(req).then(
+      data => res.status(200).json({
+          api_status: "success",
+          data: {
+            user_ids: data,
+          },
+        })
+      ).catch(err=>{
+      return res.sendStatus(500).send({
+          message:err.message|| "API Error allActiveUsers"
+      });
+  });
+});
+
 
 // Start Backend Port 
 app.listen(port, () => {
