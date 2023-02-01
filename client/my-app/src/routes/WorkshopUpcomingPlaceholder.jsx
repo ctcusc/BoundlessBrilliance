@@ -22,9 +22,6 @@ const WorkshopUpcomingPlaceholder = () => {
             >
                 <img src={emptyWorkshop}
                 style={{
-                    // position: "absolute",
-                    // left: "35.5%",
-                    // top: "463px",
                     width: "auto",
                     height: "233px",
                     display: "flex",
@@ -33,10 +30,6 @@ const WorkshopUpcomingPlaceholder = () => {
                 />
                 <p
                 style={{
-                    // position: "absolute",
-                    // left: "28.3%",
-                    // top: "704px",
-                    // width: "415px",
                     fontFamily: "Roboto Mono",
                     fontWeight: "700",
                     fontSize: "20px",

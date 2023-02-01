@@ -23,9 +23,6 @@ const WorkshopAssignmentPlaceholder = () => {
             >
                 <img src={emptyWorkshopAssignment}
                 style={{
-                    // position: "absolute",
-                    // left: "35.5%",
-                    // top: "463px",
                     width: "auto",
                     height: "233px",
                     display: "flex",
@@ -34,10 +31,6 @@ const WorkshopAssignmentPlaceholder = () => {
                 />
                 <p
                 style={{
-                    // position: "absolute",
-                    // left: "28.3%",
-                    // top: "704px",
-                    // width: "415px",
                     paddingTop: "44px",
                     fontFamily: "Roboto Mono",
                     fontWeight: "700",
