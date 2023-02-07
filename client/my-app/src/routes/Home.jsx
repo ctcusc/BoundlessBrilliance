@@ -1,5 +1,6 @@
 import React from "react"
 import Header from "../components/Header"
+import HomePageTab from "../components/HomePageTab"
 import { Box, Card, Grid } from '@mui/material';
 import WorkshopCard from '../components/WorkshopCard'
 import sampleData from '../components/workshopCardSample.json'
@@ -7,8 +8,8 @@ import sampleData from '../components/workshopCardSample.json'
 const Home = () => {
     return (
         <div>
-            <Header />
-            This is the Home Page
+            <Header/>
+            <HomePageTab/>
             <Box sx={{ flexGrow: 1, width: '90%' }}>
                 <Grid container spacing={2}>
                     {sampleData.map((data) => (
