@@ -7,7 +7,6 @@ const Home = () => {
         <div>
             <Header/>
             <HomePageTab/>
-            This is the Home Page
         </div>
     );
 };
