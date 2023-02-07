@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto&family=Roboto+Mono:wght@100;500;600&display=swap');
+
+.cardText {
+    font-family: 'Roboto Mono';
+    font-style: 'normal';
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 28px;
+    color: #222222;
+}
+
+.detailsBox {
+    display: flex;
+}
+
+.bottomDiv {
+    display: 'flex';
+    align-items: 'center';
+    text-align: 'center';
+}
