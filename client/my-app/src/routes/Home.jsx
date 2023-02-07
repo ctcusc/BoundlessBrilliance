@@ -9,7 +9,7 @@ const Home = () => {
         <div>
             <Header />
             This is the Home Page
-            <Box sx={{ flexGrow: 1 }}>
+            <Box sx={{ flexGrow: 1, width: '90%' }}>
                 <Grid container spacing={2}>
                     {sampleData.map((data) => (
                         <Grid item xs={5}>
