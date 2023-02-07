@@ -3,15 +3,35 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import css from './WorkshopCard.css'
+import EditIcon from '@mui/icons-material/Edit';
+import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 
 import { ReactComponent as DateIcon } from '../images/date_icon.svg'
 import { ReactComponent as TimeIcon } from '../images/time_icon.svg';
 import { ReactComponent as LocationIcon } from '../images/location_icon.svg';
 
-import workshopData from './workshopCardSample.json'
+const cardStyles = {
+    minWidth: 275,
+    dropShadow: '0px 2px 8px rgba(0, 0, 0, 0.15)',
+    borderRadius: '30px',
+    height: '300px'
+};
+
+const cardContentStyles = {
+    padding: '45px',
+    margin: 'auto',
+    height: '280px'
+}
+
+const cardHeaderStyles = {
+    fontSize: 20,
+    fontFamily: 'Roboto Mono',
+    fontWeight: 700,
+    color: '#222222',
+    mb: '20px'
+};
 
 const cardDetailStyles = {
     paddingLeft: 1,
@@ -49,32 +69,25 @@ const numbersWrapperStyles = {
     justifyContent: 'space-between'
 }
 
-const cardContentStyles = {
-    padding: '30px'
-}
-
 const verticalLine = {
     borderRight: '3px solid lightgray',
     height: '45px'
 }
 
 export default function WorkshopCard(props) {
-    console.log(props.workshop)
     return (
 
-        <Card sx={{ minWidth: 275 }}>
+        <Card sx={cardStyles}>
             <CardContent sx={cardContentStyles}>
-                <Typography sx={
-                    {
-                        fontSize: 20,
-                        fontFamily: 'Roboto Mono',
-                        fontWeight: 700,
-                        color: '#222222',
-                        mb: '10px'
-                    }
-                } color="text.secondary" gutterBottom>
-                    {props.workshop.name}
-                </Typography>
+                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                    <Typography sx={cardHeaderStyles} color="text.secondary" gutterBottom>
+                        {props.workshop.name}
+                    </Typography>
+                    <div style={{ display: "flex", width: '60px', justifyContent: "space-between" }}>
+                        <PersonAddAlt1Icon sx={{ color: '#1398A0', cursor: 'pointer' }} />
+                        <EditIcon sx={{ color: '#616161', cursor: 'pointer' }} />
+                    </div>
+                </div>
                 <div style={{ display: "flex" }} >
                     <DateIcon></DateIcon>
                     <Typography sx={
