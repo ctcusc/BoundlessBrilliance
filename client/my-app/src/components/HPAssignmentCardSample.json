@@ -1,0 +1,23 @@
+[
+    {
+        "day": "Thursday",
+        "title": "Introduction to Coding",
+        "dueDate": "October 21, 2022",
+        "dueTime": "10:00am",
+        "location": "1234 West Street, Los Angeles, CA 90007"
+    },
+    {
+        "day": "Thursday",
+        "title": "Introduction to Coding",
+        "dueDate": "October 21, 2022",
+        "dueTime": "10:00am",
+        "location": "1234 West Street, Los Angeles, CA 90007"
+    },
+    {
+        "day": "Thursday",
+        "title": "Introduction to Coding",
+        "dueDate": "October 21, 2022",
+        "dueTime": "10:00am",
+        "location": "1234 West Street, Los Angeles, CA 90007"
+    }
+]

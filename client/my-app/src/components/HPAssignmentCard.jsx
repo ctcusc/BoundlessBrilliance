@@ -8,9 +8,8 @@ import CalenderMonth from "@mui/icons-material/CalendarMonth";
 import QueryBuilder from "@mui/icons-material/QueryBuilder";
 import Place from "@mui/icons-material/Place";
 import Box from "@mui/material/Box";
-import { margin } from "@mui/system";
 
-function HPAssignmentCard() {
+function HPAssignmentCard(props) {
   return (
     <Card
       sx={{
@@ -26,9 +25,9 @@ function HPAssignmentCard() {
           backgroundColor: "#8cdcff",
         }}
         titleTypographyProps={{ variant: "h7" }}
-        title={"day"}
+        title={props.Assignment.day}
         subheaderTypographyProps={{ variant: "h5" }}
-        subheader={"Introduction"}
+        subheader={props.Assignment.title}
       />
       <CardContent>
 
@@ -42,7 +41,7 @@ function HPAssignmentCard() {
                 flexWrap: 'wrap',
             }}>
                 <CalenderMonth />
-                <h6>Thursday, October 21, 2002</h6>
+                <h6>{props.Assignment.dueDate}</h6>
             </div> 
             <div style={{
                 display: 'flex',
@@ -50,7 +49,7 @@ function HPAssignmentCard() {
                 flexWrap: 'wrap',
             }}>
                 <QueryBuilder />
-                <h6>10:00 am</h6>
+                <h6>{props.Assignment.dueTime}</h6>
             </div> 
             <div style={{
                 display: 'flex',
@@ -58,7 +57,7 @@ function HPAssignmentCard() {
                 flexWrap: 'wrap',
             }}>
                 <Place />
-                <h6>1234 west USC place, CA 90007</h6>
+                <h6>{props.Assignment.location}</h6>
             </div> 
             <br />
             <Button variant="text">More Info</Button>
@@ -67,11 +66,11 @@ function HPAssignmentCard() {
             <Grid item xs={2} >
                 <Box sx={{marginTop: "40%"}}>
                     <div style={{marginBottom: "4px"}} >
-                        <Button variant="contained">button</Button>
+                        <Button variant="outlined">Decline</Button>
                     </div>
                     
                     <div>
-                        <Button variant="contained">button</Button>
+                        <Button variant="contained">Approve</Button>
                     </div>
                 </Box>
                 
