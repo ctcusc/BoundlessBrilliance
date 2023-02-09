@@ -1,5 +1,3 @@
-import Header from "../components/Header"
-import HomeTab from "../components/HomeTab"
 import emptyWorkshop from "../images/empty-workshop.svg"
 import React from "react"
 
@@ -10,8 +8,6 @@ const WorkshopUpcomingPlaceholder = () => {
                 backgroundColor: "#FBF9F2"
             }}
         >
-            <Header />
-            <HomeTab />
             <div
                 style={{
                     position: "absolute",
