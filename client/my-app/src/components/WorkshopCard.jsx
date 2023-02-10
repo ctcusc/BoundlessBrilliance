@@ -3,6 +3,8 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
+import '../index.css'
+
 import { ReactComponent as DateIcon } from '../images/date_icon.svg'
 import { ReactComponent as TimeIcon } from '../images/time_icon.svg';
 import { ReactComponent as LocationIcon } from '../images/location_icon.svg';
@@ -11,13 +13,13 @@ const cardStyles = {
     minWidth: 275,
     dropShadow: '0px 2px 8px rgba(0, 0, 0, 0.15)',
     borderRadius: '30px',
-    height: '320px'
+    minHeight: '320px'
 };
 
 const cardContentStyles = {
     padding: '45px',
     margin: 'auto',
-    height: '320px'
+    // height: '320px'
 }
 
 const cardHeaderStyles = {
@@ -30,16 +32,18 @@ const cardHeaderStyles = {
 
 const cardDetailStyles = {
     paddingLeft: 1,
-    textAlign: 'center',
+    // textAlign: 'center',
     lineHeight: '20px',
     fontSize: 16,
-    fontFamily: 'Lato',
+    fontFamily: 'Avenir',
     fontWeight: 500,
     color: '#222222'
 };
 
 const workshopDescriptionStyles = {
-    margin: '15px 0 15px 0'
+    margin: '15px 0 15px 0',
+    fontFamily: 'Avenir',
+    fontWeight: 500,
 }
 
 const workshopAddToCalendarStyles = {
@@ -47,6 +51,7 @@ const workshopAddToCalendarStyles = {
     cursor: 'pointer',
     textDecoration: 'underline',
     fontWeight: 500,
+    fontFamily: 'Avenir Heavy',
 }
 
 
