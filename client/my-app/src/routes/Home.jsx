@@ -7,21 +7,23 @@ import sampleData from '../components/workshopCardSample.json'
 
 const Home = () => {
     return (
-        <div>
-            <Header/>
-            <HomePageTab/>
-            <Box sx={{ flexGrow: 1, width: '90%' }}>
-                <Grid container spacing={2}>
-                    {sampleData.map((data) => (
-                        <Grid item xs={5}>
-                            <WorkshopCard workshop={data}></WorkshopCard>
-                        </Grid>
-                    ))
-                    }
+        <div >
+            <Header />
+            <div style={{ backgroundColor: '#FBF8F2', paddingLeft: '5%', paddingBottom: '40px' }}>
+                <HomePageTab />
+                <Box sx={{ flexGrow: 1, width: '90%' }}>
+                    <Grid container spacing={4}>
+                        {sampleData.map((data) => (
+                            <Grid item xs={5}>
+                                <WorkshopCard workshop={data}></WorkshopCard>
+                            </Grid>
+                        ))
+                        }
 
 
-                </Grid>
-            </Box>
+                    </Grid>
+                </Box>
+            </div>
         </div >
     );
 };
