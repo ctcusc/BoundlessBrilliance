@@ -44,11 +44,12 @@ h1 {
 }
 
 .tab-container {
-    padding: 3%;
+    /* padding: 3%; */
     padding-top: 3%;
     padding-bottom: 1%;
     background-color: #FBF8F2;
     margin: 0;
     width: 100%;
-    font-family : 'Avenir Black';
+    font-family: 'Avenir Heavy';
+    font-size: 18px;
 }
