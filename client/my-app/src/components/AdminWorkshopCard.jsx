@@ -7,6 +7,8 @@ import Typography from '@mui/material/Typography';
 import EditIcon from '@mui/icons-material/Edit';
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 
+import '../index.css'
+
 import { ReactComponent as DateIcon } from '../images/date_icon.svg'
 import { ReactComponent as TimeIcon } from '../images/time_icon.svg';
 import { ReactComponent as LocationIcon } from '../images/location_icon.svg';
@@ -37,13 +39,13 @@ const cardDetailStyles = {
     textAlign: 'center',
     lineHeight: '20px',
     fontSize: 16,
-    fontFamily: 'Lato',
+    fontFamily: 'Avenir',
     fontWeight: 500,
     color: '#222222'
 };
 
 const numberStyles = {
-    fontFamily: 'Lato',
+    fontFamily: 'Avenir',
     fontStyle: 'normal',
     fontWeight: 500,
     fontSize: '40px',
@@ -51,7 +53,7 @@ const numberStyles = {
 };
 
 const numberLabelStyles = {
-    fontFamily: 'Lato',
+    fontFamily: 'Avenir',
     fontStyle: 'normal',
     fontWeight: 400,
     fontSize: '16px',
