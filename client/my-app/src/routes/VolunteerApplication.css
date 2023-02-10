@@ -1,0 +1,81 @@
+body {
+    background-color: #FBF8F2;
+}
+
+h2 {
+    text-align: left;
+    font-family: 'Roboto Mono';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 32px;
+    margin-bottom: 2%;
+}
+
+p {
+    font-family: 'Avenir';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 18px;
+    color: #222222;
+}
+
+.banner {
+    position: absolute;
+    width: 250px;
+    height: 95px;
+    left: 90px;
+    top: 0px;
+
+    background: url("../images/logo.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.subtext {
+    font-family: 'Avenir';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    color: #686868;
+    margin-bottom: .5%;
+}
+
+a {
+    color: #00747B;
+}
+
+a:hover {
+    color: #00747B;
+}
+
+.login-container {
+    position: absolute;
+    width: 760px;
+    height: 660px;
+    left: calc(50% - 760px/2);
+    top: calc(50% - 660px/2);
+    padding: 5%;
+
+    background: #FFFFFF;
+    border-radius: 10px;
+}
+
+/* React Elements */
+.tab-container {
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    padding: none;
+    margin: none;
+}
+
+.Tab {
+    background-color: rgba(19, 152, 160, 0.1);
+}
+
+.Box {
+    box-shadow: none;
+}
