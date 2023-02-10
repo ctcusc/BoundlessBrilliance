@@ -26,8 +26,9 @@ class workshopController {
         
         try{
         const result = await db.query(
-            "INSERT INTO workshop_assignments (user_id, workshop_id, has_accepted) VALUES ($1, $2, true);",
-            [user_id, workshop_id]);
+            "UPDATE workshop_assignments SET has_accepted=true WHERE user_id=$1 AND workshop_id=$2;",
+            [user_id, workshop_id]
+        );
         } catch(error){
             return error;
         }
@@ -36,8 +37,9 @@ class workshopController {
     async declineWorkshop(user_id, workshop_id) {
         try{
             const result = await db.query(
-                "INSERT INTO workshop_assignments (user_id, workshop_id, has_accepted) VALUES ($1, $2, false);",
-                [user_id, workshop_id]);
+                "UPDATE workshop_assignments SET has_accepted=false WHERE user_id=$1 AND workshop_id=$2;",
+                [user_id, workshop_id]
+            );
             } catch(error){
                 return error;
             }
