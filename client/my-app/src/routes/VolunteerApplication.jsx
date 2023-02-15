@@ -6,6 +6,8 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import MenuItem from '@mui/material/MenuItem';
 
 
 interface TabPanelProps {
@@ -52,14 +54,61 @@ const StyledTab = styled(Tab)({
     textTransform: 'none',
 });
 
-const StyledTabs = styled(Tabs)({
-
-});
-
 const StyledAppBar = styled(AppBar)({
     backgroundColor: 'rgba(19, 152, 160, 0.1)',
     boxShadow: 'none',
 });
+
+const StyledTextField = styled(TextField)({
+    marginTop: '5%',
+    marginBottom: '1%',
+});
+
+
+const races = [
+  {
+    value: 'White',
+    label: 'White',
+  },
+  {
+    value: 'Black or African American',
+    label: 'Black or African American',
+  },
+  {
+    value: 'American Indian or Alaskan Islander',
+    label: 'American Indian or Alaskan Islander',
+  },
+  {
+    value: 'Asian',
+    label: 'Asian',
+  },
+  {
+    value: 'Native Hawaiian or Other Pacific Islander',
+    label: 'Native Hawaiian or Other Pacific Islander',
+  },
+];
+
+const genders = [
+  {
+    value: 'Male',
+    label: 'Male',
+  },
+  {
+    value: 'Female',
+    label: 'Female',
+  },
+  {
+    value: 'Other',
+    label: 'Other',
+  },
+];
+
+const teams = [
+  {
+    value: 'Unknown',
+    label: 'Unknown',
+  },
+];
     
 
 const VolunteerApplication = () => {
@@ -93,21 +142,78 @@ const VolunteerApplication = () => {
                         textColor="inherit"
                         variant="fullWidth"
                         aria-label="full width tabs example"
-                        TabIndicatorProps={{style: {backgroundColor: "#1398A0", height: 2}}}
+                        TabIndicatorProps={{style: {backgroundColor: "#1398A0", height: 3}}}
                         >
                         <StyledTab label="Contact Info" {...a11yProps(0)} />
                         <StyledTab label="Personal Info" {...a11yProps(1)} />
                         <StyledTab label="Create Account" {...a11yProps(2)} />
                         </Tabs>
                     </StyledAppBar>
-                        <TabPanel value={value} index={0} dir={theme.direction}>
-                        Item One
+                        <TabPanel value={value} index={0} dir={theme.direction} sx={{ padding: 0 }}>
+                          <div className="form-section">
+                            <div className="flex-items">
+                              <StyledTextField className="halfLength" id="filled-basic" label="First Name" variant="filled" InputProps={{ disableUnderline: true }} />
+                              <StyledTextField className="halfLength" id="filled-basic" label="Last Name" variant="filled" InputProps={{ disableUnderline: true }} />
+                            </div>
+                            <StyledTextField id="filled-basic" label="Phone Number" variant="filled" InputProps={{ disableUnderline: true }} />
+                            <StyledTextField id="filled-basic" label="Email Address" variant="filled" InputProps={{ disableUnderline: true }} />
+                            <StyledTextField id="filled-basic" label="Confirm email address" variant="filled" InputProps={{ disableUnderline: true }} />
+                          </div>
                         </TabPanel>
                         <TabPanel value={value} index={1} dir={theme.direction}>
-                        Item Two
+                          <div className="form-section">
+                            <h3>Demographics</h3>
+                            <div className="flex-items">
+                              <div>
+                                <h4>Race</h4>
+                                <TextField
+                                  select
+                                  label="Select race"
+                                  className="halfLength"
+                                >
+                                  {races.map((option) => (
+                                    <MenuItem key={option.value} value={option.value}>
+                                      {option.label}
+                                    </MenuItem>
+                                  ))}
+                                </TextField>
+                              </div>
+                              <div>
+                                <h4>Gender</h4>
+                                <TextField
+                                  select
+                                  label="Select gender"
+                                  className="halfLength"
+                                >
+                                  {genders.map((option) => (
+                                    <MenuItem key={option.value} value={option.value}>
+                                      {option.label}
+                                    </MenuItem>
+                                  ))}
+                                </TextField>
+                              </div>
+                            </div>
+                            <div>
+                                <h4>Team</h4>
+                                <TextField
+                                  select
+                                  label="Select team"
+                                  className="halfLength"
+                                >
+                                  {teams.map((option) => (
+                                    <MenuItem key={option.value} value={option.value}>
+                                      {option.label}
+                                    </MenuItem>
+                                  ))}
+                                </TextField>
+                              </div>
+                          </div>
                         </TabPanel>
                         <TabPanel value={value} index={2} dir={theme.direction}>
-                        Item Three
+                          <div className="form-section">
+                            <StyledTextField id="filled-basic" label="Password" variant="filled" InputProps={{ disableUnderline: true }} />
+                            <StyledTextField id="filled-basic" label="Confirm password" variant="filled" InputProps={{ disableUnderline: true }} />
+                          </div>
                         </TabPanel>
                 </Box>
                 </div>
