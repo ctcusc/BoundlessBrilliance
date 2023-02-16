@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from 'react';
 import "./VolunteerApplication.css";
 import { useTheme, styled } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
+import Button from '@mui/material/Button';
 
 
 interface TabPanelProps {
@@ -44,6 +45,7 @@ function a11yProps(index: number) {
     };
 };
 
+// styled mui components
 const StyledTab = styled(Tab)({
     color: '#00747B',
     fontFamily: 'Avenir',
@@ -64,7 +66,20 @@ const StyledTextField = styled(TextField)({
     marginBottom: '1%',
 });
 
+const StyledButton = styled(Button)({
+  position: 'absolute',
+  bottom: '3%',
+  right: '3%',
+  fontFamily: 'Avenir',
+  fontStyle: 'normal',
+  background: '#1398A0',
+  borderRadius: '12px',
+  color: 'white',
+  padding: '10px 30px',
+  textTransform: 'none',
+});
 
+// dropdown options
 const races = [
   {
     value: 'White',
@@ -109,7 +124,22 @@ const teams = [
     label: 'Unknown',
   },
 ];
-    
+
+
+// form default values
+const defaultValues = {
+  firstName: "",
+  lastName: "",
+  phoneNum: "",
+  email: "",
+  emailConfirm: "",
+  race: "",
+  gender: "",
+  team: "",
+  password: "",
+  passwordConfirm: "",
+};
+
 
 const VolunteerApplication = () => {
     const theme = useTheme();
@@ -122,6 +152,39 @@ const VolunteerApplication = () => {
   
     const handleChangeIndex = (index: number) => {
       setValue(index);
+    };
+
+    // form submit 
+    const [formValues, setFormValues] = useState(defaultValues)
+
+
+    const handleSubmit = (event) => {
+      event.preventDefault();
+      if (!validateForm()) {
+        return;
+      }
+      // Submit the form data
+      alert(JSON.stringify(formValues));
+    };
+
+    const handleInputChange = (e) => {
+      const { name, value } = e.target;
+      setFormValues({
+        ...formValues,
+        [name]: value,
+      });
+    };
+
+    const validateForm = () => {
+      if (formValues.firstName === '' || formValues.email === '') {
+        alert('Please fill out all fields');
+        return false;
+      }
+      if (!formValues.email.includes('@')) {
+        alert('Please enter a valid email');
+        return false;
+      }
+      return true;
     };
 
     return (
@@ -152,12 +215,12 @@ const VolunteerApplication = () => {
                         <TabPanel value={value} index={0} dir={theme.direction} sx={{ padding: 0 }}>
                           <div className="form-section">
                             <div className="flex-items">
-                              <StyledTextField className="halfLength" id="filled-basic" label="First Name" variant="filled" InputProps={{ disableUnderline: true }} />
-                              <StyledTextField className="halfLength" id="filled-basic" label="Last Name" variant="filled" InputProps={{ disableUnderline: true }} />
+                              <StyledTextField name="firstName" value={formValues.firstName} onChange={handleInputChange} className="halfLength" id="filled-basic" label="First Name" variant="filled" InputProps={{ disableUnderline: true }} />
+                              <StyledTextField name="lastName" value={formValues.lastName} onChange={handleInputChange} className="halfLength" id="filled-basic" label="Last Name" variant="filled" InputProps={{ disableUnderline: true }} />
                             </div>
-                            <StyledTextField id="filled-basic" label="Phone Number" variant="filled" InputProps={{ disableUnderline: true }} />
-                            <StyledTextField id="filled-basic" label="Email Address" variant="filled" InputProps={{ disableUnderline: true }} />
-                            <StyledTextField id="filled-basic" label="Confirm email address" variant="filled" InputProps={{ disableUnderline: true }} />
+                            <StyledTextField name="phoneNum" value={formValues.phoneNum} onChange={handleInputChange} id="filled-basic" label="Phone Number" variant="filled" InputProps={{ disableUnderline: true }} />
+                            <StyledTextField name="email" value={formValues.email} onChange={handleInputChange} id="filled-basic" label="Email Address" variant="filled" InputProps={{ disableUnderline: true }} />
+                            <StyledTextField name="emailConfirm" value={formValues.emailConfirm} onChange={handleInputChange} id="filled-basic" label="Confirm email address" variant="filled" InputProps={{ disableUnderline: true }} />
                           </div>
                         </TabPanel>
                         <TabPanel value={value} index={1} dir={theme.direction}>
@@ -170,6 +233,9 @@ const VolunteerApplication = () => {
                                   select
                                   label="Select race"
                                   className="halfLength"
+                                  name="race" 
+                                  value={formValues.race} 
+                                  onChange={handleInputChange}
                                 >
                                   {races.map((option) => (
                                     <MenuItem key={option.value} value={option.value}>
@@ -184,6 +250,9 @@ const VolunteerApplication = () => {
                                   select
                                   label="Select gender"
                                   className="halfLength"
+                                  name="gender" 
+                                  value={formValues.gender} 
+                                  onChange={handleInputChange}
                                 >
                                   {genders.map((option) => (
                                     <MenuItem key={option.value} value={option.value}>
@@ -199,6 +268,9 @@ const VolunteerApplication = () => {
                                   select
                                   label="Select team"
                                   className="halfLength"
+                                  name="team" 
+                                  value={formValues.team} 
+                                  onChange={handleInputChange}
                                 >
                                   {teams.map((option) => (
                                     <MenuItem key={option.value} value={option.value}>
@@ -211,12 +283,28 @@ const VolunteerApplication = () => {
                         </TabPanel>
                         <TabPanel value={value} index={2} dir={theme.direction}>
                           <div className="form-section">
-                            <StyledTextField id="filled-basic" label="Password" variant="filled" InputProps={{ disableUnderline: true }} />
-                            <StyledTextField id="filled-basic" label="Confirm password" variant="filled" InputProps={{ disableUnderline: true }} />
+                            <StyledTextField name="password" value={formValues.password} onChange={handleInputChange} id="filled-basic" label="Password" variant="filled" InputProps={{ disableUnderline: true }} />
+                            <StyledTextField name="passwordConfirm" value={formValues.passwordConfirm} onChange={handleInputChange} id="filled-basic" label="Confirm password" variant="filled" InputProps={{ disableUnderline: true }} />
                           </div>
                         </TabPanel>
-                </Box>
+                  </Box>
                 </div>
+                {/* next and submit button */}
+                <TabPanel value={value} index={0} dir={theme.direction}>
+                  <StyledButton onClick={()=>handleChangeIndex(1)}>
+                    Next
+                  </StyledButton>
+                </TabPanel>
+                <TabPanel value={value} index={1} dir={theme.direction}>
+                  <StyledButton onClick={()=>handleChangeIndex(2)}>
+                    Next
+                  </StyledButton>
+                </TabPanel>
+                <TabPanel value={value} index={2} dir={theme.direction}>
+                  <StyledButton type="submit" onClick={handleSubmit}>
+                    Submit
+                  </StyledButton>
+                </TabPanel>
             </div>
         </div>
     )
