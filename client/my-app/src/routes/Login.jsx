@@ -4,9 +4,12 @@ import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import "bootstrap/dist/css/bootstrap.min.css"
+import { useHistory } from "react-router-dom";
+
 
 const Login = () => {
     const [passwordVisibile, setPasswordVisibile] = useState(false);
+    const history = useHistory();
 
     useEffect(() => {
         const passwordInput = document.getElementById("password");
@@ -17,6 +20,52 @@ const Login = () => {
         setPasswordVisibile(!passwordVisibile);
     }
 
+    async function getResult(username, password) {
+        // console.log(username);
+        // console.log(password);
+        // console.log(JSON.stringify(
+        //     { 
+        //         "user_email" : username,
+        //         "user_password" : password
+        //     }),);
+
+        const response = await fetch('/api/validateUser', {  
+            method: 'post',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(
+                { 
+                    "user_email" : username,
+                    "user_password" : password
+                }),
+        })
+        const data = await response.json();
+        // console.log(data.user);
+        return data.user;
+      }
+
+    function routing(auth_data){
+        // TODO: Set the auth_data cases to the correct routes
+
+        const loginError = document.getElementById("loginError");
+        // console.log("func");
+        // console.log(auth_data);
+
+        if (auth_data === 1) {
+            // Redirect the user to the home page
+            history.push("/home");
+            document.location.reload()
+        } else if (auth_data === 2) {
+            loginError.style.display = "block";
+        } else if (auth_data === 3) {
+            loginError.style.display = "block";
+        } else if (auth_data === 4) {
+            loginError.style.display = "block";
+        } else{
+            loginError.style.display = "block";
+        }
+    }
+      
+
     const handleLogin = (e) => {
         e.preventDefault();
         const usernameInput = document.getElementById("username");
@@ -24,20 +73,20 @@ const Login = () => {
         const loginError = document.getElementById("loginError");
         const username = usernameInput.value;
         const password = passwordInput.value;
-        const id = "";
 
         if( !username || !password) {
             loginError.style.display = "block";
             return;
         }
 
-        // TODO: redirect to user home, history.push only updates url, does not rerender the page
-        // history.push(`/homes`);
+        async function getData(username, password) {
+            const result = await getResult(username, password);
+            return result.authentication;
+        }
+        
+        getData(username, password).then((value) => {routing(value)});
+        
 
-        // TODO: API call for validating user.
-        // const response = await fetch(`/api/validateUser?user_email=${username}&user_password=${password}`).then((res) => {
-        //     console.log(res);
-        // })
     }
 
     return (
