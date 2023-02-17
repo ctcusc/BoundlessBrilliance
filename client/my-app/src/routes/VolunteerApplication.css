@@ -34,7 +34,7 @@ h4 {
     width: 35px;
     height: 28px;
 
-    font-family: 'Avenir';
+    font-family: 'Roboto Mono';
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
@@ -55,10 +55,12 @@ p {
 
 .banner {
     position: absolute;
+    display: block;
     width: 250px;
     height: 95px;
     left: 90px;
     top: 0px;
+    z-index: 2;
 
     background: url("../images/logo.svg");
     background-size: contain;
@@ -84,15 +86,25 @@ a:hover {
 }
 
 .login-container {
-    position: absolute;
-    width: 760px;
-    height: 660px;
-    left: calc(50% - 760px/2);
-    top: calc(50% - 660px/2);
+    min-width: 700px;
+    min-height: 675px;
+    max-width: 1000px;
+    max-height: 800px;
+    width: 50%;
+    height: 85%;
     padding: 5%;
-
+    padding-top: 3%;
     background: #FFFFFF;
     border-radius: 10px;
+    position: relative;
+}
+
+.center-div {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
 }
 
 /* React Elements */
@@ -124,6 +136,21 @@ a:hover {
     justify-content: space-between;
 }
 
+.half-length {
+    width: 47%;
+}
+
+.drop-down-length {
+    width: 230px;
+}
+
+.button-position {
+    position: absolute;
+    right: 3%;
+    bottom: 3%;
+}
+
+/* React component specific styles */
 .MuiBox-root.css-19kzrtu {
     padding: 0;
 }
@@ -147,6 +174,19 @@ a:hover {
     margin-bottom: 10%;
 }
 
-.halfLength {
-    width: 225px;
+.MuiInputLabel-outlined.css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root {
+    font-size: 16px;
+    font-family: 'Avenir';
+    font-style: normal;
 }
+
+.MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.MuiSelect-select {
+    font-size: 16px;
+    font-family: 'Avenir';
+    font-style: normal;
+}
+
+.MuiOutlinedInput-root {
+    background-color: #f0f0f0;
+}
+
