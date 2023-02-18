@@ -375,11 +375,12 @@ const VolunteerApplication = () => {
                                     </TextField>
                                   </div>
                                 </div>
+                                <h3>Team</h3>
                                 <div>
-                                    <h4>Team</h4>
+                                    <h4>Chapter</h4>
                                     <TextField
                                       select
-                                      label="Select team"
+                                      label="Select chapter"
                                       className="drop-down-length"
                                       name="team" 
                                       value={formValues.team} 

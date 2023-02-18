@@ -190,3 +190,8 @@ a:hover {
     background-color: #f0f0f0;
 }
 
+.MuiInputLabel-outlined.css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+    color: #00747B;
+}
+
+
