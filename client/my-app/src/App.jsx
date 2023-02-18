@@ -15,11 +15,11 @@ const App = () => {
   return <div>
     <Router>
       <Switch>
-        <Route exact path = "/" component={Home}/>
-        <Route exact path = "/login" component={Login}/>
+        <Route exact path = "/" component={Login}/>
+        <Route exact path = "/home" component={Home}/>
         <Route exact path = "/workshop/:id/update" component={UpdateWorkshop}/>
         <Route exact path = "/workshop/:id" component={WorkshopdetailPage}/>
-        <Route exact path = "/volunteerapplication" component={VolunteerApplication}/>
+        <Route exact path = "/volunteer-application" component={VolunteerApplication}/>
         <Route exact path = "/application-submitted" component={ApplicationSubmitted}/>
       </Switch>
     </Router>
