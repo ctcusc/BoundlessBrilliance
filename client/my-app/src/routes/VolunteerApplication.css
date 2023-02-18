@@ -1,0 +1,197 @@
+body {
+    background-color: #FBF8F2;
+}
+
+h2 {
+    text-align: left;
+    font-family: 'Roboto Mono';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 32px;
+    margin-bottom: 2%;
+}
+
+h3 {
+    width: 118px;
+    height: 20px;
+
+    font-family: 'Avenir';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 100%;
+
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.035em;
+
+    color: #4E4E4E;
+    margin-top: 7%;
+}
+
+h4 {
+    width: 35px;
+    height: 28px;
+
+    font-family: 'Roboto Mono';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 28px;
+    margin-top: 1%;
+
+    color: #686868;
+}
+
+p {
+    font-family: 'Avenir';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 18px;
+    color: #222222;
+}
+
+.banner {
+    position: absolute;
+    display: block;
+    width: 250px;
+    height: 95px;
+    left: 90px;
+    top: 0px;
+    z-index: 2;
+
+    background: url("../images/logo.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.subtext {
+    font-family: 'Avenir';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    color: #686868;
+    margin-bottom: .5%;
+}
+
+a {
+    color: #00747B;
+}
+
+a:hover {
+    color: #00747B;
+}
+
+.login-container {
+    min-width: 750px;
+    min-height: 665px;
+    max-width: 1100px;
+    max-height: 800px;
+    width: 60%;
+    height: 85%;
+    padding: 5%;
+    padding-top: 3%;
+    background: #FFFFFF;
+    border-radius: 10px;
+    position: relative;
+}
+
+.center-div {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+/* React Elements */
+.tab-container {
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    padding: none;
+    margin: none;
+}
+
+.Tab {
+    background-color: rgba(19, 152, 160, 0.1);
+}
+
+.Box {
+    box-shadow: none;
+}
+
+.form-section {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+.flex-items {
+    display: flex;
+    justify-content: space-between;
+}
+
+.half-length {
+    width: 47%;
+}
+
+.drop-down-length {
+    width: 230px;
+}
+
+.button-position {
+    position: absolute;
+    right: 3%;
+    bottom: 3%;
+}
+
+/* React component specific styles */
+.MuiBox-root.css-19kzrtu {
+    padding: 0;
+}
+
+.MuiInputLabel-filled.css-e4w4as-MuiFormLabel-root-MuiInputLabel-root {
+    font-size: 16px;
+    font-family: 'Avenir';
+    font-style: normal;
+}
+
+.MuiInputLabel-filled.css-o943dk-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+    color: #00747B;
+}
+
+
+.MuiInputBase-formControl.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
+    font-size: 16px;
+}
+
+.MuiTextField-root.css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
+    margin-bottom: 10%;
+}
+
+.MuiInputLabel-outlined.css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root {
+    font-size: 16px;
+    font-family: 'Avenir';
+    font-style: normal;
+}
+
+.MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.MuiSelect-select {
+    font-size: 16px;
+    font-family: 'Avenir';
+    font-style: normal;
+}
+
+.MuiOutlinedInput-root {
+    background-color: #f0f0f0;
+}
+
+.MuiInputLabel-outlined.css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+    color: #00747B;
+}
+
+
