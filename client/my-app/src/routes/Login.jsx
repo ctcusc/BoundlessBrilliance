@@ -5,11 +5,14 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import "bootstrap/dist/css/bootstrap.min.css"
 import { useHistory } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 
 const Login = () => {
     const [passwordVisibile, setPasswordVisibile] = useState(false);
     const history = useHistory();
+    const [cookies, setCookie] = useCookies(['user']);
+
 
     useEffect(() => {
         const passwordInput = document.getElementById("password");
@@ -21,13 +24,6 @@ const Login = () => {
     }
 
     async function getResult(username, password) {
-        // console.log(username);
-        // console.log(password);
-        // console.log(JSON.stringify(
-        //     { 
-        //         "user_email" : username,
-        //         "user_password" : password
-        //     }),);
 
         const response = await fetch('/api/validateUser', {  
             method: 'post',
@@ -39,26 +35,36 @@ const Login = () => {
                 }),
         })
         const data = await response.json();
-        // console.log(data.user);
-        return data.user;
+        return data;
       }
 
     function routing(auth_data){
         // TODO: Set the auth_data cases to the correct routes
 
         const loginError = document.getElementById("loginError");
-        // console.log("func");
-        // console.log(auth_data);
+        console.log(auth_data);
+        const auth_val = auth_data[0];
+        const user_type = auth_data[1];
+        const user_id = auth_data[2];
 
-        if (auth_data === 1) {
-            // Redirect the user to the home page
-            history.push("/home");
-            document.location.reload()
-        } else if (auth_data === 2) {
-            loginError.style.display = "block";
-        } else if (auth_data === 3) {
-            loginError.style.display = "block";
-        } else if (auth_data === 4) {
+        if (auth_val === 1) {
+            if (user_type == 0){
+                // Set user_id as cookie
+                setCookie('user_id', user_id, { path: '/' , secure: 'true'});
+
+                // User is an volunteer: direct to user home
+                history.push("/home");
+                document.location.reload()
+
+            } else if (user_type == 1){
+                setCookie('user_id', user_id, { path: '/', secure: 'true'});
+
+                history.push("/adminhome");
+                document.location.reload()
+            }
+
+           
+        } else if (auth_data === -1) {
             loginError.style.display = "block";
         } else{
             loginError.style.display = "block";
@@ -74,6 +80,8 @@ const Login = () => {
         const username = usernameInput.value;
         const password = passwordInput.value;
 
+        console.log(cookies.name);
+
         if( !username || !password) {
             loginError.style.display = "block";
             return;
@@ -81,7 +89,7 @@ const Login = () => {
 
         async function getData(username, password) {
             const result = await getResult(username, password);
-            return result.authentication;
+            return [result.authentication, result.user_type, result.user_id];
         }
         
         getData(username, password).then((value) => {routing(value)});
