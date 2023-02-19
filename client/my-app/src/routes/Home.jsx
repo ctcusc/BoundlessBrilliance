@@ -2,14 +2,14 @@ import React, { useState } from "react"
 import Header from "../components/Header"
 import HomePageTab from "../components/HomePageTab"
 import { Box, Card, Grid } from '@mui/material';
-import AdminWorkshopCard from '../components/AdminWorkshopCard'
+import AssignmentCard from '../components/AssignmentCard'
 
 import WorkshopCard from '../components/WorkshopCard'
 import WorkshopAssignmentPlaceholder from '../components/WorkshopAssignmentPlaceholder'
 import WorkshopUpcomingPlaceholder from '../components/WorkshopUpcomingPlaceholder'
 import sampleData from '../components/workshopCardSample.json'
 
-//const sampleData = [];
+//const emptyData = [];
 const Home = () => {
     const [tab, setTab] = useState(0);
 
@@ -40,9 +40,9 @@ const Home = () => {
                         <Box sx={{ flexGrow: 1, width: '90%' }}>
                             <Grid container spacing={4}>
                                 {sampleData.map((data) => (
-                                    <Grid item xs={5}>
+                                    <Grid item xs={10}>
                                         {/* placeholder */}
-                                        <AdminWorkshopCard workshop={data}></AdminWorkshopCard>
+                                        <AssignmentCard workshop={data}></AssignmentCard>
                                     </Grid>
                                 ))
                                 }
