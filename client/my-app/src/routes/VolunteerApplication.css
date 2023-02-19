@@ -53,7 +53,7 @@ p {
     color: #222222;
 }
 
-.banner {
+.banner-app {
     position: absolute;
     display: block;
     width: 250px;
@@ -67,7 +67,7 @@ p {
     background-repeat: no-repeat;
 }
 
-.subtext {
+.subtext-app {
     font-family: 'Avenir';
     font-style: normal;
     font-weight: 400;
@@ -85,7 +85,7 @@ a:hover {
     color: #00747B;
 }
 
-.login-container {
+.login-container-app {
     min-width: 750px;
     min-height: 665px;
     max-width: 1100px;
@@ -99,7 +99,7 @@ a:hover {
     position: relative;
 }
 
-.center-div {
+.center-div-app {
     display: flex;
     width: 100vw;
     height: 100vh;
@@ -108,13 +108,13 @@ a:hover {
 }
 
 /* React Elements */
-/* .tab-container {
+.tab-container-app {
     display: flex;
     justify-content: center;
     background-color: white;
     padding: none;
     margin: none;
-} */
+}
 
 .Tab {
     background-color: rgba(19, 152, 160, 0.1);
@@ -124,14 +124,14 @@ a:hover {
     box-shadow: none;
 }
 
-.form-section {
+.form-section-app {
     display: flex;
     flex-direction: column;
     margin: 0;
     padding: 0;
 }
 
-.flex-items {
+.flex-items-app {
     display: flex;
     justify-content: space-between;
 }
