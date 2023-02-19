@@ -1,7 +1,11 @@
 import React from 'react';
+import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import EditIcon from '@mui/icons-material/Edit';
+import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 
 import '../index.css'
 
@@ -13,13 +17,13 @@ const cardStyles = {
     minWidth: 275,
     dropShadow: '0px 2px 8px rgba(0, 0, 0, 0.15)',
     borderRadius: '30px',
-    minHeight: '320px'
+    height: '320px'
 };
 
 const cardContentStyles = {
     padding: '45px',
     margin: 'auto',
-    // height: '320px'
+    height: '320px'
 }
 
 const cardHeaderStyles = {
@@ -32,7 +36,7 @@ const cardHeaderStyles = {
 
 const cardDetailStyles = {
     paddingLeft: 1,
-    // textAlign: 'center',
+    textAlign: 'center',
     lineHeight: '20px',
     fontSize: 16,
     fontFamily: 'Avenir',
@@ -40,20 +44,36 @@ const cardDetailStyles = {
     color: '#222222'
 };
 
-const workshopDescriptionStyles = {
-    margin: '15px 0 15px 0',
+const numberStyles = {
     fontFamily: 'Avenir',
+    fontStyle: 'normal',
     fontWeight: 500,
+    fontSize: '40px',
+    lineHeight: '55px',
+};
+
+const numberLabelStyles = {
+    fontFamily: 'Avenir',
+    fontStyle: 'normal',
+    fontWeight: 400,
+    fontSize: '16px',
+    lineHeight: '19px',
 }
 
-const workshopAddToCalendarStyles = {
-    color: '#1398A0',
-    cursor: 'pointer',
-    textDecoration: 'underline',
-    fontWeight: 500,
-    fontFamily: 'Avenir Heavy',
+const numbersWrapperStyles = {
+    display: "flex",
+    margin: 'auto',
+    marginTop: '15px',
+    alignItems: 'center',
+    textAlign: 'center',
+    width: '80%',
+    justifyContent: 'space-between'
 }
 
+const verticalLine = {
+    borderRight: '3px solid lightgray',
+    height: '45px'
+}
 
 export default function WorkshopCard(props) {
     return (
@@ -64,6 +84,10 @@ export default function WorkshopCard(props) {
                     <Typography sx={cardHeaderStyles} color="text.secondary" gutterBottom>
                         {props.workshop.name}
                     </Typography>
+                    <div style={{ display: "flex", width: '60px', justifyContent: "space-between" }}>
+                        <PersonAddAlt1Icon sx={{ color: '#1398A0', cursor: 'pointer' }} />
+                        <EditIcon sx={{ color: '#616161', cursor: 'pointer' }} />
+                    </div>
                 </div>
                 <div style={{ display: "flex" }} >
                     <DateIcon></DateIcon>
@@ -88,12 +112,25 @@ export default function WorkshopCard(props) {
                     </Typography>
                 </div>
 
-                <div style={workshopDescriptionStyles}>
-                    {props.workshop.description}
+                <div style={numbersWrapperStyles} >
+                    <div>
+                        <div style={numberStyles}>{props.workshop.assigned}</div>
+                        <div style={numberLabelStyles}>Assigned</div>
+                    </div>
+                    <div style={verticalLine}></div>
+                    <div>
+                        <div style={numberStyles}>{props.workshop.accepted}</div>
+                        <div style={numberLabelStyles}>Accepted</div>
+                    </div>
+                    <div style={verticalLine}></div>
+                    <div>
+                        <div style={numberStyles}>{props.workshop.declined}</div>
+                        <div style={numberLabelStyles}>Declined</div>
+                    </div>
                 </div>
-                <div style={workshopAddToCalendarStyles}>Add to Calendar</div>
-            </CardContent>
 
+
+            </CardContent>
         </Card >
     );
 }
