@@ -39,7 +39,11 @@ const Login = () => {
       }
 
     function routing(auth_data){
-        // TODO: Set the auth_data cases to the correct routes
+
+        //API Endpoint Data Format:
+        //auth_val: (-1 = Fail, 0 = User not verified, 1 = Pass)
+        //user_status: (-1 = Fail, 0 = User, 1 = Admin)
+        //user_id: (-1 = Fail, else all other cases = user_id)
 
         const loginError = document.getElementById("loginError");
         console.log(auth_data);
