@@ -144,9 +144,9 @@ app.post('/api/validateUser', (req, res) => {
   userController.validateUser(req).then(
     data => res.status(200).json({
       api_status: "success",
-      user: {
-        authentication: data,
-      },
+      authentication: data[0],
+      user_type : data[1],
+      user_id : data[2]
     })
   ).catch(err => {
     return res.sendStatus(500).send({
