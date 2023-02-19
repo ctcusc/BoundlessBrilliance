@@ -1,7 +1,7 @@
 {
   "name": "my-app",
   "version": "0.1.0",
-  "proxy":"http://localhost:3000",
+  "proxy": "http://localhost:3000",
   "private": true,
   "dependencies": {
     "@mui/icons-material": "^5.11.0",

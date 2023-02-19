@@ -108,13 +108,13 @@ a:hover {
 }
 
 /* React Elements */
-.tab-container {
+/* .tab-container {
     display: flex;
     justify-content: center;
     background-color: white;
     padding: none;
     margin: none;
-}
+} */
 
 .Tab {
     background-color: rgba(19, 152, 160, 0.1);
@@ -193,5 +193,3 @@ a:hover {
 .MuiInputLabel-outlined.css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
     color: #00747B;
 }
-
-
