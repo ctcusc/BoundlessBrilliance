@@ -297,15 +297,15 @@ const VolunteerApplication = () => {
 
     return (
         <div>
-            <div className="banner"></div>
-            <div className="center-div">
-              <div className="login-container">
+            <div className="banner-app"></div>
+            <div className="center-div-app">
+              <div className="login-container-app">
                   <h2>VOLUNTEER APPLICATION</h2>
                   <p>Thanks for you interest in volunteering with Boundless Brilliance.</p>
                   <p>Please fill out this form and we'll get back to you soon.</p>
-                  <p className="subtext">Already have an account? <span><a href="#">Log in here.</a></span></p>
+                  <p className="subtext-app">Already have an account? <span><a href="#">Log in here.</a></span></p>
 
-                  <div className="tab-container">
+                  <div className="tab-container-app">
                     <Box sx={{ width: 500 }}>
                         <StyledAppBar position="static">
                             <Tabs
@@ -322,8 +322,8 @@ const VolunteerApplication = () => {
                             </Tabs>
                         </StyledAppBar>
                             <TabPanel value={value} index={0} dir={theme.direction} sx={{ padding: 0 }}>
-                              <div className="form-section">
-                                <div className="flex-items">
+                              <div className="form-section-app">
+                                <div className="flex-items-app">
                                   <StyledTextField name="firstName" value={formValues.firstName} onChange={handleInputChange} className="half-length" id="filled-basic" variant={formStates.firstNameVariant} helperText={formStates.firstNameHelperText} error={formStates.firstNameError} label="First Name" InputProps={{ disableUnderline: true }} />
                                   <StyledTextField name="lastName" value={formValues.lastName} onChange={handleInputChange} className="half-length" id="filled-basic" variant={formStates.lastNameVariant} helperText={formStates.lastNameHelperText} error={formStates.lastNameError} label="Last Name" InputProps={{ disableUnderline: true }} />
                                 </div>
@@ -333,9 +333,9 @@ const VolunteerApplication = () => {
                               </div>
                             </TabPanel>
                             <TabPanel value={value} index={1} dir={theme.direction}>
-                              <div className="form-section">
+                              <div className="form-section-app">
                                 <h3>Demographics</h3>
-                                <div className="flex-items">
+                                <div className="flex-items-app">
                                   <div>
                                     <h4>Race</h4>
                                     <TextField
@@ -396,7 +396,7 @@ const VolunteerApplication = () => {
                               </div>
                             </TabPanel>
                             <TabPanel value={value} index={2} dir={theme.direction}>
-                              <div className="form-section">
+                              <div className="form-section-app">
                                 <StyledTextField name="password" value={formValues.password} onChange={handleInputChange} id="filled-basic" label="Password" variant={formStates.passwordVariant} helperText={formStates.passwordHelperText} error={formStates.passwordError} InputProps={{ disableUnderline: true }} />
                                 <StyledTextField name="passwordConfirm" value={formValues.passwordConfirm} onChange={handleInputChange} id="filled-basic" label="Confirm password" variant={formStates.passwordConfirmVariant} error={formStates.passwordConfirmError} InputProps={{ disableUnderline: true }} />
                               </div>
