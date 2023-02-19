@@ -52,18 +52,15 @@ const Login = () => {
         const user_id = auth_data[2];
 
         if (auth_val === 1) {
+            setCookie('user_id', user_id, { path: '/' , secure: 'true'});
             if (user_type == 0){
-                // Set user_id as cookie
-                setCookie('user_id', user_id, { path: '/' , secure: 'true'});
-
-                // User is an volunteer: direct to user home
-                history.push("/home");
+                // User is an volunteer: direct to user-home
+                history.push("/user-home");
                 document.location.reload()
 
             } else if (user_type == 1){
-                setCookie('user_id', user_id, { path: '/', secure: 'true'});
-
-                history.push("/adminhome");
+                // User is admin: direct to admin-home
+                history.push("/admin-home");
                 document.location.reload()
             }
 
@@ -119,7 +116,7 @@ const Login = () => {
                             </div>
                             <form onSubmit={handleLogin} autocomplete="off">
                                 <div className="form-group">
-                                    <input id="username" type="text" class="form-control" name="username" placeholder="Username" style={{fontFamily:"Avenir", fontSize : "16px"}}/>
+                                    <input id="username" type="text" class="form-control" name="username" placeholder="Email" style={{fontFamily:"Avenir", fontSize : "16px"}}/>
                                 </div>
                                 <div className="form-group">
                                     <div id="password-container" style={{position: "relative1"}}>
