@@ -35,21 +35,21 @@ h1 {
 }
 
 .navbar {
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    padding-left: 0;
-    list-style-type: none;
-    padding-top: 2%;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: left !important;
+    padding-left: 0 !important;
+    list-style-type: none !important;
+    padding-top: 2% !important;
 }
 
 .tab-container {
     /* padding: 3%; */
-    padding-top: 3%;
-    padding-bottom: 1%;
-    background-color: #FBF8F2;
-    margin: 0;
-    width: 100%;
-    font-family: 'Avenir Heavy';
-    font-size: 18px;
+    padding-top: 3% !important;
+    padding-bottom: 1% !important;
+    background-color: #FBF8F2 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    font-family: 'Avenir Heavy' !important;
+    font-size: 18px !important;
 }
