@@ -10,23 +10,31 @@ class userController {
   async createUser(req) {
     // Sprint 0: Wonjun
     try {
-      const hashedPassword = await bcrypt.hash(req.body.user_password, 10);
 
-      await db.query(
-        "INSERT INTO master_users (user_firstname, user_lastname, user_ethnicity, user_phone_number, user_email, user_password, user_type) VALUES ($1, $2, $3, $4, $5, $6, $7)",
-        [req.body.user_firstname, req.body.user_lastname, req.body.user_ethnicity, req.body.user_phone_number, req.body.user_email, hashedPassword, req.body.user_type]
-      );
+      const alreadyExist = await db.query( //get password
+              "select count(user_email) from master_users where user_email = $1",
+              [req.body.user_email]
+            );
+        
+      const isValid = alreadyExist.rows[0].count;
 
-      const idQuery = await db.query(
-        "select user_id from master_users WHERE user_email = $1",
-        [req.body.user_email]
-      );
-      const user_id = idQuery.rows[0].user_id;
+      if (isValid == 0){
+        await db.query(
+          "INSERT INTO master_users (user_firstname, user_lastname, user_ethnicity, user_phone_number, user_email, user_password, user_type) VALUES ($1, $2, $3, $4, $5, $6, $7)",
+          [req.body.user_firstname, req.body.user_lastname, req.body.user_ethnicity, req.body.user_phone_number, req.body.user_email, req.body.user_password, req.body.user_type]
+        );
 
-      await db.query(
-        "INSERT INTO user_status (user_id, user_status) VALUES ($1, 0);",
-        [user_id]
-      );
+        const idQuery = await db.query(
+          "select user_id from master_users WHERE user_email = $1",
+          [req.body.user_email]
+        );
+        const user_id = idQuery.rows[0].user_id;
+
+        await db.query(
+          "INSERT INTO user_status (user_id, user_status) VALUES ($1, 0);",
+          [user_id]
+        );
+      }
     } catch (error){
       return error; 
     }
@@ -41,7 +49,7 @@ class userController {
          );
 
          if (idQuery.rows.length == 0) { //username doesn't exist
-             return 0;
+             return [-1, -1, -1];
          }
          else {
             const user_id = idQuery.rows[0].user_id;
@@ -51,11 +59,11 @@ class userController {
               [user_id]
             );
 
-            const password = passwordQuery.rows[0].user_password;
-            const flag = await bcrypt.compare(req.body.user_password, password);
+            const stored_password = passwordQuery.rows[0].user_password;
+            const entered_password = req.body.user_password;
 
-            if (flag == false){ //compare password
-              return 1;
+            if (stored_password != entered_password){ //compare password
+              return [-1, -1, -1];
             }
  
              const statusQuery = await db.query( //get user status
@@ -65,15 +73,20 @@ class userController {
  
             const userStatus = statusQuery.rows[0].user_status;  // 0 = Not Approved, 1 = Approved
 
+
             if (userStatus == 0){
-                return 2; // user not approved
+                return [0, 0, -1]; // user not approved
             }
             else{
-                return -1; 
+                if (user_id == 0){
+                  return [1, 1, user_id];
+                } else {
+                  return [1, 0, user_id]; 
+                }
             }
          } 
          }catch (error){
-             return 3; // other error cases
+             return [-1, -1, -1]; // other error cases
          }
   }
 

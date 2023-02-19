@@ -207,8 +207,29 @@ const VolunteerApplication = () => {
         return;
       }
       setFormStates(defaultFormStates);
-      // Submit the form data
-      console.log(JSON.stringify(formValues));
+
+      async function sendData(formValues) {
+        const response = await fetch('/api/createUser', {  
+            method: 'post',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(
+                { 
+                    "user_firstname": formValues.firstName,
+                    "user_lastname": formValues.lastName,
+                    "user_ethnicity": formValues.race,
+                    "user_gender": formValues.gender,
+                    "user_phone_number": formValues.phoneNum,
+                    "user_email": formValues.emailConfirm,
+                    "user_password": formValues.passwordConfirm,
+                }),
+        })
+        const data = await response.json();
+      }
+
+      sendData(formValues);
+
+
+
     };
 
     const handleInputChange = (e) => {

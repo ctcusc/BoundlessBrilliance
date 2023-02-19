@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Introduction to Coding",
+        "date": "Friday, October 21, 2022",
+        "time": "10:00am",
+        "location": "1234 West Street, Los Angeles, CA 90007",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suscipit tortor sagittis ut arcu vehicula dictum mauris. Vel augue magna pharetra, blandit. ",
+        "assigned": 12,
+        "accepted": 10,
+        "declined": 2
+    },
+    {
+        "name": "Introduction to Coding II",
+        "date": "Thursday, October 21, 2022",
+        "time": "10:00am",
+        "location": "1234 West Street, Los Angeles, CA 90007",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suscipit tortor sagittis ut arcu vehicula dictum mauris. Vel augue magna pharetra, blandit. ",
+        "assigned": 12,
+        "accepted": 10,
+        "declined": 2
+    },
+    {
+        "name": "Introduction to Coding III",
+        "date": "Thursday, October 21, 2022",
+        "time": "10:00am",
+        "location": "1234 West Street, Los Angeles, CA 90007",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suscipit tortor sagittis ut arcu vehicula dictum mauris. Vel augue magna pharetra, blandit. ",
+        "assigned": 15,
+        "accepted": 10,
+        "declined": 5
+    }
+]
