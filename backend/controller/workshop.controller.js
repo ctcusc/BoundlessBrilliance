@@ -6,6 +6,14 @@ const morgan = require("morgan");
 
 class workshopController {
 
+    async getWorkshop(workshop_id) {
+        const result = await db.query(
+            "SELECT * FROM  workshop WHERE workshop_id = $1;",
+            [workshop_id]
+        );
+        return result.rows;
+    }
+
     async createWorkshop(req) {
         const result = await db.query(
             "INSERT INTO workshop (workshop_name, workshop_description, workshop_date, workshop_time, workshop_duration, workshop_chapter, workshop_num_presentors, workshop_is_virtual) VALUES ($1, $2, $3, $4, $5, $6, $7, $8);",
