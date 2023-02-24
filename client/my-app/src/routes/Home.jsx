@@ -15,12 +15,12 @@ const Home = () => {
 
     //TODO: Implement Call to Backend API
     async function getAssignmentData(user_id) {
-        const response = await fetch('/api/validateUser', {  
+        const response = await fetch('/api/validateUser', {
             method: 'post',
-            headers: {'Content-Type': 'application/json'},
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(
-                { 
-                    "user_id" : user_id,
+                {
+                    "user_id": user_id,
                 }),
         })
         const data = await response.json();
@@ -29,24 +29,24 @@ const Home = () => {
 
     //TODO: Implement Call to Backend API
     async function getUpcomingData(user_id) {
-        const response = await fetch('/api/validateUser', {  
+        const response = await fetch('/api/validateUser', {
             method: 'post',
-            headers: {'Content-Type': 'application/json'},
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(
-                { 
-                    "user_id" : user_id,
+                {
+                    "user_id": user_id,
                 }),
         })
         const data = await response.json();
         return data;
-      }
+    }
 
     const [tab, setTab] = useState(0);
     const [cookies] = useCookies(['user']);
     const user_id = cookies.user_id;
     // const upcomingData = getUpcomingData(user_id);
     // const assignmentData = getAssignmentData(user_id);
-    
+
 
     return (
         <div >
@@ -65,7 +65,6 @@ const Home = () => {
                                 ))
                                 }
 
-
                             </Grid>
                         </Box>
                         : <WorkshopUpcomingPlaceholder />
@@ -76,7 +75,6 @@ const Home = () => {
                             <Grid container spacing={4}>
                                 {assignmentData.map((data) => (
                                     <Grid item xs={10}>
-                                        {/* placeholder */}
                                         <AssignmentCard workshop={data}></AssignmentCard>
                                     </Grid>
                                 ))
