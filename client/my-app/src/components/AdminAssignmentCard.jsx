@@ -109,7 +109,7 @@ export default function WorkshopCard(props) {
                 <div style={{ display: "flex" }} >
                     <div style={mainContentDiv}>
                         <Typography sx={dateStyles} color="text.secondary" gutterBottom>
-                            Yesterday
+                            Chapter
                         </Typography>
                         <div style={{ display: "flex", justifyContent: "space-between" }}>
                             <Typography sx={cardHeaderStyles} color="text.secondary" gutterBottom>
