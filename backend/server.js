@@ -218,6 +218,20 @@ app.get("/api/generateMetrics", (req, res) => {
   );
 });
 
+app.get("/api/associatedWorkshop", (req, res) => {
+  workshopController.associatedWorkshops(req)
+  .then((data) =>
+    res.status(200).json(data)
+  );
+});
+
+app.get("/api/upcomingWorkshop", (req, res) => {
+  workshopController.upcomingWorkshop(req)
+  .then((data) =>
+    res.status(200).json(data)
+  );
+});
+
 // Start Backend Port 
 app.listen(port, () => {
   console.log(`Server listening on the port  ${port}`);
