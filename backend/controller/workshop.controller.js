@@ -60,6 +60,34 @@ class workshopController {
         return result.rows;
     }
 
+    async associatedWorkshops(req) {
+        const result = await db.query(
+            "SELECT workshop_id FROM workshop_assignments WHERE user_id = $1 and has_accepted = TRUE", [req.body.user_id]
+        );
+        
+        data = {};
+        for (let i = 0; i < result.length; i++) {
+            //CALL GET WORKSHOP
+            const object = this.getWorkshop(result[i]);
+            data.put(object);
+        }
+        return data;
+    }
+
+    async upcomingWorkshops(req) {
+        const result = await db.query(
+            "SELECT workshop_id FROM workshop_assignments WHERE user_id = $1 and has_accepted = TRUE", [req.body.user_id]
+        );
+        
+        data = {};
+        for (let i = 0; i < result.length; i++) {
+            //CALL GET WORKSHOP
+            const object = this.getWorkshop(result[i]);
+            data.put(object);
+        }
+        return data;
+    }
+
 
 }
 
