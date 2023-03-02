@@ -210,15 +210,15 @@ app.get("/api/generateMetrics", (req, res) => {
 });
 
 // returns details for workshop that have been undecided by the user
-app.get("/api/undecidedWorkshop/:id", (req, res) => {
-  workshopController.undecidedWorkshops(req.params.id)
+app.get("/api/undecidedWorkshop", (req, res) => {
+  workshopController.undecidedWorkshops(req.query.id)
   .then((data) =>
     res.status(200).json(data)
   );
 });
 
-app.get("/api/upcomingWorkshop/:id", (req, res) => {
-  workshopController.upcomingWorkshop(req.params.id)
+app.get("/api/upcomingWorkshop", (req, res) => {
+  workshopController.upcomingWorkshop(req.query.id)
   .then((data) =>
     res.status(200).json(data)
   );
