@@ -27,6 +27,7 @@ CREATE TABLE IF NOT EXISTS workshop
     workshop_id SERIAL PRIMARY KEY,
     workshop_name VARCHAR,
     workshop_description VARCHAR,
+    workshop_location VARCHAR,
     workshop_date VARCHAR,
     workshop_time VARCHAR,
     workshop_duration VARCHAR,
@@ -80,6 +81,7 @@ INSERT INTO workshop
 (
     workshop_name,
     workshop_description,
+    workshop_location,
     workshop_date,
     workshop_time,
     workshop_duration,
@@ -87,43 +89,43 @@ INSERT INTO workshop
     workshop_is_virtual
 ) VALUES   ('Introduction to Python', 
             'You’ll learn to represent and store data using Python data types and variables, and use conditionals and loops to control the flow of your programs. You’ll harness the power of complex data structures like lists, sets, dictionaries, and tuples to store collections of related data.', 
-            'March 10 2023','5:00 pm', '1 day', 'Chapter CTC', FALSE),
+            '1234 West Street, Los Angeles, CA 90007','March 10 2023','5:00 pm', '1 day', 'Chapter CTC', FALSE),
 
            ('Introduction to C++', 
             'In this course, you will acquire the skills to use C++ data types and variables to represent and store data, as well as conditionals and loops to manage the flow of your programs. Additionally, you will learn how to utilize more advanced data structures such as lists, sets, dictionaries, and tuples to store interconnected data sets.', 
-            'March 11 2023', '5:00 pm', '1 day', 'Chapter CTC', FALSE),
+            '2345 Fig Street, Los Angeles, CA 90007','March 11 2023', '5:00 pm', '1 day', 'Chapter CTC', FALSE),
 
             ('Introduction to Swift', 
             'This course will teach you how to effectively use Swifts data types and variables to represent and store data, as well as control the flow of your programs through the use of conditionals and loops. You will also gain expertise in utilizing more sophisticated data structures, such as lists, sets, dictionaries, and tuples, to organize collections of related data.', 
-            'March 12 2023', '5:00 pm', '1 day', 'Chapter CTC', FALSE),
+            '6356 35th Street, Los Angeles, CA 90007','March 12 2023', '5:00 pm', '1 day', 'Chapter CTC', FALSE),
 
             ('Introduction to Java', 
             'By taking this course, you will develop proficiency in using Java data types and variables to represent and store data, and in implementing conditionals and loops to control program flow. Additionally, you will learn to effectively employ advanced data structures, including lists, sets, dictionaries, and tuples, to manage related collections of data..', 
-            'March 13 2023', '5:00 pm', '1 day', 'Chapter CTC', FALSE),
+            '342 25th Street, Los Angeles, CA 90007','March 13 2023', '5:00 pm', '1 day', 'Chapter CTC', FALSE),
 
             ('Introduction to Golang', 
             'In this Golang workshop, you will gain expertise in effectively using Golangs data types and variables to store and manipulate data. You will also learn to control the flow of your Golang programs using conditionals and loops, and explore the power of complex data structures, such as arrays, slices, maps, and structs, to organize related data. By the end of this workshop, you will have developed a strong foundation in Golang programming and the ability to build efficient and robust applications.', 
-            'March 14 2023', '5:00 pm', '1 day', 'Chapter CTC', FALSE),
+            '34 W 20th Street, Los Angeles, CA 90007','March 14 2023', '5:00 pm', '1 day', 'Chapter CTC', FALSE),
 
             ('Introduction to Rust', 
             'The Rust workshop will equip you with the necessary skills to proficiently handle data using Rust data types and variables. You will also gain knowledge on how to regulate the flow of your Rust programs through the application of conditionals and loops. Furthermore, you will be introduced to advanced data structures like arrays, slices, maps, and structs, which will enable you to efficiently organize related data. Upon completion of the workshop, you will possess a solid understanding of Golang programming and the capability to develop reliable and effective applications..', 
-            'March 15 2023', '5:00 pm', '1 day', 'Chapter CTC', FALSE),
+            '24 35th Street, Los Angeles, CA 90007','March 15 2023', '5:00 pm', '1 day', 'Chapter CTC', FALSE),
 
             ('Introduction to C', 
             'In the C workshop, you will acquire the skills to effectively use C data types and variables to store and manipulate data. You will also learn how to regulate the flow of your C programs using conditionals and loops, and explore the power of advanced data structures, such as arrays, pointers, structures, and unions, to organize related data. By the end of this workshop, you will have developed a strong foundation in C programming and the ability to build efficient and robust applications.', 
-            'March 16 2023', '5:00 pm', '1 day', 'Chapter CTC', FALSE),
+            '1192 Tuscany Street, Los Angeles, CA 90007','March 16 2023', '5:00 pm', '1 day', 'Chapter CTC', FALSE),
 
             ('Introduction to Hack', 
             'In this hack workshop, you will learn to build and secure web applications using various hacking techniques. You will acquire knowledge of common vulnerabilities and how to identify and exploit them. Furthermore, you will be introduced to tools such as Burp Suite, Nmap, and Metasploit, which will enable you to perform various hacking activities, including reconnaissance, vulnerability scanning, and exploitation. By the end of this workshop, you will have gained hands-on experience in ethical hacking and web application security, and the ability to secure your applications against potential cyber attacks.', 
-            'March 17 2023', '5:00 pm', '1 day', 'Chapter CTC', FALSE),
+            '32523 Fremont Street, Los Angeles, CA 90007','March 17 2023', '5:00 pm', '1 day', 'Chapter CTC', FALSE),
 
             ('Introduction to Javascript', 
             'In the JavaScript workshop, you will gain expertise in building dynamic and interactive web applications. You will learn to effectively use JavaScripts data types and variables to store and manipulate data, as well as control the flow of your programs using conditionals and loops. Additionally, you will be introduced to advanced concepts such as asynchronous programming, functions, and closures. By the end of this workshop, you will have a strong foundation in JavaScript programming and the ability to build robust and engaging web applications.', 
-            'March 18 2023', '5:00 pm', '1 day', 'Chapter CTC', FALSE),
+            '234 Curtner Street, Los Angeles, CA 90007','March 18 2023', '5:00 pm', '1 day', 'Chapter CTC', FALSE),
 
             ('Introduction to Typescript', 
             'In the TypeScript workshop, you will acquire the skills to build scalable and maintainable web applications. You will learn how to effectively use TypeScripts data types and variables to store and manipulate data, as well as control program flow using conditionals and loops. Additionally, you will explore advanced concepts such as interfaces, generics, and modules. By the end of this workshop, you will have a strong foundation in TypeScript programming and the ability to build efficient and robust web applications.', 
-            'March 19 2023', '5:00 pm', '1 day', 'Chapter CTC', FALSE);
+            '3256 Valley Street, Los Angeles, CA 90007','March 19 2023', '5:00 pm', '1 day', 'Chapter CTC', FALSE);
 
 INSERT INTO workshop_assignments
 (

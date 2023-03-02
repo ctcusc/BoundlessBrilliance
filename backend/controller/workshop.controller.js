@@ -8,16 +8,16 @@ class workshopController {
 
     async createWorkshop(req) {
         const result = await db.query(
-            "INSERT INTO workshop (workshop_name, workshop_description, workshop_date, workshop_time, workshop_duration, workshop_chapter, workshop_is_virtual) VALUES ($1, $2, $3, $4, $5, $6, $7);",
-            [req.body.workshop_name, req.body.workshop_description, req.body.workshop_date, req.body.workshop_time, req.body.workshop_duration, req.body.workshop_chapter, req.body.workshop_is_virtual]
+            "INSERT INTO workshop (workshop_name, workshop_description, workshop_location, workshop_date, workshop_time, workshop_duration, workshop_chapter, workshop_is_virtual) VALUES ($1, $2, $3, $4, $5, $6, $7, $8);",
+            [req.body.workshop_name, req.body.workshop_description, req.body.workshop_location, req.body.workshop_date, req.body.workshop_time, req.body.workshop_duration, req.body.workshop_chapter, req.body.workshop_is_virtual]
         );
         return result.rows[0];
     }
 
     async editWorkshop(req, workshop_id) {
         const result = await db.query(
-            "UPDATE workshop SET workshop_name = $1, workshop_description = $2, workshop_date = $3, workshop_time = $4, workshop_duration = $5, workshop_chapter = $6, workshop_is_virtual = $7 WHERE workshop_id = $8;",
-            [req.body.workshop_name, req.body.workshop_description, req.body.workshop_date, req.body.workshop_time, req.body.workshop_duration, req.body.workshop_chapter, req.body.workshop_is_virtual, workshop_id]
+            "UPDATE workshop SET workshop_name = $1, workshop_description = $2, workshop_date = $3, workshop_time = $4, workshop_duration = $5, workshop_chapter = $6, workshop_is_virtual = $7, workshop_location = $8 WHERE workshop_id = $9;",
+            [req.body.workshop_name, req.body.workshop_description, req.body.workshop_date, req.body.workshop_time, req.body.workshop_duration, req.body.workshop_chapter, req.body.workshop_is_virtual, req.body.workshop_location, workshop_id]
         );
         return result.rows[0];
     }
@@ -53,18 +53,28 @@ class workshopController {
         return result.rows[0];
     }
 
-    async undecidedWorkshops(req) {
+    async undecidedWorkshops(user_id) {
         const result = await db.query(
-            "SELECT workshop_id FROM workshop_assignments WHERE user_id = $1 and has_accepted = 0", [req.body.user_id]
+            "SELECT * from workshop JOIN workshop_assignments on workshop.workshop_id = workshop_assignments.workshop_id WHERE user_id = $1 and has_accepted = 0", [user_id]
         );
-        return result.rows;
+        var workshop_ids = [];
+        for (let i = 0;i < result.rows.length;i ++) {
+            workshop_ids.push(result.rows[i]);
+        }
+
+        return workshop_ids;
     }
 
-    async upcomingWorkshops(req) {
+    async upcomingWorkshop(user_id) {
         const result = await db.query(
-            "SELECT workshop_id FROM workshop_assignments WHERE user_id = $1 and has_accepted = 1", [req.body.user_id]
+            "select * from workshop JOIN workshop_assignments on workshop.workshop_id = workshop_assignments.workshop_id WHERE user_id = $1 and has_accepted = 1 and TO_TIMESTAMP(workshop_date, 'Month DD YYYY') > CURRENT_DATE", [user_id]
         );
-        return result.rows;
+        var workshop_ids = [];
+        for (let i = 0;i < result.rows.length;i ++) {
+            workshop_ids.push(result.rows[i]);
+        }
+
+        return workshop_ids;
     }
 
 
