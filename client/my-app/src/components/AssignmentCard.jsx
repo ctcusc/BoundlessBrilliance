@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -100,51 +100,82 @@ const declineCardButton = {
 
 
 export default function WorkshopCard(props) {
+    const [showDescription, setShowDescription] = useState(false);
+  
+    const toggleDescription = () => {
+      setShowDescription(!showDescription);
+    };
+  
     return (
-
-        <Card sx={cardStyles}>
-            <CardContent sx={cardContentStyles}>
-                <div style={{ display: "flex" }} >
-                    <div style={mainContentDiv}>
-                        <Typography sx={dateStyles} color="text.secondary" gutterBottom>
-                        </Typography>
-                        <div style={{ display: "flex", justifyContent: "space-between" }}>
-                            <Typography sx={cardHeaderStyles} color="text.secondary" gutterBottom>
-                                {props.workshop.workshop_name}
-                            </Typography>
-                        </div>
-                        <div style={{ display: "flex" }} >
-                            <DateIcon></DateIcon>
-                            <Typography sx={
-                                cardDetailStyles
-                            } color="text.secondary">
-                                {props.workshop.workshop_date}
-                            </Typography>
-                        </div>
-                        <div style={{ display: "flex" }} >
-                            <TimeIcon></TimeIcon>
-                            <Typography sx={
-                                cardDetailStyles
-                            } color="text.secondary">
-                                {props.workshop.workshop_time}
-                            </Typography>
-                        </div>
-                        <div style={{ display: "flex" }} >
-                            <LocationIcon></LocationIcon>
-                            <Typography sx={[cardDetailStyles, { paddingLeft: .6 }]} color="text.secondary">
-                                {props.workshop.workshop_location}
-                            </Typography>
-                        </div>
-
-                        <div style={infoLinkStyles}>More Info</div>
-                    </div>
-                    <div style={cardButtonsDiv}>
-                        <div style={declineCardButton}>Decline</div>
-                        <div style={approveCardButton}>Approve</div>
-                    </div>
+      <Card sx={cardStyles}>
+        <CardContent sx={cardContentStyles}>
+          <div style={{ display: "flex" }}>
+            <div style={mainContentDiv}>
+              <Typography sx={dateStyles} color="text.secondary" gutterBottom>
+              </Typography>
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <Typography
+                  sx={cardHeaderStyles}
+                  color="text.secondary"
+                  gutterBottom
+                >
+                  {props.workshop.workshop_name}
+                </Typography>
+              </div>
+              <div style={{ display: "flex" }}>
+                <DateIcon></DateIcon>
+                <Typography
+                  sx={cardDetailStyles}
+                  color="text.secondary"
+                >
+                  {props.workshop.workshop_date}
+                </Typography>
+              </div>
+              <div style={{ display: "flex" }}>
+                <TimeIcon></TimeIcon>
+                <Typography
+                  sx={cardDetailStyles}
+                  color="text.secondary"
+                >
+                  {props.workshop.workshop_start_time+" - "+props.workshop.workshop_end_time}
+                </Typography>
+              </div>
+              <div style={{ display: "flex" }}>
+                <LocationIcon></LocationIcon>
+                <Typography
+                  sx={[cardDetailStyles, { paddingLeft: 0.6 }]}
+                  color="text.secondary"
+                >
+                  {props.workshop.workshop_location}
+                </Typography>
+              </div>
+              {showDescription ? (
+                <div style={{ marginTop: "30px", marginRight: "100px"}}>
+                  <Typography sx={cardDetailStyles} color="text.secondary">
+                    {props.workshop.workshop_description}
+                    <div
+                    style={infoLinkStyles}
+                    onClick={toggleDescription}
+                    >
+                    Less Info
                 </div>
-            </CardContent>
-
-        </Card >
+                  </Typography>
+                </div>
+              ) : (
+                <div
+                  style={infoLinkStyles}
+                  onClick={toggleDescription}
+                >
+                  More Info
+                </div>
+              )}
+            </div>
+            <div style={cardButtonsDiv}>
+              <div style={declineCardButton}>Decline</div>
+              <div style={approveCardButton}>Approve</div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
     );
-}
+  }
