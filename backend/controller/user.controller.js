@@ -17,11 +17,10 @@ class userController {
             );
         
       const isValid = alreadyExist.rows[0].count;
-
       if (isValid == 0){
         await db.query(
-          "INSERT INTO master_users (user_firstname, user_lastname, user_ethnicity, user_phone_number, user_email, user_password, user_type) VALUES ($1, $2, $3, $4, $5, $6, $7)",
-          [req.body.user_firstname, req.body.user_lastname, req.body.user_ethnicity, req.body.user_phone_number, req.body.user_email, req.body.user_password, req.body.user_type]
+          "INSERT INTO master_users (user_firstname, user_lastname, user_ethnicity, user_email, user_password, user_gender, is_admin) VALUES ($1, $2, $3, $4, $5, $6, 0)",
+          [req.body.user_firstname, req.body.user_lastname, req.body.user_ethnicity, req.body.user_email, req.body.user_password, req.body.gender]
         );
 
         const idQuery = await db.query(
@@ -73,12 +72,18 @@ class userController {
  
             const userStatus = statusQuery.rows[0].user_status;  // 0 = Not Approved, 1 = Approved
 
+            const isAdminQuery = await db.query( //get user status
+                 "select is_admin from master_users WHERE user_id = $1",
+                 [user_id]
+             );
+
+            const isAdmin = isAdminQuery.rows[0].is_admin;
 
             if (userStatus == 0){
                 return [0, 0, -1]; // user not approved
             }
             else{
-                if (user_id == 0){
+                if (isAdmin == 1){
                   return [1, 1, user_id];
                 } else {
                   return [1, 0, user_id]; 
@@ -102,10 +107,16 @@ class userController {
   async rejectUser(user_id) {
     // Sprint 1: Fred
     const result = await db.query(
+      "DELETE FROM user_status WHERE user_id = $1;",
+      [user_id]
+    );
+
+    const res = await db.query(
       "DELETE FROM master_users WHERE user_id = $1;",
       [user_id]
     );
-    return result.rows[0];
+
+    return result;
   }
 
   async allActiveUsers(req) {
