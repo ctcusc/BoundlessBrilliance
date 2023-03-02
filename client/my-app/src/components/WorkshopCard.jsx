@@ -8,6 +8,7 @@ import '../index.css'
 import { ReactComponent as DateIcon } from '../images/date_icon.svg'
 import { ReactComponent as TimeIcon } from '../images/time_icon.svg';
 import { ReactComponent as LocationIcon } from '../images/location_icon.svg';
+import 'add-to-calendar-button';
 
 const cardStyles = {
     minWidth: 275,
@@ -91,7 +92,18 @@ export default function WorkshopCard(props) {
                 <div style={workshopDescriptionStyles}>
                     {props.workshop.workshop_description}
                 </div>
-                <div style={workshopAddToCalendarStyles}>Add to Calendar</div>
+                <add-to-calendar-button
+                name="[Reminder] Test the Add to Calendar Button"
+                startDate="2023-03-05"
+                startTime="10:15"
+                endTime="23:30"
+                timeZone="America/Los_Angeles"
+                location="World Wide Web"
+                description="Check out the maybe easiest way to include Add to Calendar Buttons to your web projects:[br]→ [url]https://add-to-calendar-button.com/"
+                options="'Google'"
+                lightMode="bodyScheme"
+                ></add-to-calendar-button>
+
             </CardContent>
 
         </Card >
