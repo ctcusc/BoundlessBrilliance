@@ -323,7 +323,7 @@ const VolunteerApplication = () => {
                   <h2>VOLUNTEER APPLICATION</h2>
                   <p>Thanks for you interest in volunteering with Boundless Brilliance.</p>
                   <p>Please fill out this form and we'll get back to you soon.</p>
-                  <p className="subtext-app">Already have an account? <span><a href="#">Log in here.</a></span></p>
+                  <p className="subtext-app">Already have an account? <span><a href="/">Log in here.</a></span></p>
 
                   <div className="tab-container-app">
                     <Box sx={{ width: 500 }}>
