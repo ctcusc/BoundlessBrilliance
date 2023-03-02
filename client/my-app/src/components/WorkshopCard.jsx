@@ -62,7 +62,7 @@ export default function WorkshopCard(props) {
             <CardContent sx={cardContentStyles}>
                 <div style={{ display: "flex", justifyContent: "space-between" }}>
                     <Typography sx={cardHeaderStyles} color="text.secondary" gutterBottom>
-                        {props.workshop.name}
+                        {props.workshop.workshop_name}
                     </Typography>
                 </div>
                 <div style={{ display: "flex" }} >
@@ -70,7 +70,7 @@ export default function WorkshopCard(props) {
                     <Typography sx={
                         cardDetailStyles
                     } color="text.secondary">
-                        {props.workshop.date}
+                        {props.workshop.workshop_date}
                     </Typography>
                 </div>
                 <div style={{ display: "flex" }} >
@@ -78,18 +78,18 @@ export default function WorkshopCard(props) {
                     <Typography sx={
                         cardDetailStyles
                     } color="text.secondary">
-                        {props.workshop.time}
+                        {props.workshop.workshop_time}
                     </Typography>
                 </div>
                 <div style={{ display: "flex" }} >
                     <LocationIcon></LocationIcon>
                     <Typography sx={[cardDetailStyles, { paddingLeft: .6 }]} color="text.secondary">
-                        {props.workshop.location}
+                        {props.workshop.workshop_location}
                     </Typography>
                 </div>
 
                 <div style={workshopDescriptionStyles}>
-                    {props.workshop.description}
+                    {props.workshop.workshop_description}
                 </div>
                 <div style={workshopAddToCalendarStyles}>Add to Calendar</div>
             </CardContent>
