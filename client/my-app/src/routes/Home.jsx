@@ -16,17 +16,16 @@ const Home = () => {
     const [tab, setTab] = useState(0);
     const [cookies] = useCookies(['user']);
     const user_id = cookies.user_id;
-    console.log(user_id);
     const [undecidedData, setUndecidedData] = useState([]);
     const [upcomingData, setUpcomingData] = useState([]);
 
     useEffect(() => {
-        fetch('/api/undecidedWorkshop/3')
+        fetch(`/api/undecidedWorkshop/?id=${user_id}`)
           .then(response => response.json())
           .then(data => setUndecidedData(data))
           .catch(error => console.error(error));
 
-        fetch('/api/upcomingWorkshop/3')
+        fetch(`/api/upcomingWorkshop/?id=${user_id}`)
             .then(response => response.json())
             .then(data => setUpcomingData(data))
             .catch(error => console.error(error));
