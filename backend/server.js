@@ -147,25 +147,6 @@ app.post('/api/validateUser', (req, res) => {
 });
 
 
-// associatedWorkshops: given user_id, returns associated workshop ids
-app.get("/api/associatedWorkshops", (req, res) => {
-  workshopController
-    .associatedWorkshops(req)
-    .then((data) =>
-      res.status(200).json({
-        status: "success",
-        data: {
-          workshops: data,
-        },
-      })
-    )
-    .catch((err) => {
-      return res.sendStatus(500).send({
-        message: err.message || "API Error associatedWorkshops",
-      });
-    });
-});
-
 // assignUser: assigns a user to a workshop, returns assignment on success
 app.post("/api/assignUser", (req, res) => {
   workshopController
