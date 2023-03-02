@@ -218,7 +218,6 @@ const VolunteerApplication = () => {
                     "user_lastname": formValues.lastName,
                     "user_ethnicity": formValues.race,
                     "user_gender": formValues.gender,
-                    "user_phone_number": formValues.phoneNum,
                     "user_email": formValues.emailConfirm,
                     "user_password": formValues.passwordConfirm,
                 }),
