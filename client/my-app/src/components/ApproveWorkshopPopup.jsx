@@ -2,6 +2,7 @@ import React from 'react';
 import './WorkshopPopup.css';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
+import { useState } from 'react';
 
 const OutlinedButton = styled(Button)({
     color: '#1398A0',
@@ -42,7 +43,18 @@ const ContainedButton = styled(Button)({
     },
 });
 
-const ApproveWorkshopPopup = () => {
+const ApproveWorkshopPopup = ({setToggleState, setToggleYesState}) => {
+
+    function setToggle() {
+        setToggleState(false);
+    }
+
+    function setToggleYes() {
+        setToggleState(false);
+        setToggleYesState(true);
+    }
+
+
     return (
         <div className="popup-center">
             <div className="popup-container">
@@ -50,8 +62,8 @@ const ApproveWorkshopPopup = () => {
                 <h2 className="h2-popup">Introduction to Coding</h2>
                 <p className="p-popup">This cannot be undone.</p>
                 <div className="flex-horizontal">
-                    <OutlinedButton variant="outlined">No, go back</OutlinedButton>
-                    <ContainedButton variant="contained">Yes, approve</ContainedButton>
+                    <OutlinedButton onClick={setToggle} variant="outlined">No, go back</OutlinedButton>
+                    <ContainedButton onClick={setToggleYes} variant="contained">Yes, approve</ContainedButton>
                 </div>
             </div>
             
