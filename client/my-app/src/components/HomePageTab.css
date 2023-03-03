@@ -41,6 +41,7 @@ h1 {
     padding-left: 0 !important;
     list-style-type: none !important;
     padding-top: 2% !important;
+    position: relative;
 }
 
 .tab-container {

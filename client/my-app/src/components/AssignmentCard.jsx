@@ -111,7 +111,6 @@ export default function WorkshopCard(props) {
     const [toggleReject, setToggleReject] = useState(false);
     const [toggleYesApprove, setToggleYesApprove] = useState(false);
     const [toggleYesReject, setToggleYesReject] = useState(false);
-
     const [showDescription, setShowDescription] = useState(false);
   
     const toggleDescription = () => {
