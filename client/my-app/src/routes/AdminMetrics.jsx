@@ -17,15 +17,12 @@ const ApplicationSubmitted = () => {
                     </div>
                     <div className="metrics-grid">
                         <div className="users card m-3">
-
+                            
                         </div>
-                        <div className="user-age card m-3">
+                        <div className="user-gender card m-3">
 
                         </div>
                         <div className="user-re card m-3">
-
-                        </div>
-                        <div className="user-gender card m-3">
 
                         </div>
                         <div className="workshops card m-3">
