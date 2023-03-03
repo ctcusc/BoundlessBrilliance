@@ -3,6 +3,7 @@ import './WorkshopPopup.css';
 import { styled } from '@mui/material/styles';
 import HighlightOffIcon from '@mui/icons-material/HighlightOffOutlined';
 import ClearIcon from '@mui/icons-material/Clear';
+import { useHistory } from "react-router-dom";
 
 const StyledHighlightOffIcon = styled(HighlightOffIcon)({
     color: '#e32727',
@@ -18,8 +19,14 @@ const StyledClearIcon = styled(ClearIcon)({
 
 const WorkshopRejectedPopup = ({setToggleState}) => {
 
+    const history = useHistory();
+
     function setToggle() {
         setToggleState(false);
+
+        history.push("/user-home");
+        document.location.reload()
+
     }
 
     return (

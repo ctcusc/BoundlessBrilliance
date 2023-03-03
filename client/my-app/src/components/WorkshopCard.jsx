@@ -92,7 +92,6 @@ export default function WorkshopCard(props) {
       if (period.toLowerCase() === 'pm') {
         hours = parseInt(hours, 10) + 12;
       }
-      console.log(`${hours}:${minutes}`);
       return `${hours}:${minutes}`;
     }
 

@@ -2,7 +2,7 @@ import React from 'react';
 import './WorkshopPopup.css';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
-import { useState } from 'react';
+import { useHistory } from "react-router-dom";
 
 const OutlinedButton = styled(Button)({
     color: '#1398A0',
@@ -43,7 +43,9 @@ const ContainedButton = styled(Button)({
     },
 });
 
-const ApproveWorkshopPopup = ({setToggleState, setToggleYesState}) => {
+const ApproveWorkshopPopup = ({setToggleState, setToggleYesState, name, user_id, workshop_id}) => {
+
+    const history = useHistory();
 
     function setToggle() {
         setToggleState(false);
@@ -52,6 +54,16 @@ const ApproveWorkshopPopup = ({setToggleState, setToggleYesState}) => {
     function setToggleYes() {
         setToggleState(false);
         setToggleYesState(true);
+
+        //TODO: Make API Call to Accept Workshop Assignment
+        const acceptWorkshop = async () => {
+            const response = await fetch('/api/acceptWorkshop', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ user_id: user_id, workshop_id: workshop_id }),
+            });
+        }
+        acceptWorkshop();
     }
 
 
@@ -59,7 +71,7 @@ const ApproveWorkshopPopup = ({setToggleState, setToggleYesState}) => {
         <div className="popup-center">
             <div className="popup-container">
                 <p className="p-popup">You are <span style={{color: '#0E8830'}}>approving</span> to host:</p>
-                <h2 className="h2-popup">Introduction to Coding</h2>
+                <h2 className="h2-popup">{name}</h2>
                 <p className="p-popup">This cannot be undone.</p>
                 <div className="flex-horizontal">
                     <OutlinedButton onClick={setToggle} variant="outlined">No, go back</OutlinedButton>

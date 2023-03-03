@@ -100,7 +100,7 @@ INSERT INTO workshop
             '6356 35th Street, Los Angeles, CA 90007','March 12 2023', '5:00 pm', '7:00 pm', 'Chapter CTC', FALSE),
 
             ('Introduction to Java', 
-            'By taking this course, you will develop proficiency in using Java data types and variables to represent and store data, and in implementing conditionals and loops to control program flow. Additionally, you will learn to effectively employ advanced data structures, including lists, sets, dictionaries, and tuples, to manage related collections of data..', 
+            'By taking this course, you will develop proficiency in using Java data types and variables to represent and store data, and in implementing conditionals and loops to control program flow. Additionally, you will learn to effectively employ advanced data structures, including lists, sets, dictionaries, and tuples, to manage related collections of data.', 
             '342 25th Street, Los Angeles, CA 90007','March 13 2023', '5:00 pm', '7:00 pm', 'Chapter CTC', FALSE),
 
             ('Introduction to Golang', 

@@ -3,6 +3,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
+import { useCookies } from 'react-cookie';
 
 import ApproveWorkshopPopup from './ApproveWorkshopPopup';
 import RejectWorkshopPopup from './RejectWorkshopPopup';
@@ -112,6 +113,9 @@ export default function WorkshopCard(props) {
     const [toggleYesApprove, setToggleYesApprove] = useState(false);
     const [toggleYesReject, setToggleYesReject] = useState(false);
     const [showDescription, setShowDescription] = useState(false);
+
+    const [cookies] = useCookies(['user']);
+    const user_id = cookies.user_id;
   
     const toggleDescription = () => {
       setShowDescription(!showDescription);
@@ -187,10 +191,10 @@ export default function WorkshopCard(props) {
                         <div onClick = {() => setToggleApprove(true)} style={approveCardButton}>Approve</div>
                     </div>
                     {toggleApprove && (
-                        <ApproveWorkshopPopup setToggleState={setToggleApprove} setToggleYesState={setToggleYesApprove}/>
+                        <ApproveWorkshopPopup setToggleState={setToggleApprove} setToggleYesState={setToggleYesApprove} name={props.workshop.workshop_name} user_id = {parseInt(user_id, 10)} workshop_id = {props.workshop.workshop_id}/>
                     )}
                     {toggleReject && (
-                        <RejectWorkshopPopup setToggleState={setToggleReject} setToggleYesState={setToggleYesReject}/>
+                        <RejectWorkshopPopup setToggleState={setToggleReject} setToggleYesState={setToggleYesReject} name={props.workshop.workshop_name} user_id = {parseInt(user_id, 10)} workshop_id = {props.workshop.workshop_id}/>
                     )}
                     {toggleYesApprove && (
                         <WorkshopApprovedPopup setToggleState={setToggleYesApprove}/>
