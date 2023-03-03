@@ -21,12 +21,9 @@ app.get("/api/apiTest", (req, res) => {
 app.post("/api/createWorkshop", (req, res) => {
   workshopController
     .createWorkshop(req)
-    .then((data) =>
+    .then(() =>
       res.status(201).json({
         status: "success",
-        data: {
-          workshop: data,
-        },
       })
     )
     .catch((err) => {
@@ -40,12 +37,9 @@ app.post("/api/createWorkshop", (req, res) => {
 app.put("/api/editWorkshop", (req, res) => {
   workshopController
     .editWorkshop(req, req.body.workshop_id)
-    .then((data) =>
+    .then(() =>
       res.status(200).json({
         status: "success",
-        data: {
-          workshop: data,
-        },
       })
     )
     .catch((err) => {
@@ -59,12 +53,9 @@ app.put("/api/editWorkshop", (req, res) => {
 app.put("/api/approveUser", (req, res) => {
   userController
     .approveUser(req.body.user_id)
-    .then((data) =>
+    .then(() =>
       res.status(200).json({
         status: "success",
-        data: {
-          workshop: data,
-        },
       })
     )
     .catch((err) => {
@@ -78,12 +69,9 @@ app.put("/api/approveUser", (req, res) => {
 app.delete("/api/rejectUser", (req, res) => {
   userController
     .rejectUser(req.body.user_id)
-    .then((data) =>
+    .then(() =>
       res.status(200).json({
         status: "success",
-        data: {
-          workshop: data,
-        },
       })
     )
     .catch((err) => {
@@ -139,7 +127,10 @@ app.post('/api/declineWorkshop', (req, res) => {
 
 // validateUser: returns true if the user credentials are valid/user has been approved by admin, else false
 // returns:
-// (-1, validation successful), (0, username doesnt exist), (1, password incorrect), (2, user has not been approved by admin), (3, other error)
+ //auth_val: (-1 = Fail, 0 = User not verified, 1 = Pass)
+//is_admin: (0 = User, 1 = Admin)
+//user_id: (-1 = Fail, else all other cases = user_id)
+
 app.post('/api/validateUser', (req, res) => {
   userController.validateUser(req).then(
     data => res.status(200).json({
@@ -155,25 +146,6 @@ app.post('/api/validateUser', (req, res) => {
   });
 });
 
-
-// associatedWorkshops: given user_id, returns associated workshop ids
-app.get("/api/associatedWorkshops", (req, res) => {
-  workshopController
-    .associatedWorkshops(req)
-    .then((data) =>
-      res.status(200).json({
-        status: "success",
-        data: {
-          workshops: data,
-        },
-      })
-    )
-    .catch((err) => {
-      return res.sendStatus(500).send({
-        message: err.message || "API Error associatedWorkshops",
-      });
-    });
-});
 
 // assignUser: assigns a user to a workshop, returns assignment on success
 app.post("/api/assignUser", (req, res) => {
@@ -215,6 +187,21 @@ app.get("/api/generateMetrics", (req, res) => {
   userController.generateMetrics(req)
   .then((data) =>
     res.status(201).json(data)
+  );
+});
+
+// returns details for workshop that have been undecided by the user
+app.get("/api/undecidedWorkshop", (req, res) => {
+  workshopController.undecidedWorkshops(req.query.id)
+  .then((data) =>
+    res.status(200).json(data)
+  );
+});
+
+app.get("/api/upcomingWorkshop", (req, res) => {
+  workshopController.upcomingWorkshop(req.query.id)
+  .then((data) =>
+    res.status(200).json(data)
   );
 });
 

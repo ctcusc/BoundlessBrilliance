@@ -220,7 +220,6 @@ const VolunteerApplication = () => {
                     "user_lastname": formValues.lastName,
                     "user_ethnicity": formValues.race,
                     "user_gender": formValues.gender,
-                    "user_phone_number": formValues.phoneNum,
                     "user_email": formValues.emailConfirm,
                     "user_password": formValues.passwordConfirm,
                 }),
@@ -329,7 +328,7 @@ const VolunteerApplication = () => {
                   <h2>VOLUNTEER APPLICATION</h2>
                   <p>Thanks for you interest in volunteering with Boundless Brilliance.</p>
                   <p>Please fill out this form and we'll get back to you soon.</p>
-                  <p className="subtext-app">Already have an account? <span><a href="#">Log in here.</a></span></p>
+                  <p className="subtext-app">Already have an account? <span><a href="/">Log in here.</a></span></p>
 
                   <div className="tab-container-app">
                     <Box sx={{ width: 500 }}>

@@ -42,7 +42,7 @@ const Login = () => {
 
         //API Endpoint Data Format:
         //auth_val: (-1 = Fail, 0 = User not verified, 1 = Pass)
-        //user_status: (-1 = Fail, 0 = User, 1 = Admin)
+        //is_admin: (0 = User, 1 = Admin)
         //user_id: (-1 = Fail, else all other cases = user_id)
 
         const loginError = document.getElementById("loginError");
@@ -103,11 +103,11 @@ const Login = () => {
             <div className="row justify-content-center align-items-center" style={{height:"100vh"}}>
                 <div className="col-4">
                     <div className="card pb-5 px-3" style={{marginTop: "10%", marginBottom: "10%", borderRadius: "30px"}}>
-                        <img class="card-img-top" style={{height:"100px"}} src={LoginLogo} alt="Card image cap"/>
+                        <img className="card-img-top" style={{height:"100px"}} src={LoginLogo} alt="Card image cap"/>
                         <div className="card-body p-5-lg p-3-md p-1-sm">
                             <h5 style={{fontFamily:"Avenir Black", fontSize : "28px"}} class="p-4 font-weight-bold card-title text-center">Log in</h5>
-                            <div class="mb-4 card-text">
-                                <p style={{fontFamily:"Avenir", fontSize : "14px"}}>Want to create a volunteer account? <a href="/">Get Started</a></p>
+                            <div className="mb-4 card-text">
+                                <p style={{fontFamily:"Avenir", fontSize : "14px"}}>Want to create a volunteer account? <a href="/volunteer-application">Get Started</a></p>
                             </div>
                             <div id="loginError" class="mb-2 card-text" style={{display: "none", background: "linear-gradient(0deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), #FF4B4B", borderRadius: "11px"}}>
                                 <p style={{padding: "5px",fontFamily:"Avenir Black", fontSize : "12px", color: "red"}}>
