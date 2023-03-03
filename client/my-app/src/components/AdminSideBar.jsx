@@ -66,7 +66,7 @@ const AdminSideBar = () => {
     return(
         
         
-        <div style={{backgroundColor: "white", width: "20%", height: "100vh", color: "#9F9F9F", fontFamily:"Avenir Black", fontWeight: "900", fontSize: "16px", position: "absolute", minWidth: "240px"}}>
+        <div style={{backgroundColor: "white", width: "100%", height: "100vh", color: "#9F9F9F", fontFamily:"Avenir Black", fontWeight: "900", fontSize: "16px"}}>
             <div style={{width: "100%", alignItems: "center"}}>
                 <img style={{height:"137px", display: "flex", margin: "auto", marginBottom:"139px"}} src={LoginLogo} alt="Card image cap"/>
                 <button onClick={handleButton1Click} style={{backgroundColor: button1Color, color: button1Text, width: "84%", height: "46px", borderRadius: "7px", border: "none", display: "flex", margin: "auto", marginBottom: "18px", paddingLeft: "14px", paddingTop: "12px", paddingBottom: "12px", gap: "12px"}}

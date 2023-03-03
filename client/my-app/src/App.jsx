@@ -6,6 +6,7 @@ import Home from "./routes/Home"
 import Login from "./routes/Login"
 import VolunteerApplication from "./routes/VolunteerApplication"
 import ApplicationSubmitted from "./routes/ApplicationSubmitted"
+import AdminMetrics from "./routes/AdminMetrics"
 import { useCookies } from 'react-cookie';
 
 
@@ -19,6 +20,7 @@ const App = () => {
         <Route exact path = "/user-home" component={Home}/>
         <Route exact path = "/volunteer-application" component={VolunteerApplication}/>
         <Route exact path = "/application-submitted" component={ApplicationSubmitted}/>
+        <Route exact path = "/metrics" component={AdminMetrics}/>
       </Switch>
     </Router>
     </div>
