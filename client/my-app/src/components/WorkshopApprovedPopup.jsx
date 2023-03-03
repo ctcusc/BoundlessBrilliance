@@ -4,6 +4,8 @@ import { styled } from '@mui/material/styles';
 import CheckCircleIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
 import ClearIcon from '@mui/icons-material/Clear';
 
+import { useHistory } from "react-router-dom";
+
 const StyledCheckCircleIcon = styled(CheckCircleIcon)({
     color: '#429900',
     width: '36px',
@@ -18,8 +20,13 @@ const StyledClearIcon = styled(ClearIcon)({
 
 const WorkshopApprovedPopup = ({setToggleState}) => {
 
+    const history = useHistory();
+
     function setToggle() {
         setToggleState(false);
+
+        history.push("/user-home");
+        document.location.reload()
     }
 
     return (

@@ -48,6 +48,7 @@ class workshopController {
             "UPDATE workshop_assignments SET has_accepted=1 WHERE user_id=$1 AND workshop_id=$2;",
             [user_id, workshop_id]
         );
+        return result.rows[0];
         } catch(error){
             return error;
         }
