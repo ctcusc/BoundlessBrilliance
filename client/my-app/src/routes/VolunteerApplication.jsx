@@ -244,6 +244,11 @@ const VolunteerApplication = () => {
       });
     };
 
+    function validateEmail(email) {
+      const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return regex.test(email);
+    }
+
     // makes sure all info is valid
     // raises errors on the forms if not
     const validateForm = () => {
@@ -276,6 +281,13 @@ const VolunteerApplication = () => {
         handleChangeIndex(0);
         changedStates.emailError = true;
         changedStates.emailHelperText = <StyledTypography><StyledErrorOutlineIcon/> Required Field</StyledTypography>;
+        changedStates.emailVariant = "outlined";
+        valid = false;
+      }
+      if(!validateEmail(formValues.email)){
+        handleChangeIndex(0);
+        changedStates.emailError = true;
+        changedStates.emailHelperText = <StyledTypography><StyledErrorOutlineIcon/>Invalid Email Format</StyledTypography>;
         changedStates.emailVariant = "outlined";
         valid = false;
       }
