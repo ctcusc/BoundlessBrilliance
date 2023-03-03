@@ -2,6 +2,12 @@ import React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import { useState } from 'react';
+
+import ApproveWorkshopPopup from './ApproveWorkshopPopup';
+import RejectWorkshopPopup from './RejectWorkshopPopup';
+import WorkshopApprovedPopup from './WorkshopApprovedPopup';
+import WorkshopRejectedPopup from './WorkshopRejectedPopup';
 
 import '../index.css'
 
@@ -100,6 +106,12 @@ const declineCardButton = {
 
 
 export default function WorkshopCard(props) {
+
+    const [toggleApprove, setToggleApprove] = useState(false);
+    const [toggleReject, setToggleReject] = useState(false);
+    const [toggleYesApprove, setToggleYesApprove] = useState(false);
+    const [toggleYesReject, setToggleYesReject] = useState(false);
+
     return (
 
         <Card sx={cardStyles}>
@@ -140,9 +152,21 @@ export default function WorkshopCard(props) {
                         <div style={infoLinkStyles}>More Info</div>
                     </div>
                     <div style={cardButtonsDiv}>
-                        <div style={declineCardButton}>Decline</div>
-                        <div style={approveCardButton}>Approve</div>
+                        <div onClick = {() => setToggleReject(true)} style={declineCardButton}>Decline</div>
+                        <div onClick = {() => setToggleApprove(true)} style={approveCardButton}>Approve</div>
                     </div>
+                    {toggleApprove && (
+                        <ApproveWorkshopPopup setToggleState={setToggleApprove} setToggleYesState={setToggleYesApprove}/>
+                    )}
+                    {toggleReject && (
+                        <RejectWorkshopPopup setToggleState={setToggleReject} setToggleYesState={setToggleYesReject}/>
+                    )}
+                    {toggleYesApprove && (
+                        <WorkshopApprovedPopup setToggleState={setToggleYesApprove}/>
+                    )}
+                    {toggleYesReject && (
+                        <WorkshopRejectedPopup setToggleState={setToggleYesReject}/>
+                    )}
                 </div>
             </CardContent>
 

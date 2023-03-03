@@ -16,11 +16,16 @@ const StyledClearIcon = styled(ClearIcon)({
     height: '24px',
 });
 
-const WorkshopRejectedPopup = () => {
+const WorkshopRejectedPopup = ({setToggleState}) => {
+
+    function setToggle() {
+        setToggleState(false);
+    }
+
     return (
         <div className="popup-center">
             <div className="popup-container">
-                <button className="popup-icon-corner">
+                <button onClick={setToggle} className="popup-icon-corner">
                     <StyledClearIcon />
                 </button>
                 <div className="popup-icon-center">

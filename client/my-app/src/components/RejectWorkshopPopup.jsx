@@ -42,7 +42,17 @@ const ContainedButton = styled(Button)({
     },
 });
 
-const RejectWorkshopPopup = () => {
+const RejectWorkshopPopup = ({setToggleState, setToggleYesState}) => {
+
+    function setToggle() {
+        setToggleState(false);
+    }
+
+    function setToggleYes() {
+        setToggleState(false);
+        setToggleYesState(true);
+    }
+
     return (
         <div className="popup-center">
             <div className="popup-container">
@@ -50,8 +60,8 @@ const RejectWorkshopPopup = () => {
                 <h2 className="h2-popup">Introduction to Coding</h2>
                 <p className="p-popup">This cannot be undone.</p>
                 <div className="flex-horizontal">
-                    <OutlinedButton variant="outlined">No, go back</OutlinedButton>
-                    <ContainedButton variant="contained">Yes, decline</ContainedButton>
+                    <OutlinedButton onClick={setToggle} variant="outlined">No, go back</OutlinedButton>
+                    <ContainedButton onClick={setToggleYes} variant="contained">Yes, decline</ContainedButton>
                 </div>
             </div>
             
