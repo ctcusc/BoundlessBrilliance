@@ -11,6 +11,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 import FormHelperText from '@mui/material/FormHelperText';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+import { useHistory } from 'react-router-dom';
 
 
 interface TabPanelProps {
@@ -184,6 +185,7 @@ const defaultFormStates = {
 
 const VolunteerApplication = () => {
     const theme = useTheme();
+    const history = useHistory();
 
     const [value, setValue] = React.useState(0);
   
@@ -226,10 +228,13 @@ const VolunteerApplication = () => {
       }
 
       sendData(formValues);
-
-
-
+      routing();
     };
+
+    function routing() {
+      history.push("/application-submitted");
+      document.location.reload();
+    }
 
     const handleInputChange = (e) => {
       const { name, value } = e.target;
