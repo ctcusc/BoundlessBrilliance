@@ -39,9 +39,7 @@ const ApplicationSubmitted = () => {
             <p
               className="m-3"
               style={{ fontFamily: "Avenir Black", fontSize: "28px" }}
-            >
-              Metrics
-            </p>
+            >Metrics</p>
           </div>
           <div className="metrics-grid">
             <div className="users card m-3">
@@ -49,91 +47,99 @@ const ApplicationSubmitted = () => {
                 <div
                   className=""
                   style={{
-                    height: "30%",
-                    paddingTop: "10%",
-                    textAlign: "center",
+                    position: "absolute",
+                    left: "50%",
+                    top: "5%",
+                    transform: "translate(-50%, -50%)",
                     fontWeight: "bold",
                     fontFamily: "Roboto Mono",
                     fontSize: "20px",
                   }}
-                >
-                  Users
-                </div>
+                >Users</div>
                 <div className="" style={{ height: "50%" }}>
                   <div className="row h-100 pl-2 pr-3">
                     <div className="col-4">
                       <div style={{ height: "60%" }}>
                         <p
                           style={{
-                            paddingTop: "50%",
+                            position: "relative",
+                            top: "210%",
+                            left: "53%",
+                            transform: "translate(-50%, -50%)",
                             textAlign: "center",
                             fontFamily: "Avenir",
                             fontSize: "40px",
                           }}
-                        >
-                          68
-                        </p>
+                        >68</p>
                       </div>
-                      <div style={{ height: "40%" }}>
+                      <div style={{ height: "40%" }} className = "users-under">
                         <p
                           style={{
+                            position: "relative",
+                            top: "230%",
+                            left: "53%",
+                            transform: "translate(-50%, -50%)",
                             textAlign: "center",
                             fontFamily: "Avenir",
                             fontSize: "14px",
                           }}
-                        >
-                          total
-                        </p>
+                        >total</p>
                       </div>
                     </div>
                     <div className="col-4">
                       <div style={{ height: "60%" }}>
                         <p
                           style={{
-                            paddingTop: "50%",
+                            position: "relative",
+                            top: "210%",
+                            left: "52.5%",
+                            transform: "translate(-50%, -50%)",
                             textAlign: "center",
                             fontFamily: "Avenir",
                             fontSize: "40px",
                           }}
-                        >
-                          23
-                        </p>
+                        >23</p>
                       </div>
                       <div style={{ height: "40%" }}>
                         <p
                           style={{
+                            position: "relative",
+                            top: "230%",
+                            left: "52.5%",
+                            transform: "translate(-50%, -50%)",
                             textAlign: "center",
                             fontFamily: "Avenir",
                             fontSize: "14px",
                           }}
-                        >
-                          interns
-                        </p>
+                        >interns</p>
                       </div>
                     </div>
                     <div className="col-4">
                       <div style={{ height: "60%" }}>
                         <p
                           style={{
-                            paddingTop: "50%",
+                            position: "relative",
+                            top: "210%",
+                            left: "53%",
+                            transform: "translate(-50%, -50%)",
                             textAlign: "center",
                             fontFamily: "Avenir",
                             fontSize: "40px",
                           }}
-                        >
-                          45
-                        </p>
+                        >45</p>
                       </div>
                       <div style={{ height: "40%" }}>
                         <p
                           style={{
+                            position: "relative",
+                            top: "230%",
+                            left: "53%",
+                            transform: "translate(-50%, -50%)",
                             textAlign: "center",
                             fontFamily: "Avenir",
                             fontSize: "14px",
                           }}
-                        >
-                          volunteers
-                        </p>
+                        >volunteers</p>
                       </div>
                     </div>
                   </div>
@@ -141,33 +147,38 @@ const ApplicationSubmitted = () => {
                 <div style={{ textAlign: "center", height: "20%" }}>
                   <a
                     href="/"
-                    style={{ fontFamily: "Avenir Black", fontSize: "14px" }}
-                  >
-                    View member list
+                    style={{  
+                      position: "relative",
+                      top: "200%",
+                      transform: "translate(-50%, -50%)",
+                      fontFamily: "Avenir Black", 
+                      fontSize: "14px",
+                      }}
+                  >View member list
                   </a>
                 </div>
               </div>
-              <div className="h-50">
-                <div style={{ height: "70%" }}>
-                  <div className="row h-100 pl-2 pr-3">
-                    <div className="col-4">
-                      <PieBarChart data={pdata} COLORS={colors} />
-                    </div>
-                    <div className="col-4">
-                      <PieBarChart data={pdata} COLORS={colors} />
-                    </div>
-                    <div className="col-4">
-                      <PieBarChart data={pdata} COLORS={colors} />
-                    </div>
-                  </div>
+              <div>
+              <div style={{display: "flex", justifyContent: "space-around", flexWrap: "wrap", height:"150px", paddingTop:"10px",}}>
+                <div style={{width: "25%"}}>
+                  <PieBarChart data={pdata} COLORS={colors} />
                 </div>
+                <div style={{width: "25%"}}>
+                  <PieBarChart data={pdata} COLORS={colors} />
+                </div>
+                <div style={{width: "25%"}}>
+                  <PieBarChart data={pdata} COLORS={colors} />
+                </div>
+              </div>
+
                 <div style={{ textAlign: "center", height: "30%" }}>
-                  <p style={{ fontFamily: "Avenir", fontSize: "12px" }}>
+                  <p style={{ fontFamily: "Avenir", fontSize: "12px", top: "75%"}}>
                     <div
                       className="m-1"
                       style={{
-                        left: "35%",
-                        position: "absolute",
+                        left: "37%",
+                        top:"18px",
+                        position: "relative",
                         height: "9px",
                         width: "9px",
                         backgroundColor: "#F5D6B3",
@@ -179,8 +190,9 @@ const ApplicationSubmitted = () => {
                     <div
                       className="m-1"
                       style={{
-                        left: "35%",
-                        position: "absolute",
+                        left: "37%",
+                        top:"18px",
+                        position: "relative",
                         height: "9px",
                         width: "9px",
                         backgroundColor: "#DC7700",
