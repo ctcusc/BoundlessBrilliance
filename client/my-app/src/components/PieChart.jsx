@@ -16,7 +16,7 @@ const mPieChart = ({data, COLORS}) => {
   console.log(data);
   return (
     <ResponsiveContainer>
-      <PieChart>
+      <PieChart margin={{top: 10, right: 10, bottom: 30, left: 10}}>
         <Pie
           data={data}
           options={options}
@@ -27,7 +27,10 @@ const mPieChart = ({data, COLORS}) => {
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}
         </Pie>
-        <Legend />
+        <Legend formatter={(value) => <span style={{ 
+                                              fontSize: '10px',
+                                              fontFamily: "Avenir",
+                                          }}>{value}</span>} />
       </PieChart>
     </ResponsiveContainer>
   );

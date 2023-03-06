@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react"
 import AdminSidebar from "../components/AdminSideBar";
 import "./AdminMetrics.css";
 import PieChart from "../components/PieChart";
 import PieBarChart from "../components/PieBarChart";
-import gdata from "./pieData.json";
-import edata from "./edata.json";
+import gdata from "./genderData.json";
+import edata from "./raceData.json";
 import pdata from "./progressData.json";
 
 const ApplicationSubmitted = () => {
@@ -15,6 +15,41 @@ const ApplicationSubmitted = () => {
     "rgba(220, 119, 0, 0.3)",
     "rgba(220, 119, 0, 0.7)",
   ];
+
+  const [userData, setUserData] = useState([]);
+  const [chapterData, setChapterData] = useState([]);
+  const [genderData, setGenderData] = useState([]);
+  const [ethnicityData, setEthnicityData] = useState([]);
+  const [workshopData, setWorkshopData] = useState([]);
+
+  
+  useEffect(() => {
+      fetch(`/api/`)
+        .then(response => response.json())
+        .then(data => setUserData(data))
+        .catch(error => console.error(error));
+
+      fetch(`/api/`)
+          .then(response => response.json())
+          .then(data => setChapterData(data))
+          .catch(error => console.error(error));
+
+      fetch(`/api/`)
+        .then(response => response.json())
+        .then(data => setGenderData(data))
+        .catch(error => console.error(error));
+
+      fetch(`/api/`)
+        .then(response => response.json())
+        .then(data => setEthnicityData(data))
+        .catch(error => console.error(error));
+
+      fetch(`/api/`)
+        .then(response => response.json())
+        .then(data => setWorkshopData(data))
+        .catch(error => console.error(error));
+        
+    }, []);
 
   return (
     <div>
@@ -38,7 +73,7 @@ const ApplicationSubmitted = () => {
           >
             <p
               className="m-3"
-              style={{ fontFamily: "Avenir Black", fontSize: "28px" }}
+              style={{ fontFamily: "Avenir Black", fontSize: "28px", paddingLeft:"10px", }}
             >Metrics</p>
           </div>
           <div className="metrics-grid">
@@ -240,7 +275,7 @@ const ApplicationSubmitted = () => {
                 className=""
                 style={{
                   height: "20%",
-                  paddingTop: "10%",
+                  paddingTop: "3%",
                   textAlign: "center",
                   fontWeight: "bold",
                   fontFamily: "Roboto Mono",
@@ -255,7 +290,10 @@ const ApplicationSubmitted = () => {
                     <div style={{ height: "60%" }}>
                       <p
                         style={{
-                          paddingTop: "50%",
+                          position: "relative",
+                          top: "80%",
+                          left: "53%",
+                          transform: "translate(-50%, -50%)",
                           textAlign: "center",
                           fontFamily: "Avenir",
                           fontSize: "40px",
@@ -267,6 +305,10 @@ const ApplicationSubmitted = () => {
                     <div style={{ height: "40%" }}>
                       <p
                         style={{
+                          position: "relative",
+                          top: "40%",
+                          left: "54%",
+                          transform: "translate(-50%, -50%)",
                           textAlign: "center",
                           fontFamily: "Avenir",
                           fontSize: "14px",
@@ -280,7 +322,10 @@ const ApplicationSubmitted = () => {
                     <div style={{ height: "60%" }}>
                       <p
                         style={{
-                          paddingTop: "50%",
+                          position: "relative",
+                          top: "80%",
+                          left: "53%",
+                          transform: "translate(-50%, -50%)",
                           textAlign: "center",
                           fontFamily: "Avenir",
                           fontSize: "40px",
@@ -292,6 +337,10 @@ const ApplicationSubmitted = () => {
                     <div style={{ height: "40%" }}>
                       <p
                         style={{
+                          position: "relative",
+                          top: "40%",
+                          left: "54%",
+                          transform: "translate(-50%, -50%)",
                           textAlign: "center",
                           fontFamily: "Avenir",
                           fontSize: "14px",
