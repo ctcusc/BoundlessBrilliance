@@ -21,15 +21,15 @@ const Home = () => {
 
     useEffect(() => {
         fetch(`/api/undecidedWorkshop/?id=${user_id}`)
-          .then(response => response.json())
-          .then(data => setUndecidedData(data))
-          .catch(error => console.error(error));
+            .then(response => response.json())
+            .then(data => setUndecidedData(data))
+            .catch(error => console.error(error));
 
         fetch(`/api/upcomingWorkshop/?id=${user_id}`)
             .then(response => response.json())
             .then(data => setUpcomingData(data))
             .catch(error => console.error(error));
-      }, []);
+    }, []);
 
 
     return (
@@ -49,7 +49,6 @@ const Home = () => {
                                 ))
                                 }
 
-
                             </Grid>
                         </Box>
                         : <WorkshopUpcomingPlaceholder />
@@ -60,7 +59,6 @@ const Home = () => {
                             <Grid container spacing={4}>
                                 {undecidedData.map((data) => (
                                     <Grid item xs={10}>
-                                        {/* placeholder */}
                                         <AssignmentCard workshop={data}></AssignmentCard>
                                     </Grid>
                                 ))
