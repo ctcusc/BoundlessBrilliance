@@ -134,8 +134,6 @@ export default function WorkshopCard(props) {
                                 </Typography>
                             </div>
                         </div>
-
-
                         <div style={infoLinkStyles}>More Info</div>
                     </div>
                     <div style={cardButtonsDiv}>
