@@ -7,7 +7,7 @@ import gdata from "./genderData.json";
 import edata from "./raceData.json";
 import pdata from "./progressData.json";
 
-const ApplicationSubmitted = () => {
+const AdminMetrics = () => {
   const colors = [
     "#1398A0",
     "#DC7700",
@@ -54,9 +54,6 @@ const ApplicationSubmitted = () => {
   return (
     <div>
       <div className="row m-0 p-0">
-        <div className="m-0 p-0" style={{ float: "left", width: "20%" }}>
-          <AdminSidebar />
-        </div>
         <div
           className="m-0 pl-5 pr-5 pb-5"
           style={{ float: "right", width: "80%", height: "100vh" }}
@@ -69,6 +66,7 @@ const ApplicationSubmitted = () => {
               alignContent: "center",
               flexDirection: "column",
               height: "10%",
+              marginLeft: "-11%",
             }}
           >
             <p
@@ -368,4 +366,4 @@ const ApplicationSubmitted = () => {
   );
 };
 
-export default ApplicationSubmitted;
+export default AdminMetrics;

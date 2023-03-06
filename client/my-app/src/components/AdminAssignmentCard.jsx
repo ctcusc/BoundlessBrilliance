@@ -15,7 +15,7 @@ const cardStyles = {
     minWidth: 275,
     dropShadow: '0px 2px 8px rgba(0, 0, 0, 0.15)',
     borderRadius: '30px',
-    minHeight: '260px'
+    minHeight: '220px',
 };
 
 const cardContentStyles = {
@@ -109,11 +109,11 @@ export default function WorkshopCard(props) {
                 <div style={{ display: "flex" }} >
                     <div style={mainContentDiv}>
                         <Typography sx={dateStyles} color="text.secondary" gutterBottom>
-                            Chapter
+                            {props.workshop.user_chapter}
                         </Typography>
                         <div style={{ display: "flex", justifyContent: "space-between" }}>
                             <Typography sx={cardHeaderStyles} color="text.secondary" gutterBottom>
-                                {props.workshop.name}
+                                {props.workshop.user_firstname+" "+props.workshop.user_lastname}
                             </Typography>
                         </div>
                         <div style={{ display: "flex" }}>
@@ -130,7 +130,7 @@ export default function WorkshopCard(props) {
                                 <Typography sx={
                                     cardDetailStyles
                                 } color="text.secondary">
-                                    email@email.com
+                                    {props.workshop.user_email}
                                 </Typography>
                             </div>
                         </div>
