@@ -81,8 +81,6 @@ const Login = () => {
         const username = usernameInput.value;
         const password = passwordInput.value;
 
-        console.log(cookies.name);
-
         if( !username || !password) {
             loginError.style.display = "block";
             return;
