@@ -1,0 +1,7 @@
+[  
+    { "name": "White", "value": 120 },  
+    { "name": "Asian", "value": 19 },  
+    { "name": "African American", "value": 6 },
+    { "name": "American Indian", "value": 19 },  
+    { "name": "Pacific Islander", "value": 19 }
+]
