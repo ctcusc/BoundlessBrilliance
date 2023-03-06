@@ -181,15 +181,6 @@ app.get('/api/allActiveUsers', (req, res) => {
   });
 });
 
-
-//within server.js
-app.get("/api/generateMetrics", (req, res) => {
-  userController.generateMetrics(req)
-  .then((data) =>
-    res.status(201).json(data)
-  );
-});
-
 // returns details for workshop that have been undecided by the user
 app.get("/api/undecidedWorkshop", (req, res) => {
   workshopController.undecidedWorkshops(req.query.id)
