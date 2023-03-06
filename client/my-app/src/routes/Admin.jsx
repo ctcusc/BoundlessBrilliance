@@ -2,9 +2,10 @@ import React, { useState } from "react"
 import Header from "../components/Header"
 import HomePageTab from "../components/HomePageTab"
 import { Box, Card, Grid, Typography } from '@mui/material';
-import AdminAssignmentCard from '../components/AdminAssignmentCard'
 
+import AdminAssignmentCard from '../components/AdminAssignmentCard'
 import AdminWorkshopCard from '../components/AdminWorkshopCard'
+import AdminSideBar from '../components/AdminSideBar'
 import assignmentData from '../components/workshopCardAssignment.json'
 import upcomingData from "../components/workshopCardUpcoming.json"
 import { useCookies } from 'react-cookie';
@@ -12,7 +13,7 @@ import { useCookies } from 'react-cookie';
 
 const Admin = () => {
 
-    const [tab, setTab] = useState(0);
+    const [tab, setTab] = useState(1);
     const [cookies] = useCookies(['user']);
     const user_id = cookies.user_id;
 
@@ -50,25 +51,25 @@ const Admin = () => {
 
     function renderSwitch() {
         switch (tab) {
-            case 0:
+            case 1:
                 return (<>
                     <h1 style={{ paddingTop: '40px', paddingBottom: '20px', fontFamily: 'Avenir Heavy' }}>Workshops</h1>
                     <div style={blueButton}>+ Create Workshop</div>
                     <Grid container spacing={4}>
                         {upcomingData.map((data) => (
-                            <Grid item xs={5}>
+                            <Grid item xs={6}>
                                 <AdminWorkshopCard workshop={data}></AdminWorkshopCard>
                             </Grid>
                         ))
                         }
                     </Grid></>);
-            case 1:
+            case 2:
                 return (<>
                     <h1 style={{ paddingTop: '40px', paddingBottom: '20px', fontFamily: 'Avenir Heavy' }}>Volunteer Applications</h1>
                     <div style={acceptButton}>Accept All</div>
                     <Grid container spacing={4}>
                         {assignmentData.map((data) => (
-                            <Grid item xs={10}>
+                            <Grid item xs={12}>
                                 <AdminAssignmentCard workshop={data}></AdminAssignmentCard>
                             </Grid>
                         ))
@@ -77,36 +78,20 @@ const Admin = () => {
                     </Grid></>)
 
             default:
-                return 'foo';
+                return "we haven't build this page yet :/";
         }
     }
 
 
 
     return (
-        <div >
-            <div style={{ backgroundColor: '#FBF8F2', paddingLeft: '5%', paddingTop: '5%', paddingBottom: '40px', minHeight: '90vh' }}>
+        <div style={{ display: 'flex' }}>
+            <AdminSideBar setTab={setTab}></AdminSideBar>
+            <div style={{ backgroundColor: '#FBF8F2', paddingLeft: '5%', paddingTop: '5%', paddingBottom: '40px', minHeight: '90vh', width: '80%' }}>
 
-
-                <Box sx={{ flexGrow: 1, width: '90%' }}>
+                <Box sx={{ flexGrow: 1, width: '95%' }}>
                     {renderSwitch()}
-                    {/* <Grid container spacing={4}>
-                        {upcomingData.map((data) => (
-                            <Grid item xs={5}>
-                                <AdminWorkshopCard workshop={data}></AdminWorkshopCard>
-                            </Grid>
-                        ))
-                        }
-                    </Grid>
-                    <Grid container spacing={4}>
-                        {assignmentData.map((data) => (
-                            <Grid item xs={10}>
-                                <AdminAssignmentCard workshop={data}></AdminAssignmentCard>
-                            </Grid>
-                        ))
-                        }
 
-                    </Grid> */}
                 </Box>
 
 
