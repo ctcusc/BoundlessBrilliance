@@ -11,6 +11,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 import FormHelperText from '@mui/material/FormHelperText';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+import { useHistory } from 'react-router-dom';
 
 
 interface TabPanelProps {
@@ -184,6 +185,7 @@ const defaultFormStates = {
 
 const VolunteerApplication = () => {
     const theme = useTheme();
+    const history = useHistory();
 
     const [value, setValue] = React.useState(0);
   
@@ -218,7 +220,6 @@ const VolunteerApplication = () => {
                     "user_lastname": formValues.lastName,
                     "user_ethnicity": formValues.race,
                     "user_gender": formValues.gender,
-                    "user_phone_number": formValues.phoneNum,
                     "user_email": formValues.emailConfirm,
                     "user_password": formValues.passwordConfirm,
                 }),
@@ -227,10 +228,13 @@ const VolunteerApplication = () => {
       }
 
       sendData(formValues);
-
-
-
+      routing();
     };
+
+    function routing() {
+      history.push("/application-submitted");
+      document.location.reload();
+    }
 
     const handleInputChange = (e) => {
       const { name, value } = e.target;
@@ -324,7 +328,7 @@ const VolunteerApplication = () => {
                   <h2>VOLUNTEER APPLICATION</h2>
                   <p>Thanks for you interest in volunteering with Boundless Brilliance.</p>
                   <p>Please fill out this form and we'll get back to you soon.</p>
-                  <p className="subtext-app">Already have an account? <span><a href="#">Log in here.</a></span></p>
+                  <p className="subtext-app">Already have an account? <span><a href="/">Log in here.</a></span></p>
 
                   <div className="tab-container-app">
                     <Box sx={{ width: 500 }}>

@@ -17,11 +17,10 @@ class userController {
             );
         
       const isValid = alreadyExist.rows[0].count;
-
       if (isValid == 0){
         await db.query(
-          "INSERT INTO master_users (user_firstname, user_lastname, user_ethnicity, user_phone_number, user_email, user_password, user_type) VALUES ($1, $2, $3, $4, $5, $6, $7)",
-          [req.body.user_firstname, req.body.user_lastname, req.body.user_ethnicity, req.body.user_phone_number, req.body.user_email, req.body.user_password, req.body.user_type]
+          "INSERT INTO master_users (user_firstname, user_lastname, user_ethnicity, user_email, user_password, user_gender, is_admin) VALUES ($1, $2, $3, $4, $5, $6, 0)",
+          [req.body.user_firstname, req.body.user_lastname, req.body.user_ethnicity, req.body.user_email, req.body.user_password, req.body.gender]
         );
 
         const idQuery = await db.query(
@@ -73,12 +72,18 @@ class userController {
  
             const userStatus = statusQuery.rows[0].user_status;  // 0 = Not Approved, 1 = Approved
 
+            const isAdminQuery = await db.query( //get user status
+                 "select is_admin from master_users WHERE user_id = $1",
+                 [user_id]
+             );
+
+            const isAdmin = isAdminQuery.rows[0].is_admin;
 
             if (userStatus == 0){
                 return [0, 0, -1]; // user not approved
             }
             else{
-                if (user_id == 0){
+                if (isAdmin == 1){
                   return [1, 1, user_id];
                 } else {
                   return [1, 0, user_id]; 
@@ -92,71 +97,93 @@ class userController {
 
   async approveUser(user_id) {
     // Sprint 0: Fred
-    const result = await db.query(
-      "UPDATE user_status SET user_status = 1 WHERE user_id = $1;",
-      [user_id]
-    );
-    return result.rows[0];
+    try{
+      const result = await db.query(
+        "UPDATE user_status SET user_status = 1 WHERE user_id = $1;",
+        [user_id]
+      );
+      return result.rows[0];
+      } catch(error){
+        return error;
+      }
   }
 
   async rejectUser(user_id) {
     // Sprint 1: Fred
-    const result = await db.query(
-      "DELETE FROM master_users WHERE user_id = $1;",
-      [user_id]
-    );
-    return result.rows[0];
+    try {
+        const result = await db.query(
+          "DELETE FROM user_status WHERE user_id = $1;",
+          [user_id]
+        );
+
+        const res = await db.query(
+          "DELETE FROM master_users WHERE user_id = $1;",
+          [user_id]
+        );
+
+        return result;
+    } catch(error){
+        return error;
+    }
   }
 
   async allActiveUsers(req) {
     // Sprint 1: Olivia
-    const result = await db.query(
-      "select user_id from user_status WHERE user_status = 1;"
-    );
-    // compiles user_ids into an int array
-    var user_ids = [];
-    for (let i = 0;i < result.rows.length;i ++) {
-      user_ids.push(result.rows[i].user_id);
+    try {
+      const result = await db.query(
+        "select user_id from user_status WHERE user_status = 1;"
+      );
+      // compiles user_ids into an int array
+      var user_ids = [];
+      for (let i = 0;i < result.rows.length;i ++) {
+        user_ids.push(result.rows[i].user_id);
+      }
+      return user_ids;
+    } catch(error){
+      return error;
     }
-    return user_ids;
   }
   
   async generateMetrics(req) {
     // Make queries for users and workshop tables
-    const userQueryResults = await db.query(
-        "SELECT * FROM master_users;"
-    );
-    const workshopQueryResults = await db.query(
-        "SELECT COUNT(*) FROM workshop;"
-    );
+    try {
+      const userQueryResults = await db.query(
+          "SELECT * FROM master_users;"
+      );
+      const workshopQueryResults = await db.query(
+          "SELECT COUNT(*) FROM workshop;"
+      );
 
-    // Access query results
-    const userArray = userQueryResults?.rows ?? [];
-    const workshop_count = workshopQueryResults?.rows?.[0]?.count ?? 0;
+      // Access query results
+      const userArray = userQueryResults?.rows ?? [];
+      const workshop_count = workshopQueryResults?.rows?.[0]?.count ?? 0;
 
-    let metrics = {
-      "ethnicity": {},
-      "age": {},
-      "gender": {},
-      "users": userArray.length,
-      "workshops": workshop_count
-    };
+      let metrics = {
+        "ethnicity": {},
+        "age": {},
+        "gender": {},
+        "users": userArray.length,
+        "workshops": workshop_count
+      };
 
-    // Loop through users to generate metrics
-    for(const user of userArray) {
-      if (user.user_ethnicity) {
-        metrics["ethnicity"][user.user_ethnicity] = (metrics["ethnicity"][user.user_ethnicity] || 0) + 1;
+      // Loop through users to generate metrics
+      for(const user of userArray) {
+        if (user.user_ethnicity) {
+          metrics["ethnicity"][user.user_ethnicity] = (metrics["ethnicity"][user.user_ethnicity] || 0) + 1;
+        }
+        if (user.user_age) {
+          metrics["age"][user.user_age] = (metrics["age"][user.user_age] || 0) + 1;
+        }
+        if (user.user_gender) {
+          metrics["gender"][user.user_gender] = (metrics["gender"][user.user_gender] || 0) + 1;
+        }
       }
-      if (user.user_age) {
-        metrics["age"][user.user_age] = (metrics["age"][user.user_age] || 0) + 1;
-      }
-      if (user.user_gender) {
-        metrics["gender"][user.user_gender] = (metrics["gender"][user.user_gender] || 0) + 1;
-      }
+
+      return metrics;
+    } catch(error){
+      return error;
     }
-
-    return metrics;
   }
-}
+} 
         
 module.exports = new userController();   
