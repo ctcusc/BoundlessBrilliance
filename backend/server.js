@@ -196,6 +196,21 @@ app.get("/api/upcomingWorkshop", (req, res) => {
   );
 });
 
+//Admin Page APIs
+app.get("/api/adminWorkshop", (req, res) => {
+  workshopController.adminWorkshops()
+  .then((data) =>
+    res.status(200).json(data)
+  );
+});
+
+app.get("/api/adminSignups", (req, res) => {
+  workshopController.adminSignups()
+  .then((data) =>
+    res.status(200).json(data)
+  );
+});
+
 // Start Backend Port 
 app.listen(port, () => {
   console.log(`Server listening on the port  ${port}`);

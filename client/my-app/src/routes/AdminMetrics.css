@@ -1,5 +1,6 @@
 .metrics-grid {
-    width: 100%;
+    margin-left: -10%;
+    width: 130%;
     height: 90%;
     display: grid;
     grid-template-columns: repeat(4, 25%);

@@ -1,6 +1,6 @@
 [
     {
-        "name": "Introduction to Coding",
+        "name": "Introduction to Python",
         "date": "Monday, October 21, 2022",
         "time": "10:00am",
         "location": "1234 West Street, Los Angeles, CA 90007",
@@ -10,7 +10,7 @@
         "declined": 2
     },
     {
-        "name": "Introduction to Coding II",
+        "name": "Introduction to C++",
         "date": "Thursday, October 21, 2022",
         "time": "10:00am",
         "location": "1234 West Street, Los Angeles, CA 90007",
@@ -20,7 +20,77 @@
         "declined": 2
     },
     {
-        "name": "Introduction to Coding III",
+        "name": "Introduction to Swift",
+        "date": "Thursday, October 21, 2022",
+        "time": "10:00am",
+        "location": "1234 West Street, Los Angeles, CA 90007",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suscipit tortor sagittis ut arcu vehicula dictum mauris. Vel augue magna pharetra, blandit. ",
+        "assigned": 15,
+        "accepted": 10,
+        "declined": 5
+    },
+    {
+        "name": "Introduction to Java",
+        "date": "Thursday, October 21, 2022",
+        "time": "10:00am",
+        "location": "1234 West Street, Los Angeles, CA 90007",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suscipit tortor sagittis ut arcu vehicula dictum mauris. Vel augue magna pharetra, blandit. ",
+        "assigned": 15,
+        "accepted": 10,
+        "declined": 5
+    },
+    {
+        "name": "Introduction to Golang",
+        "date": "Thursday, October 21, 2022",
+        "time": "10:00am",
+        "location": "1234 West Street, Los Angeles, CA 90007",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suscipit tortor sagittis ut arcu vehicula dictum mauris. Vel augue magna pharetra, blandit. ",
+        "assigned": 15,
+        "accepted": 10,
+        "declined": 5
+    },
+    {
+        "name": "Introduction to Rust",
+        "date": "Thursday, October 21, 2022",
+        "time": "10:00am",
+        "location": "1234 West Street, Los Angeles, CA 90007",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suscipit tortor sagittis ut arcu vehicula dictum mauris. Vel augue magna pharetra, blandit. ",
+        "assigned": 15,
+        "accepted": 10,
+        "declined": 5
+    },
+    {
+        "name": "Introduction to C",
+        "date": "Thursday, October 21, 2022",
+        "time": "10:00am",
+        "location": "1234 West Street, Los Angeles, CA 90007",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suscipit tortor sagittis ut arcu vehicula dictum mauris. Vel augue magna pharetra, blandit. ",
+        "assigned": 15,
+        "accepted": 10,
+        "declined": 5
+    },
+    {
+        "name": "Introduction to Hack",
+        "date": "Thursday, October 21, 2022",
+        "time": "10:00am",
+        "location": "1234 West Street, Los Angeles, CA 90007",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suscipit tortor sagittis ut arcu vehicula dictum mauris. Vel augue magna pharetra, blandit. ",
+        "assigned": 15,
+        "accepted": 10,
+        "declined": 5
+    },
+    {
+        "name": "Introduction to Javascript",
+        "date": "Thursday, October 21, 2022",
+        "time": "10:00am",
+        "location": "1234 West Street, Los Angeles, CA 90007",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suscipit tortor sagittis ut arcu vehicula dictum mauris. Vel augue magna pharetra, blandit. ",
+        "assigned": 15,
+        "accepted": 10,
+        "declined": 5
+    },
+    {
+        "name": "Introduction to Typescript",
         "date": "Thursday, October 21, 2022",
         "time": "10:00am",
         "location": "1234 West Street, Los Angeles, CA 90007",
