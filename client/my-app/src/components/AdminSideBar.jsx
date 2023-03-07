@@ -71,7 +71,7 @@ const AdminSideBar = (props) => {
 
 
         <div style={{
-            backgroundColor: "white", width: "20%", minHeight: "100%", color: "#9F9F9F", fontFamily: "Avenir Black", fontWeight: "900", fontSize: "16px", minWidth: "240px"
+            backgroundColor: "white", width: "20%", color: "#9F9F9F", fontFamily: "Avenir Black", fontWeight: "900", fontSize: "16px", minHeight:"100%", top: '0px !important' ,bottom:  '0px !important' 
         }}>
             <div style={{ width: "100%", alignItems: "center" }}>
                 <img style={{ height: "137px", display: "flex", margin: "auto", marginBottom: "139px" }} src={LoginLogo} alt="Card image cap" />
