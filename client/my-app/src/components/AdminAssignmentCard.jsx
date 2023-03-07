@@ -122,7 +122,7 @@ export default function WorkshopCard(props) {
                                 <Typography sx={
                                     cardDetailStyles
                                 } color="text.secondary">
-                                    1 (224) 123-4567
+                                    {props.workshop.user_phone}
                                 </Typography>
                             </div>
                             <div style={{ display: "flex", paddingLeft: '30px' }} >

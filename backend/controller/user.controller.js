@@ -19,8 +19,8 @@ class userController {
       const isValid = alreadyExist.rows[0].count;
       if (isValid == 0){
         await db.query(
-          "INSERT INTO master_users (user_firstname, user_lastname, user_ethnicity, user_email, user_password, user_gender, is_admin) VALUES ($1, $2, $3, $4, $5, $6, 0)",
-          [req.body.user_firstname, req.body.user_lastname, req.body.user_ethnicity, req.body.user_email, req.body.user_password, req.body.gender]
+          "INSERT INTO master_users (user_firstname, user_lastname, user_chapter, user_phone, user_ethnicity, user_email, user_password, user_gender, is_admin) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, 0)",
+          [req.body.user_firstname, req.body.user_lastname, req.body.user_chapter, req.body.user_phone, req.body.user_ethnicity, req.body.user_email, req.body.user_password, req.body.user_gender]
         );
 
         const idQuery = await db.query(
