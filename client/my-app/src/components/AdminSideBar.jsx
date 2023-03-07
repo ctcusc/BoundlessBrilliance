@@ -96,6 +96,10 @@ const AdminSideBar = (props) => {
                     Member List
                 </button>
             </div>
+            <div style={{
+            backgroundColor: "white", width: "100%", color: "#9F9F9F", fontFamily: "Avenir Black", fontWeight: "900", fontSize: "16px", minHeight:"76%"
+            }}></div>
+
         </div >
     )
 }
