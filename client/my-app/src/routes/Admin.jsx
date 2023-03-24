@@ -117,20 +117,14 @@ const Admin = () => {
 
 
     return (
-        <div style={{ display: 'flex' }}>
-            <AdminSideBar setTab={setTab}></AdminSideBar>
-            <div style={{ backgroundColor: '#FBF8F2', paddingLeft: '5%', paddingTop: '5%', paddingBottom: '40px', minHeight: '90vh', width: '80%' }}>
-
-                <Box sx={{ flexGrow: 1, width: '95%' }}>
-                    {renderSwitch()}
-
-                </Box>
-
-
-
-
-            </div>
-        </div >
+        <div style={{ display: 'flex', height: '100%' }}>
+        <AdminSideBar setTab={setTab} style={{ height: '100%' }}></AdminSideBar>
+        <div style={{ backgroundColor: '#FBF8F2', paddingLeft: '5%', paddingTop: '5%', paddingBottom: '40px', minHeight: '90vh', width: '80%', height: '100%' }}>
+            <Box sx={{ flexGrow: 1, width: '95%', height: '100%' }}>
+            {renderSwitch()}
+            </Box>
+        </div>
+        </div>
     );
 };
 
