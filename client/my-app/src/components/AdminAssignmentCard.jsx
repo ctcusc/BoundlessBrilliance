@@ -112,6 +112,11 @@ export default function WorkshopCard(props) {
     const [toggleReject, setToggleReject] = useState(false);
     const [toggleYesApprove, setToggleYesApprove] = useState(false);
     const [toggleYesReject, setToggleYesReject] = useState(false);
+    const [showDescription, setShowDescription] = useState(false);
+
+    const toggleDescription = () => {
+        setShowDescription(!showDescription);
+      };
 
     return (
 
@@ -145,7 +150,28 @@ export default function WorkshopCard(props) {
                                 </Typography>
                             </div>
                         </div>
-                        <div style={infoLinkStyles}>More Info</div>
+                        {showDescription ? (
+                            <div style={{ marginTop: "30px", marginRight: "100px"}}>
+                            <Typography sx={cardDetailStyles} color="text.secondary">
+                                <div><span style={{fontWeight: 'bold'}}>Role: </span> Volunteer <br /></div>
+                                <div><span style={{fontWeight: 'bold'}}>Race: </span> {props.workshop.user_ethnicity}</div>
+                                <div><span style={{fontWeight: 'bold'}}>Gedner: </span> {props.workshop.user_gender}</div>
+                                <div
+                                style={infoLinkStyles}
+                                onClick={toggleDescription}
+                                >
+                                Less Info
+                            </div>
+                            </Typography>
+                            </div>
+                        ) : (
+                            <div
+                            style={infoLinkStyles}
+                            onClick={toggleDescription}
+                            >
+                            More Info
+                            </div>
+                        )}
                     </div>
                     <div style={cardButtonsDiv}>
                         <div onClick = {() => setToggleReject(true)} style={declineCardButton}>Decline</div>
