@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -8,6 +9,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 
 import '../index.css'
+import AdminEditWorkshopPopup from './AdminEditWorkshopPopup';
 
 import { ReactComponent as DateIcon } from '../images/date_icon.svg'
 import { ReactComponent as TimeIcon } from '../images/time_icon.svg';
@@ -76,9 +78,24 @@ const verticalLine = {
 }
 
 export default function WorkshopCard(props) {
+
+    const [toggleEditPopup, setToggleEditPopup] = useState(false);
+
+    const togglePopup = () => {
+        setToggleEditPopup(!toggleEditPopup);
+    };
+
+    let editPopup;
+    if (toggleEditPopup) {
+        editPopup = <AdminEditWorkshopPopup props={props} setToggleState={setToggleEditPopup}/>;
+    }
+
     return (
 
         <Card sx={cardStyles}>
+
+            {editPopup}
+
             <CardContent sx={cardContentStyles}>
                 <div style={{ display: "flex", justifyContent: "space-between" }}>
                     <Typography sx={cardHeaderStyles} color="text.secondary" gutterBottom>
@@ -86,7 +103,7 @@ export default function WorkshopCard(props) {
                     </Typography>
                     <div style={{ display: "flex", width: '60px', justifyContent: "space-between" }}>
                         <PersonAddAlt1Icon sx={{ color: '#1398A0', cursor: 'pointer' }} />
-                        <EditIcon sx={{ color: '#616161', cursor: 'pointer' }} />
+                        <EditIcon onClick={togglePopup} sx={{ color: '#616161', cursor: 'pointer' }} />
                     </div>
                 </div>
                 <div style={{ display: "flex" }} >
@@ -131,6 +148,7 @@ export default function WorkshopCard(props) {
 
 
             </CardContent>
+            
         </Card >
     );
 }
