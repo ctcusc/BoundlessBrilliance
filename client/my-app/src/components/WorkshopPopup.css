@@ -15,6 +15,7 @@
     display: flex;
     position: relative;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
     width: 30%;
     height: 25%;
@@ -30,6 +31,50 @@
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
 }
 
+.admin-container {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    width: 50%;
+    height: 45%;
+    min-width: 650px;
+    min-height: 500px;
+    max-width: 800px;
+    max-height: 600px;
+    background: white;
+    padding: 3vh;
+    text-align: left;
+    border-radius: 12px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.popup-inputs-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 60%;
+    height: 100%;
+}
+
+.popup-admin-right {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.popup-half-textfield {
+    width: 60%;
+}
+
+.popup-full-width {
+    width: 100%;
+}
+
 .popup-icon-center {
     text-align: center;
     margin: 5%;
@@ -41,6 +86,14 @@
     border: none;
     top: 15px;
     right: 15px;
+}
+
+.popup-admin-icon-corner {
+    position: absolute;
+    background: none;
+    border: none;
+    top: 30px;
+    right: 20px;
 }
 
 .h2-popup {
@@ -87,3 +140,24 @@
     line-height: 28px;
     color: black;
 }
+
+.popup-description { 
+    color: grey;
+    font-size: 14px;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.popup-logo {
+    width: 150px;
+    padding-left: 15%;
+    padding-top: 38%;
+}
+
+.popup-update-button {
+    display: flex;
+    justify-content: right;
+    width: 100%;
+}
+
+
