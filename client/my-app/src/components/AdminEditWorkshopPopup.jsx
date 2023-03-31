@@ -76,6 +76,7 @@ const AdminEditWorkshopPopup = ({props, setToggleState}) => {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
+        
         setFormValues({
           ...formValues,
           [name]: value,
@@ -87,7 +88,7 @@ const AdminEditWorkshopPopup = ({props, setToggleState}) => {
 
         async function sendData(formValues) {
             const response = await fetch('/api/editWorkshop', {  
-                method: 'post',
+                method: 'put',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(
                     { 
@@ -119,7 +120,8 @@ const AdminEditWorkshopPopup = ({props, setToggleState}) => {
                 <div className="popup-inputs-container">
                     <StyledTextField 
                         id="filled-basic" 
-                        defaultValue={props.workshop.name} 
+                        name="name"
+                        defaultValue={formValues.name} 
                         onChange={handleInputChange} 
                         variant="filled" 
                         InputProps={{ disableUnderline: true }}
@@ -127,14 +129,16 @@ const AdminEditWorkshopPopup = ({props, setToggleState}) => {
                     <StyledTextField
                         id="date"
                         type="date"
-                        defaultValue={moment(props.workshop.date).format("YYYY-MM-DD")}
+                        name="date"
+                        defaultValue={moment(formValues.date).format("YYYY-MM-DD")}
                         onChange={handleInputChange}
                         className="popup-half-textfield"
                         InputProps={{ disableUnderline: true, shrink: "true" }}
                     />
                      <StyledTextField 
                         id="filled-basic" 
-                        defaultValue={props.workshop.time} 
+                        name="time"
+                        defaultValue={formValues.time} 
                         onChange={handleInputChange} 
                         className="popup-half-textfield" 
                         variant="filled" 
@@ -142,7 +146,8 @@ const AdminEditWorkshopPopup = ({props, setToggleState}) => {
                     />
                     <StyledTextField 
                         id="filled-basic" 
-                        defaultValue={props.workshop.location} 
+                        name="location"
+                        defaultValue={formValues.location} 
                         onChange={handleInputChange} 
                         variant="filled" 
                         InputProps={{ disableUnderline: true, shrink: "false" }}
@@ -152,7 +157,8 @@ const AdminEditWorkshopPopup = ({props, setToggleState}) => {
                         <MultiLineTextField 
                             className="popup-full-width" 
                             id="filled-basic" 
-                            defaultValue={props.workshop.description} 
+                            name="description"
+                            defaultValue={formValues.description} 
                             onChange={handleInputChange} 
                             variant="filled" 
                             InputProps={{ disableUnderline: true, shrink: "false" }} 
