@@ -9,6 +9,7 @@ import AdminSideBar from '../components/AdminSideBar'
 import AdminMetrics from '../routes/AdminMetrics'
 import assignmentData from '../components/workshopCardAssignment.json'
 // import upcomingData from "../components/workshopCardUpcoming.json"
+import WorkshopHeader from "../components/WorkshopHeader";
 import WorkshopAssignmentPlaceholder from "../components/WorkshopAssignmentPlaceholder"
 import { useCookies } from 'react-cookie';
 
@@ -72,6 +73,7 @@ const Admin = () => {
         switch (tab) {
             case 1:
                 return (<>
+                    <WorkshopHeader/>
                     <h1 style={{ paddingTop: '40px', paddingBottom: '20px', fontFamily: 'Avenir Heavy' }}>Workshops</h1>
                     <div style={blueButton}>+ Create Workshop</div>
                     <Grid container spacing={4}>
