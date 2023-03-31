@@ -30,11 +30,11 @@ class workshopController {
         }
     }
 
-    async editWorkshop(req) {
+    async editWorkshop(req, workshop_id) {
         try {
             const result = await db.query(
                 "UPDATE workshop SET workshop_name = $1, workshop_description = $2, workshop_date = $3, workshop_start_time = $4, workshop_end_time = $5, workshop_chapter = $6, workshop_is_virtual = $7, workshop_location = $8 WHERE workshop_id = $9;",
-                [req.body.workshop_name, req.body.workshop_description, req.body.workshop_date, req.body.workshop_start_time, req.body.workshop_end_time, req.body.workshop_chapter, req.body.workshop_is_virtual, req.body.workshop_location, workshop_id]
+                [req.body.workshop_name, req.body.workshop_description, req.body.workshop_date, req.body.workshop_start_time, req.body.workshop_start_time, req.body.workshop_chapter, req.body.workshop_is_virtual, req.body.workshop_location, workshop_id]
             );
             return result.rows[0];
         } catch (error){

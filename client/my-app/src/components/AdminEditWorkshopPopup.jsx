@@ -94,7 +94,7 @@ const AdminEditWorkshopPopup = ({props, setToggleState}) => {
                     { 
                         'workshop_name': formValues.name, 
                         'workshop_description': formValues.description, 
-                        'workshop_date': formValues.date, 
+                        'workshop_date': moment(formValues.date).format("MMMM DD YYYY"), 
                         'workshop_start_time': formValues.time,  
                         'workshop_end_time': formValues.endtime,
                         'workshop_chapter': formValues.chapter,
@@ -109,6 +109,8 @@ const AdminEditWorkshopPopup = ({props, setToggleState}) => {
         sendData(formValues);
         
         setToggle();
+
+        document.location.reload();
     };
 
     return (
