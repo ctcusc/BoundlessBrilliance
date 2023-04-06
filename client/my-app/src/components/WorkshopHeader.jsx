@@ -21,8 +21,10 @@ const WorkshopHeader = () => {
     return (
         <div style={{ fontSize: "50px" }}>
             <div style={{ position: "relative", height: "100%", width: "full"}}>
-                <a>
-                    <img src={emailLogo} alt="Email logo" style={{ position: "absolute", right: "6.5%", width: "2%", top: "50%", transform: "translateY(-50%)" }} />
+                <a href="https://mail.google.com/mail/?view=cm&to=info@boundlessbrilliance.org">
+                    <img src={emailLogo} alt="Email logo" style={{ position: "absolute", right: "6.5%", width: "1.7%", top: "50%", transform: "translateY(-50%)" }} />
+
+                    {/* <img src={emailLogo} alt="Email logo" style={{ position: "absolute", right: "6.5%", width: "1.785%" }} /> */}
                 </a>
                 <a>
                     <img src={logoutImage} alt="Button Image" onClick={logout} style={{ position: "absolute", right: "2.5%", width: "2.3%", top: "50%", transform: "translateY(-50%)" }} />
