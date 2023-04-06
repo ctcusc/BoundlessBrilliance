@@ -31,7 +31,6 @@ class workshopController {
     }
 
     async editWorkshop(req, workshop_id) {
-        console.log(req.body.workshop_start_time);
         try {
             const result = await db.query(
                 "UPDATE workshop SET workshop_name = $1, workshop_description = $2, workshop_date = $3, workshop_start_time = $4, workshop_end_time = $5, workshop_chapter = $6, workshop_is_virtual = $7, workshop_location = $8 WHERE workshop_id = $9;",
