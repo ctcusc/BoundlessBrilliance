@@ -115,7 +115,8 @@ class workshopController {
                 SELECT 
                 w.workshop_name as name, 
                 w.workshop_date as date,
-                w.workshop_start_time as time,
+                w.workshop_start_time as start_time,
+                w.workshop_end_time as end_time,
                 w.workshop_location as location,
                 w.workshop_description as description,
                 COALESCE(count(wa.user_id), 0) AS assigned,
