@@ -8,7 +8,9 @@ import AdminWorkshopCard from '../components/AdminWorkshopCard'
 import AdminSideBar from '../components/AdminSideBar'
 import AdminMetrics from '../routes/AdminMetrics'
 import assignmentData from '../components/workshopCardAssignment.json'
+import CreateWorkshopModal from '../components/CreateWorkshopModal'
 // import upcomingData from "../components/workshopCardUpcoming.json"
+import WorkshopHeader from "../components/WorkshopHeader";
 import WorkshopAssignmentPlaceholder from "../components/WorkshopAssignmentPlaceholder"
 import { useCookies } from 'react-cookie';
 
@@ -21,6 +23,9 @@ const Admin = () => {
 
     const [adminWorkshop, setAdminWorkshop] = useState([]);
     const [adminSignups, setAdminSignups] = useState([]);
+    const [showCreateWorkshopModal, setShowCreateWorkshopModal] = useState(false);
+    const closeModal = () => setShowCreateWorkshopModal(false);
+    const showModal = () => setShowCreateWorkshopModal(true);
 
     useEffect(() => {
         fetch(`/api/adminWorkshop`)
@@ -72,8 +77,10 @@ const Admin = () => {
         switch (tab) {
             case 1:
                 return (<>
+                    <WorkshopHeader/>
                     <h1 style={{ paddingTop: '40px', paddingBottom: '20px', fontFamily: 'Avenir Heavy' }}>Workshops</h1>
-                    <div style={blueButton}>+ Create Workshop</div>
+                    <div style={blueButton} onClick={showModal}>+ Create Workshop</div>
+                    <CreateWorkshopModal show={showCreateWorkshopModal} handleClose={closeModal}/>
                     <Grid container spacing={4}>
                         {adminWorkshop.map((data) => (
                             <Grid item xs={6}>
@@ -117,20 +124,14 @@ const Admin = () => {
 
 
     return (
-        <div style={{ display: 'flex' }}>
-            <AdminSideBar setTab={setTab}></AdminSideBar>
-            <div style={{ backgroundColor: '#FBF8F2', paddingLeft: '5%', paddingTop: '5%', paddingBottom: '40px', minHeight: '90vh', width: '80%' }}>
-
-                <Box sx={{ flexGrow: 1, width: '95%' }}>
-                    {renderSwitch()}
-
-                </Box>
-
-
-
-
-            </div>
-        </div >
+        <div style={{ display: 'flex', height: '100%' }}>
+        <AdminSideBar setTab={setTab} style={{ height: '100%' }}></AdminSideBar>
+        <div style={{ backgroundColor: '#FBF8F2', paddingLeft: '5%', paddingTop: '5%', paddingBottom: '40px', minHeight: '90vh', width: '80%', height: '100%' }}>
+            <Box sx={{ flexGrow: 1, width: '95%', height: '100%' }}>
+            {renderSwitch()}
+            </Box>
+        </div>
+        </div>
     );
 };
 

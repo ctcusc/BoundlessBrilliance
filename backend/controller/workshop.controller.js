@@ -112,16 +112,29 @@ class workshopController {
 
     async adminWorkshops() {
         try {
-            const result = await db.query(
-                "SELECT w.workshop_name as name, w.workshop_date as date ,w.workshop_start_time as start_time, w.workshop_end_time as end_time  ,w.workshop_location as location,w.workshop_description as description, w.workshop_id as id, w.workshop_end_time as endtime, w.workshop_is_virtual as isvirtual, w.workshop_chapter as chapter, count(wa.user_id) AS assigned,count(CASE WHEN wa.has_accepted = 1 THEN 1 END) AS accepted,count(CASE WHEN wa.has_accepted = -1 THEN 1 END) AS declined FROM workshop w LEFT JOIN workshop_assignments wa ON w.workshop_id = wa.workshop_id WHERE w.workshop_id = wa.workshop_id GROUP BY w.workshop_id"
-            );
+            const result = await db.query(`
+                SELECT 
+                w.workshop_name as name, 
+                w.workshop_date as date,
+                w.workshop_start_time as time,
+                w.workshop_location as location,
+                w.workshop_description as description,
+                COALESCE(count(wa.user_id), 0) AS assigned,
+                COALESCE(count(CASE WHEN wa.has_accepted = 1 THEN 1 END), 0) AS accepted,
+                COALESCE(count(CASE WHEN wa.has_accepted = -1 THEN 1 END), 0) AS declined 
+            FROM 
+                workshop w 
+            LEFT JOIN 
+                workshop_assignments wa ON w.workshop_id = wa.workshop_id 
+            GROUP BY 
+                w.workshop_id
+            ORDER BY 
+            w.workshop_name DESC;`)
             var workshop_details = [];
             for (let i = 0;i < result.rows.length;i ++) {
                 workshop_details.push(result.rows[i]);
             }
-
             return workshop_details;
-
             // return workshop_ids;
         } catch(error){
             return error;
