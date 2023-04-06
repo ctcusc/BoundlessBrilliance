@@ -81,6 +81,8 @@ const AdminEditWorkshopPopup = ({props, setToggleState}) => {
           ...formValues,
           [name]: value,
         });
+
+        console.log(formValues);
     };
 
     const handleSubmit = (event) => {
@@ -95,8 +97,8 @@ const AdminEditWorkshopPopup = ({props, setToggleState}) => {
                         'workshop_name': formValues.name, 
                         'workshop_description': formValues.description, 
                         'workshop_date': moment(formValues.date).format("MMMM DD YYYY"), 
-                        'workshop_start_time': formValues.time,  
-                        'workshop_end_time': formValues.endtime,
+                        'workshop_start_time': formValues.start_time,  
+                        'workshop_end_time': formValues.end_time,
                         'workshop_chapter': formValues.chapter,
                         'workshop_is_virtual': formValues.isvirtual,
                         'workshop_location': formValues.location, 
@@ -139,8 +141,18 @@ const AdminEditWorkshopPopup = ({props, setToggleState}) => {
                     />
                      <StyledTextField 
                         id="filled-basic" 
-                        name="time"
-                        defaultValue={formValues.time} 
+                        name="start_time"
+                        defaultValue={formValues.start_time} 
+                        onChange={handleInputChange} 
+                        className="popup-half-textfield" 
+                        variant="filled" 
+                        InputProps={{ disableUnderline: true, shrink: "false" }}
+                    />
+                    
+                    <StyledTextField 
+                        id="filled-basic" 
+                        name="end_time"
+                        defaultValue={formValues.end_time} 
                         onChange={handleInputChange} 
                         className="popup-half-textfield" 
                         variant="filled" 
