@@ -31,10 +31,11 @@ class workshopController {
     }
 
     async editWorkshop(req, workshop_id) {
+        console.log(req.body.workshop_start_time);
         try {
             const result = await db.query(
                 "UPDATE workshop SET workshop_name = $1, workshop_description = $2, workshop_date = $3, workshop_start_time = $4, workshop_end_time = $5, workshop_chapter = $6, workshop_is_virtual = $7, workshop_location = $8 WHERE workshop_id = $9;",
-                [req.body.workshop_name, req.body.workshop_description, req.body.workshop_date, req.body.workshop_start_time, req.body.workshop_start_time, req.body.workshop_chapter, req.body.workshop_is_virtual, req.body.workshop_location, workshop_id]
+                [req.body.workshop_name, req.body.workshop_description, req.body.workshop_date, req.body.workshop_start_time, req.body.workshop_end_time, req.body.workshop_chapter, req.body.workshop_is_virtual, req.body.workshop_location, workshop_id]
             );
             return result.rows[0];
         } catch (error){
@@ -112,7 +113,7 @@ class workshopController {
     async adminWorkshops() {
         try {
             const result = await db.query(
-                "SELECT w.workshop_name as name, w.workshop_date as date ,w.workshop_start_time as time ,w.workshop_location as location,w.workshop_description as description, w.workshop_id as id, w.workshop_end_time as endtime, w.workshop_is_virtual as isvirtual, w.workshop_chapter as chapter, count(wa.user_id) AS assigned,count(CASE WHEN wa.has_accepted = 1 THEN 1 END) AS accepted,count(CASE WHEN wa.has_accepted = -1 THEN 1 END) AS declined FROM workshop w LEFT JOIN workshop_assignments wa ON w.workshop_id = wa.workshop_id WHERE w.workshop_id = wa.workshop_id GROUP BY w.workshop_id"
+                "SELECT w.workshop_name as name, w.workshop_date as date ,w.workshop_start_time as start_time, w.workshop_end_time as end_time  ,w.workshop_location as location,w.workshop_description as description, w.workshop_id as id, w.workshop_end_time as endtime, w.workshop_is_virtual as isvirtual, w.workshop_chapter as chapter, count(wa.user_id) AS assigned,count(CASE WHEN wa.has_accepted = 1 THEN 1 END) AS accepted,count(CASE WHEN wa.has_accepted = -1 THEN 1 END) AS declined FROM workshop w LEFT JOIN workshop_assignments wa ON w.workshop_id = wa.workshop_id WHERE w.workshop_id = wa.workshop_id GROUP BY w.workshop_id"
             );
             var workshop_details = [];
             for (let i = 0;i < result.rows.length;i ++) {

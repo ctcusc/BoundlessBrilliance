@@ -119,7 +119,7 @@ export default function WorkshopCard(props) {
                     <Typography sx={
                         cardDetailStyles
                     } color="text.secondary">
-                        {props.workshop.time}
+                        {props.workshop.start_time + " - " + props.workshop.end_time}
                     </Typography>
                 </div>
                 <div style={{ display: "flex" }} >
