@@ -136,6 +136,10 @@ const genders = [
 
 const teams = [
   {
+    value: 'CTC',
+    label: 'CTC Chapter',
+  },
+  {
     value: 'Unknown',
     label: 'Unknown',
   },
@@ -209,6 +213,8 @@ const VolunteerApplication = () => {
         return;
       }
       setFormStates(defaultFormStates);
+      console.log(formValues.gender);
+      console.log(formValues.phoneNum);
 
       async function sendData(formValues) {
         const response = await fetch('/api/createUser', {  
@@ -218,9 +224,12 @@ const VolunteerApplication = () => {
                 { 
                     "user_firstname": formValues.firstName,
                     "user_lastname": formValues.lastName,
+                    "user_phone": formValues.phoneNum,
+                    "user_gender": formValues.gender,
                     "user_ethnicity": formValues.race,
                     "user_gender": formValues.gender,
                     "user_email": formValues.emailConfirm,
+                    "user_chapter": formValues.team,
                     "user_password": formValues.passwordConfirm,
                 }),
         })

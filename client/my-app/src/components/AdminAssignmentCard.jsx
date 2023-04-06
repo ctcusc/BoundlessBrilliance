@@ -4,12 +4,18 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
+import { useState } from 'react';
 
 import '../index.css'
 
 import { ReactComponent as DateIcon } from '../images/date_icon.svg'
 import { ReactComponent as TimeIcon } from '../images/time_icon.svg';
 import { ReactComponent as LocationIcon } from '../images/location_icon.svg';
+
+import ApproveWorkshopPopup from './adminPopups/ApproveWorkshopPopup';
+import RejectWorkshopPopup from './adminPopups/RejectWorkshopPopup';
+import WorkshopApprovedPopup from './adminPopups/WorkshopApprovedPopup';
+import WorkshopRejectedPopup from './adminPopups/WorkshopRejectedPopup';
 
 const cardStyles = {
     minWidth: 275,
@@ -102,6 +108,11 @@ const declineCardButton = {
 
 
 export default function WorkshopCard(props) {
+    const [toggleApprove, setToggleApprove] = useState(false);
+    const [toggleReject, setToggleReject] = useState(false);
+    const [toggleYesApprove, setToggleYesApprove] = useState(false);
+    const [toggleYesReject, setToggleYesReject] = useState(false);
+
     return (
 
         <Card sx={cardStyles}>
@@ -122,7 +133,7 @@ export default function WorkshopCard(props) {
                                 <Typography sx={
                                     cardDetailStyles
                                 } color="text.secondary">
-                                    1 (224) 123-4567
+                                    {props.workshop.user_phone}
                                 </Typography>
                             </div>
                             <div style={{ display: "flex", paddingLeft: '30px' }} >
@@ -134,15 +145,26 @@ export default function WorkshopCard(props) {
                                 </Typography>
                             </div>
                         </div>
-
-
                         <div style={infoLinkStyles}>More Info</div>
                     </div>
                     <div style={cardButtonsDiv}>
-                        <div style={declineCardButton}>Decline</div>
-                        <div style={approveCardButton}>Approve</div>
+                        <div onClick = {() => setToggleReject(true)} style={declineCardButton}>Decline</div>
+                        <div onClick = {() => setToggleApprove(true)} style={approveCardButton}>Approve</div>
                     </div>
+                    {toggleApprove && (
+                        <ApproveWorkshopPopup setToggleState={setToggleApprove} setToggleYesState={setToggleYesApprove} firstname={props.workshop.user_firstname} lastname={props.workshop.user_lastname} user_id = {parseInt(props.workshop.user_id,10)}/>
+                    )}
+                    {toggleReject && (
+                        <RejectWorkshopPopup setToggleState={setToggleReject} setToggleYesState={setToggleYesReject} firstname={props.workshop.user_firstname} lastname={props.workshop.user_lastname} user_id = {parseInt(props.workshop.user_id, 10)}/>
+                    )}
+                    {toggleYesApprove && (
+                        <WorkshopApprovedPopup setToggleState={setToggleYesApprove}/>
+                    )}
+                    {toggleYesReject && (
+                        <WorkshopRejectedPopup setToggleState={setToggleYesReject}/>
+                    )}
                 </div>
+
             </CardContent>
 
         </Card >
