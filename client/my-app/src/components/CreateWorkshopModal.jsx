@@ -1,23 +1,21 @@
 import React, { useState } from "react";
 import LoginLogo from "../images/login_logo.svg";
 import { Modal, Form, Button } from "react-bootstrap";
-import DatePicker from "react-datepicker";
 import moment from "moment";
+import { useHistory } from "react-router-dom";
 
 import "react-datepicker/dist/react-datepicker.css";
 
 const CreateWorkshopModal = (props) => {
+  const history = useHistory();
   const [formValues, setFormValues] = useState({
     workshop_name: "",
     workshop_description: "",
     workshop_date:"", 
     workshop_start_time:"",  
+    workshop_end_time:"",  
     workshop_location:"", 
   });
-
-  // function setToggle() {
-  //   setToggleState(false);
-  // }
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -27,6 +25,7 @@ const CreateWorkshopModal = (props) => {
       [name]: value,
     });
 };
+  
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -39,23 +38,22 @@ const CreateWorkshopModal = (props) => {
                 'workshop_name': formValues.workshop_name, 
                 'workshop_description': formValues.workshop_description, 
                 'workshop_date': moment(formValues.workshop_date).format("MMMM DD YYYY"), 
-                'workshop_start_time': formValues.workshop_start_time,  
+                'workshop_start_time': formValues.workshop_start_time, 
+                'workshop_end_time': formValues.workshop_end_time, 
                 'workshop_location': formValues.workshop_location, 
               }),
       })
       const data = await response.json();
     }
       sendData(formValues);
-      //setToggle();
-      //routing();
+      routing();
     };
 
+  function routing() {
+    history.push("/admin-home");
+    document.location.reload();
+  }
 
-
-  // function routing() {
-  //   history.push("/admin-home");
-  //   document.location.reload();
-  // }
   return (
     <>
       <Modal
@@ -98,16 +96,41 @@ const CreateWorkshopModal = (props) => {
                       color: "#686868",
                     }}
                   />
-                  {/* <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} /> */}
                 </Form.Group>
 
                 <Form.Group controlId="time" className="m-3">
+                  <div  style={{
+                      fontFamily: "Avenir",
+                      fontSize: "16px",
+                      color: "#686868",
+                    }}>Start Time</div>
                   <Form.Control
                     type="text"
                     name="workshop_start_time"
                     value={formValues.workshop_start_time}
                     onChange={handleInputChange}
-                    placeholder="Time"
+                    placeholder="8:00 AM"
+                    style={{
+                      fontFamily: "Avenir",
+                      fontSize: "16px",
+                      backgroundColor: "#F6F6F6",
+                      color: "#686868",
+                    }}
+                  />
+                </Form.Group>
+                
+                <Form.Group controlId="time" className="m-3">
+                <div  style={{
+                      fontFamily: "Avenir",
+                      fontSize: "16px",
+                      color: "#686868",
+                    }}>End Time</div>
+                  <Form.Control
+                    type="text"
+                    name="workshop_end_time"
+                    value={formValues.workshop_end_time}
+                    onChange={handleInputChange}
+                    placeholder="8:00 PM"
                     style={{
                       fontFamily: "Avenir",
                       fontSize: "16px",
@@ -164,7 +187,7 @@ const CreateWorkshopModal = (props) => {
                   alt="Card image cap"
                 />
               </div>
-              <div className="h-10">
+              <div className="h-10" style={{paddingTop: '60px'}}>
                 <button
                   type="submit"
                   id="sendlogin"
