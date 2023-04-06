@@ -8,6 +8,7 @@ import AdminWorkshopCard from '../components/AdminWorkshopCard'
 import AdminSideBar from '../components/AdminSideBar'
 import AdminMetrics from '../routes/AdminMetrics'
 import assignmentData from '../components/workshopCardAssignment.json'
+import CreateWorkshopModal from '../components/CreateWorkshopModal'
 // import upcomingData from "../components/workshopCardUpcoming.json"
 import WorkshopHeader from "../components/WorkshopHeader";
 import WorkshopAssignmentPlaceholder from "../components/WorkshopAssignmentPlaceholder"
@@ -22,6 +23,9 @@ const Admin = () => {
 
     const [adminWorkshop, setAdminWorkshop] = useState([]);
     const [adminSignups, setAdminSignups] = useState([]);
+    const [showCreateWorkshopModal, setShowCreateWorkshopModal] = useState(false);
+    const closeModal = () => setShowCreateWorkshopModal(false);
+    const showModal = () => setShowCreateWorkshopModal(true);
 
     useEffect(() => {
         fetch(`/api/adminWorkshop`)
@@ -75,7 +79,8 @@ const Admin = () => {
                 return (<>
                     <WorkshopHeader/>
                     <h1 style={{ paddingTop: '40px', paddingBottom: '20px', fontFamily: 'Avenir Heavy' }}>Workshops</h1>
-                    <div style={blueButton}>+ Create Workshop</div>
+                    <div style={blueButton} onClick={showModal}>+ Create Workshop</div>
+                    <CreateWorkshopModal show={showCreateWorkshopModal} handleClose={closeModal}/>
                     <Grid container spacing={4}>
                         {adminWorkshop.map((data) => (
                             <Grid item xs={6}>
