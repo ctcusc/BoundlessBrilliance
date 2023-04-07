@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from "react"
 import Header from "../components/Header"
 import HomePageTab from "../components/HomePageTab"
-import { Box, Card, Grid, Typography } from '@mui/material';
+import { Autocomplete, Box, Card, Grid, InputAdornment, TextField, Typography, FormControl, Input, InputLabel, FilledInput, OutlinedInput } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 
 import AdminAssignmentCard from '../components/AdminAssignmentCard'
 import AdminWorkshopCard from '../components/AdminWorkshopCard'
 import AdminSideBar from '../components/AdminSideBar'
 import AdminMetrics from '../routes/AdminMetrics'
+import MemberCard from '../components/MemberCard'
 import assignmentData from '../components/workshopCardAssignment.json'
+import members from '../components/members.json'
 // import upcomingData from "../components/workshopCardUpcoming.json"
 import WorkshopAssignmentPlaceholder from "../components/WorkshopAssignmentPlaceholder"
 import { useCookies } from 'react-cookie';
+import SearchBar from '@mkyy/mui-search-bar';
+
 
 
 const Admin = () => {
@@ -21,6 +26,7 @@ const Admin = () => {
 
     const [adminWorkshop, setAdminWorkshop] = useState([]);
     const [adminSignups, setAdminSignups] = useState([]);
+    const [searchName, setSearchName] = useState([]);
 
     useEffect(() => {
         fetch(`/api/adminWorkshop`)
@@ -68,6 +74,11 @@ const Admin = () => {
         marginBottom: '60px'
     }
 
+    const handleSearch = searchName => {
+        //...
+        console.log(searchName);
+    };
+
     function renderSwitch() {
         switch (tab) {
             case 1:
@@ -95,17 +106,45 @@ const Admin = () => {
                         }
 
                     </Grid></>)
-            
+
             case 3:
                 return (<>
-                <AdminMetrics></AdminMetrics>
-                   </>)
+                    <AdminMetrics></AdminMetrics>
+                </>)
 
             case 4:
                 return (<>
-                 <div style={{paddingTop: "100px"}}>
-                    <WorkshopAssignmentPlaceholder> style = {{paddingTop:"150px"}}</WorkshopAssignmentPlaceholder>
-                </div>
+                    <h1 style={{ paddingTop: '40px', paddingBottom: '20px', fontFamily: 'Avenir Heavy' }}>Member List</h1>
+                    <Autocomplete
+                        disablePortal
+                        id="combo-box-demo"
+                        options={members.map((data) => data.name)}
+                        fullWidth
+
+                        sx={{ mb: '60px', mt: '30px', '& .MuiInputBase-root': { borderRadius: '28px !important' }, '& .MuiAutocomplete-popupIndicator': { display: 'none' } }}
+                        renderInput={(params) => <TextField 
+                             {...params}
+                            InputProps={{
+                                ...params.InputProps,
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <SearchIcon />
+                                    </InputAdornment>
+                                ),
+                            }
+                            } 
+                            />}
+                    />
+                   
+                    <Grid container spacing={4}>
+                        {members.map((data) => (
+                            <Grid item xs={6}>
+                                <MemberCard member={data}></MemberCard>
+                            </Grid>
+                        ))
+                        }
+
+                    </Grid>
                 </>)
 
 
@@ -118,12 +157,12 @@ const Admin = () => {
 
     return (
         <div style={{ display: 'flex', height: '100%' }}>
-        <AdminSideBar setTab={setTab} style={{ height: '100%' }}></AdminSideBar>
-        <div style={{ backgroundColor: '#FBF8F2', paddingLeft: '5%', paddingTop: '5%', paddingBottom: '40px', minHeight: '90vh', width: '80%', height: '100%' }}>
-            <Box sx={{ flexGrow: 1, width: '95%', height: '100%' }}>
-            {renderSwitch()}
-            </Box>
-        </div>
+            <AdminSideBar setTab={setTab} style={{ height: '100%' }}></AdminSideBar>
+            <div style={{ backgroundColor: '#FBF8F2', paddingLeft: '5%', paddingTop: '5%', paddingBottom: '40px', minHeight: '90vh', width: '80%', height: '100%' }}>
+                <Box sx={{ flexGrow: 1, width: '95%', height: '100%' }}>
+                    {renderSwitch()}
+                </Box>
+            </div>
         </div>
     );
 };
