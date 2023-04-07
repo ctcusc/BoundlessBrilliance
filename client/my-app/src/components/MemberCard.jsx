@@ -9,6 +9,9 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import DeleteIcon from '@mui/icons-material/Delete';
+import {useState} from 'react';
+import DeleteUserPopup from '../components/adminPopups/DeleteUserPopup'
+import UserDeletedPopup from '../components/adminPopups/UserDeletedPopup'
 
 import '../index.css'
 
@@ -95,6 +98,10 @@ const linkStyles = {
 }
 
 export default function MemberCard(props) {
+
+    const [toggleDelete, setToggleDelete] = useState(false);
+    const [toggleYesDelete, setToggleYesDelete] = useState(false);
+
     return (
 
         <Card sx={cardStyles}>
@@ -105,9 +112,14 @@ export default function MemberCard(props) {
                     </Typography>
                     <div style={{ display: "flex", width: '60px', justifyContent: "space-between" }}>
                         <EditIcon sx={{ color: '#1398A0', cursor: 'pointer' }} />
-                        <DeleteIcon sx={{ color: '#616161', cursor: 'pointer' }} />
-
-                    </div>
+                        <DeleteIcon onClick={() => setToggleDelete(true)} sx={{ color: '#616161', cursor: 'pointer' }} />
+                        {toggleDelete && (
+                            <DeleteUserPopup setToggleState={setToggleDelete} setToggleYesState={setToggleYesDelete} name={props.member.name} user_id = {parseInt(props.member.user_id, 10)}/>
+                        )}
+                        {toggleYesDelete && (
+                            <UserDeletedPopup setToggleState={setToggleYesDelete}/>
+                        )}
+                        </div>
                 </div>
 
 
