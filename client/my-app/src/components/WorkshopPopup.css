@@ -11,6 +11,23 @@
     z-index: 2;
 }
 
+.volunteer-container{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    width: 53%;
+    height: 40%;
+    min-width: 530px;
+    min-height: 330px;
+    background: white;
+    padding: 3vh;
+    text-align: left;
+    border-radius: 12px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+}
+
 .popup-container {
     display: flex;
     position: relative;
@@ -72,6 +89,7 @@
 }
 
 .popup-full-width {
+    margin-top: 10%;
     width: 100%;
 }
 
@@ -155,6 +173,16 @@
 }
 
 .popup-update-button {
+    display: flex;
+    justify-content: right;
+    width: 100%;
+}
+
+.popup-searchbar {
+    width: 100%;
+}
+
+.popup-assign-button {
     display: flex;
     justify-content: right;
     width: 100%;
