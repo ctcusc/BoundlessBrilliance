@@ -130,15 +130,13 @@ class userController {
   async allActiveUsers(req) {
     // Sprint 1: Olivia
     try {
-      const result = await db.query(
-        "select user_id from user_status WHERE user_status = 1;"
-      );
-      // compiles user_ids into an int array
-      var user_ids = [];
-      for (let i = 0;i < result.rows.length;i ++) {
-        user_ids.push(result.rows[i].user_id);
-      }
-      return user_ids;
+      const result = await db.query(`
+      SELECT *
+      FROM master_users
+      JOIN user_status ON master_users.user_id = user_status.user_id
+      WHERE user_status.user_status = 1;
+      `);
+      return result.rows;
     } catch(error){
       return error;
     }

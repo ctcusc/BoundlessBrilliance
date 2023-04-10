@@ -167,17 +167,14 @@ app.post("/api/assignUser", (req, res) => {
 });
 
 app.get('/api/allActiveUsers', (req, res) => {
-  userController.allActiveUsers(req).then(
-      data => res.status(200).json({
-          api_status: "success",
-          data: {
-            user_ids: data,
-          },
-        })
-      ).catch(err=>{
-      return res.sendStatus(500).send({
-          message:err.message|| "API Error allActiveUsers"
-      });
+  userController.allActiveUsers(req)
+  .then((data) =>
+    res.status(200).json(data)
+  )
+  .catch((err) => {
+    return res.sendStatus(500).send({
+      message: err.message || "API Error allActiveUsers",
+    });
   });
 });
 
