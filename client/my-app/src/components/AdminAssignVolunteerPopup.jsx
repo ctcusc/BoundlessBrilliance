@@ -1,7 +1,7 @@
 import './WorkshopPopup.css';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
-import {Paper, Autocomplete, TextField, Chip } from '@mui/material';
+import {Popper, Autocomplete, TextField, Chip } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
 import React, { useEffect, useState } from "react";
 import accept_vector from  "../images/accept_vector.svg"
@@ -83,6 +83,18 @@ const AdminAssignVolunteerPopup = ({props, setToggleState}) => {
     const [OriginalUndecided, setOriginalUndecided] = useState([]); //original list -> undecided
     const [OriginalDeclined, setOriginalDeclined] = useState([]); //original list -> declined
     const [NewlySelected, setNewlySelected] = useState([]); //original list -> declined
+
+    const PopperMy = function (props) {
+        const { anchorEl, ...rest } = props;
+        return (
+          <Popper
+            {...rest}
+            style={{ width: 400, position: 'fixed', top: '72%', left: '28%'}}
+            placement='bottom-start'
+            // anchorEl={document.querySelector('#root')}
+          />
+        )
+      }
 
     const handleVolunteerSelection = (event, value) => {
         if (value  && !selectedVolunteers.includes(value)) {
@@ -242,13 +254,15 @@ const AdminAssignVolunteerPopup = ({props, setToggleState}) => {
                 <div className="popup-searchbar" style={{ overflow: 'hidden' }}>
                     
                 <Autocomplete
+                    PopperComponent={PopperMy}
                     disablePortal
                     options={filteredOptions}
                     onChange={handleVolunteerSelection}
                     ListboxProps={
                         {
                           style:{
-                              maxHeight: '200px',
+                              maxHeight: '180px',
+
                           }
                         }
                      }
