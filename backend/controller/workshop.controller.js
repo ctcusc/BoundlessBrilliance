@@ -77,6 +77,17 @@ class workshopController {
         }
     }
 
+    async removeAssignment(user_id, workshop_id) {
+        try {
+            const result = await db.query(
+                `DELETE FROM workshop_assignments 
+                WHERE user_id = $1 AND workshop_id = $2;`, [user_id, workshop_id]); // sends queries
+            return result.rows[0];
+        } catch (error){
+            return error;
+        }
+    }
+
     async undecidedWorkshops(user_id) {
         try {
             const result = await db.query(
@@ -113,6 +124,7 @@ class workshopController {
         try {
             const result = await db.query(`
                 SELECT 
+                w.workshop_id as id,
                 w.workshop_name as name, 
                 w.workshop_date as date,
                 w.workshop_start_time as start_time,

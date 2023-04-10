@@ -112,7 +112,7 @@ export default function WorkshopCard(props) {
                         {props.workshop.name}
                     </Typography>
                     <div style={{ display: "flex", width: '60px', justifyContent: "space-between" }}>
-                        <PersonAddAlt1Icon onClick={setAssignPopup} sx={{ color: '#1398A0', cursor: 'pointer' }} />
+                        <PersonAddAlt1Icon onClick={() => setAssignPopup(props)} sx={{ color: '#1398A0', cursor: 'pointer' }} />
                         <EditIcon onClick={togglePopup} sx={{ color: '#616161', cursor: 'pointer' }} />
                     </div>
                 </div>
