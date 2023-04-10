@@ -214,7 +214,7 @@ const AdminAssignVolunteerPopup = ({props, setToggleState}) => {
     return (
         <div className="popup-center">
             <div className="volunteer-container">
-                <div style={{ marginBottom: '20%' }}>
+                <div style={{ marginBottom: '20%'}}>
                     <div style={{fontSize: '16px', fontFamily: 'Avenir', position: 'absolute', top: '30px', left: '30px'}}>Assign Volunteer</div>
                     <div style={{fontSize: '24px', fontFamily: 'Avenir', fontWeight: 'bold', position: 'absolute', top: '60px', left: '30px'}}> {props.workshop.name}</div>
                     <button onClick={setToggle} className="popup-admin-icon-corner">
@@ -270,25 +270,43 @@ const AdminAssignVolunteerPopup = ({props, setToggleState}) => {
                     />
                     ))}
                 </div>
-                    <div className="popup-searchbar">
-                        <Autocomplete
+                <div className="popup-searchbar" style={{ overflow: 'hidden' }}>
+                    <Autocomplete
                             disablePortal
                             options={filteredOptions}
                             fullWidth
                             onChange={handleVolunteerSelection}
-
-                            sx={{ mb: '30px', mt: '30px', '& .MuiInputBase-root': { borderRadius: '14px !important' }, '& .MuiAutocomplete-popupIndicator': { display: 'none' }}}
+                            sx={{
+                            mb: '30px',
+                            mt: '30px',
+                            '& .MuiInputBase-root': { 
+                                borderRadius: '14px !important',
+                            },
+                            '& .MuiAutocomplete-popupIndicator': { 
+                                display: 'none' 
+                            }
+                            }}
                             renderInput={(params) => <TextField 
-                                {...params}
-                                placeholder="Search for a volunteer"
-                                InputProps={{
-                                    ...params.InputProps,
-                                    style: {padding: '6px', fontSize: '14px' }
-                                }
-                                } 
-                                />}
+                            {...params}
+                            placeholder="Search for a volunteer"
+                            InputProps={{
+                                ...params.InputProps,
+                                style: { 
+                                borderRadius: '14px !important',
+                                padding: '6px', 
+                                fontSize: '14px',
+                                fontFamily: 'Avenir', // change the font family here
+                                },
+                            }} 
+                            style={{
+                                borderRadius: '14px !important',
+                                fontSize: '14px', // change the font size here
+                                fontFamily: 'Avenir', // change the font family here as well
+                            }}
+                            />}
                         />
                     </div>
+
 
                     <div className="popup-assign-button">
                         <ContainedButton onClick={handleSubmit}>Update</ContainedButton>
