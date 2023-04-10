@@ -4,42 +4,6 @@ import Button from '@mui/material/Button';
 import { Autocomplete, InputAdornment, TextField, Paper, Chip } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
 import React, { useEffect, useState } from "react";
-import volunteer_list from "./volunteers.json";
-
-const StyledTextField = styled(TextField) ({
-    marginBottom: '7px',
-    marginTop: '7px',
-    "& fieldset": { 
-        border: 'none',
-    },
-    '& legend': { 
-        display: 'none',
-    },
-    input: {
-        color: 'rgba(0, 0, 0, 0.6)',
-        fontFamily: 'Avenir',
-        fontStyle: 'normal',
-        paddingTop: '17px',
-        paddingBottom: '15px'
-    }
-});
-
-const MultiLineTextField = styled(TextField) ({
-    marginBottom: '7px',
-    marginTop: '7px',
-    "& fieldset": { 
-        border: 'none',
-    },
-    '& legend': { 
-        display: 'none',
-    },
-    textarea: {
-        color: 'rgba(0, 0, 0, 0.6)',
-        fontFamily: 'Avenir',
-        fontStyle: 'normal',
-        marginTop: '-10px',
-    }
-});
 
 const ContainedButton = styled(Button)({
     backgroundColor: '#1398A0',
@@ -64,16 +28,6 @@ const StyledClearIcon = styled(ClearIcon)({
     width: '24px',
     height: '24px',
 });
-
-const VListComponent = ({ myList }) => {
-    return (
-      <div>
-        {myList.map((item) => (
-          <Chip label={item}></Chip>
-        ))}
-      </div>
-    );
-  };
 
 const AdminAssignVolunteerPopup = ({props, setToggleState}) => {
     useEffect(() => {
@@ -115,8 +69,6 @@ const AdminAssignVolunteerPopup = ({props, setToggleState}) => {
         
     }, []);
 
-    const [SearchValues, setSearchValues] = useState(false);
-
     // The following vars are used for backend
     const [volunteers, setVolunteers] = useState([]); //all avaliable volunteers
     const [selectedVolunteers, setSelectedVolunteers] = useState([]); //volunteers that are already assigned
@@ -147,7 +99,7 @@ const AdminAssignVolunteerPopup = ({props, setToggleState}) => {
         setNewlySelected(NewlySelected.filter((volunteer) => volunteer !== volunteerToDelete));
     };
 
-    const filteredOptions = volunteer_list.filter((volunteer) => !selectedVolunteers.includes(volunteer));
+    const filteredOptions = volunteers.filter((volunteer) => !selectedVolunteers.includes(volunteer));
 
     function setToggle() {
         setToggleState(false);
@@ -227,22 +179,22 @@ const AdminAssignVolunteerPopup = ({props, setToggleState}) => {
                 <div className='assign-chips'>
                     {OriginalAccepted.map((volunteer) => (
                     <Chip 
-                        style={{ borderColor: "#1398A0", color: "#0e8830",  backgroundColor:'#FFFFFF', mr: 1,}} 
+                        style={{ borderColor: "#0e8830", color: "#FFFFFF",  backgroundColor:'#0e8830', mr: 1,}} 
                         key={volunteer} 
                         variant="outlined" 
                         label={volunteer} 
                         onDelete={handleDelete(volunteer)}
-                        deleteIcon={<ClearIcon style={{ color: '#1398A0' }} />}
+                        deleteIcon={<ClearIcon style={{ color: '#FFFFFF' }} />}
                     />
                     ))}
                     {OriginalDeclined.map((volunteer) => (
                     <Chip 
-                        style={{ borderColor: "#1398A0", color: "#d90000",  backgroundColor:'#FFFFFF',  mr: 1,}} 
+                        style={{ borderColor: "#d90000", color: "#FFFFFF",  backgroundColor:'#d90000',  mr: 1,}} 
                         key={volunteer} 
                         variant="outlined" 
                         label={volunteer} 
                         onDelete={handleDelete(volunteer)}
-                        deleteIcon={<ClearIcon style={{ color: '#1398A0' }} />}
+                        deleteIcon={<ClearIcon style={{ color: '#FFFFFF' }} />}
                     />
                     ))}
                      {OriginalUndecided.map((volunteer) => (
@@ -266,26 +218,42 @@ const AdminAssignVolunteerPopup = ({props, setToggleState}) => {
                     />
                     ))}
                 </div>
-                    <div className="popup-searchbar">
-                        <Autocomplete
+                <div className="popup-searchbar" style={{ overflow: 'hidden' }}>
+                    <Autocomplete
                             disablePortal
                             options={filteredOptions}
                             fullWidth
                             onChange={handleVolunteerSelection}
-
-                            sx={{ mb: '30px', mt: '30px', '& .MuiInputBase-root': { borderRadius: '14px !important' }, '& .MuiAutocomplete-popupIndicator': { display: 'none' }}}
+                            sx={{
+                            mb: '30px',
+                            mt: '30px',
+                            '& .MuiInputBase-root': { 
+                                borderRadius: '14px !important',
+                            },
+                            '& .MuiAutocomplete-popupIndicator': { 
+                                display: 'none' 
+                            }
+                            }}
                             renderInput={(params) => <TextField 
-                                {...params}
-                                placeholder="Search for a volunteer"
-                                InputProps={{
-                                    ...params.InputProps,
-                                    style: {padding: '6px', fontSize: '14px' }
-                                }
-                                } 
-                                />}
+                            {...params}
+                            placeholder="Search for a volunteer"
+                            InputProps={{
+                                ...params.InputProps,
+                                style: { 
+                                borderRadius: '14px !important',
+                                padding: '6px', 
+                                fontSize: '14px',
+                                fontFamily: 'Avenir', // change the font family here
+                                },
+                            }} 
+                            style={{
+                                borderRadius: '14px !important',
+                                fontSize: '14px', // change the font size here
+                                fontFamily: 'Avenir', // change the font family here as well
+                            }}
+                            />}
                         />
                     </div>
-
                     <div className="popup-assign-button">
                         <ContainedButton onClick={handleSubmit}>Update</ContainedButton>
                     </div>
