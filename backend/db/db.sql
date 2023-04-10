@@ -66,7 +66,7 @@ VALUES  ('Boundless', 'Brilliance', 'White', 'bb@usc.edu', 'password', 'Male', 1
         ('Admin', 'Admin', 'White', 'bb@usc.edu', 'password', 'Male', 1, '222-222-2222', 'CTC Chapter'),
         ('Raymond', 'Kuan', 'Asian', 'rkuan@usc.edu', 'password', 'Male', 0, '510-598-7307', 'CTC Chapter'),
         ('Wesley', 'Tong', 'Asian', 'wytong@usc.edu', 'password', 'Male', 0, '127-345-8195', 'CTC Chapter'),
-        ('User', 'One', 'White', 'user1@usc.edu', 'password', 'Female', 0, '891-624-7282', 'CTC Chapter'),
+        ('Fred', 'Liu', 'White', 'liufrede@usc.edu', 'password', 'Male', 0, '891-624-7282', 'CTC Chapter'),
         ('User', 'Two', 'White', 'user2@usc.edu', 'password', 'Female', 0, '235-745-1247', 'CTC Chapter'),
         ('User', 'Three', 'White', 'user3@usc.edu', 'password', 'Female', 0, '910-235-8932', 'CTC Chapter');
   
