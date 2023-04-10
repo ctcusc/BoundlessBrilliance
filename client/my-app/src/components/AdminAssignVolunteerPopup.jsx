@@ -231,22 +231,22 @@ const AdminAssignVolunteerPopup = ({props, setToggleState}) => {
                 }}>
                     {OriginalAccepted.map((volunteer) => (
                     <Chip 
-                        style={{ borderColor: "#1398A0", color: "#0e8830",  backgroundColor:'#FFFFFF', mr: 1,}} 
+                        style={{ borderColor: "#0e8830", color: "#FFFFFF",  backgroundColor:'#0e8830', mr: 1,}} 
                         key={volunteer} 
                         variant="outlined" 
                         label={volunteer} 
                         onDelete={handleDelete(volunteer)}
-                        deleteIcon={<ClearIcon style={{ color: '#1398A0' }} />}
+                        deleteIcon={<ClearIcon style={{ color: '#FFFFFF' }} />}
                     />
                     ))}
                     {OriginalDeclined.map((volunteer) => (
                     <Chip 
-                        style={{ borderColor: "#1398A0", color: "#d90000",  backgroundColor:'#FFFFFF',  mr: 1,}} 
+                        style={{ borderColor: "#d90000", color: "#FFFFFF",  backgroundColor:'#d90000',  mr: 1,}} 
                         key={volunteer} 
                         variant="outlined" 
                         label={volunteer} 
                         onDelete={handleDelete(volunteer)}
-                        deleteIcon={<ClearIcon style={{ color: '#1398A0' }} />}
+                        deleteIcon={<ClearIcon style={{ color: '#FFFFFF' }} />}
                     />
                     ))}
                      {OriginalUndecided.map((volunteer) => (
@@ -306,8 +306,6 @@ const AdminAssignVolunteerPopup = ({props, setToggleState}) => {
                             />}
                         />
                     </div>
-
-
                     <div className="popup-assign-button">
                         <ContainedButton onClick={handleSubmit}>Update</ContainedButton>
                     </div>
