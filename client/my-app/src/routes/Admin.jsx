@@ -102,6 +102,7 @@ const Admin = () => {
                     </Grid></>);
             case 2:
                 return (<>
+                    <WorkshopHeader/>
                     <h1 style={{ paddingTop: '40px', paddingBottom: '20px', fontFamily: 'Avenir Heavy' }}>Volunteer Applications</h1>
                     <div style={acceptButton}>Accept All</div>
                     <Grid container spacing={4}>
@@ -116,11 +117,13 @@ const Admin = () => {
 
             case 3:
                 return (<>
+                    <WorkshopHeader/>
                     <AdminMetrics></AdminMetrics>
                 </>)
 
             case 4:
                 return (<>
+                    <WorkshopHeader/>
                     <h1 style={{ paddingTop: '40px', paddingBottom: '20px', fontFamily: 'Avenir Heavy' }}>Member List</h1>
                     <Autocomplete
                         disablePortal
