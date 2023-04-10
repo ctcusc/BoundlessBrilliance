@@ -16,7 +16,7 @@
     height: calc(40% - 40px);
     width: calc(53% - 40px);
     min-width: 600px;
-    min-height: 350px;
+    min-height: 555px;
     justify-content: center;
     align-items: center;
     z-index: 100;
@@ -25,6 +25,9 @@
     flex-direction: row;
     background: white;
     padding: 3vh;
+    padding-left: 3%;
+    padding-right: 4%;
+    padding-top: 2%;
     text-align: left;
     border-radius: 12px;
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
@@ -35,7 +38,7 @@
     flex-wrap: nowrap;
     gap: 4px;
     margin: 4px 0;  
-    margin-top: 4%;
+    /* margin-top: 2%; */
     overflow: auto;
 }
 
