@@ -12,21 +12,36 @@
 }
 
 .volunteer-container{
+    position: relative;
+    height: calc(50% - 40px);
+    width: calc(53% - 40px);
+    min-width: 600px;
+    min-height: 400px;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
     display: flex;
     position: relative;
-    justify-content: center;
     flex-direction: row;
-    align-items: center;
-    width: 53%;
-    height: 40%;
-    min-width: 530px;
-    min-height: 330px;
     background: white;
     padding: 3vh;
     text-align: left;
     border-radius: 12px;
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
 }
+
+.assign-chips{
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 4px;
+    margin: 4px 0;  
+    margin-top: 4%;
+    overflow: auto;
+}
+
+.assign-chips::-webkit-scrollbar {
+    display: none;
+  }
 
 .popup-container {
     display: flex;

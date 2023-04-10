@@ -3,8 +3,8 @@ import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import { Autocomplete, InputAdornment, TextField, Paper, Chip } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
-import React, { useEffect, useState } from "react"
-
+import React, { useEffect, useState } from "react";
+import volunteer_list from "./volunteers.json";
 
 const StyledTextField = styled(TextField) ({
     marginBottom: '7px',
@@ -147,7 +147,7 @@ const AdminAssignVolunteerPopup = ({props, setToggleState}) => {
         setNewlySelected(NewlySelected.filter((volunteer) => volunteer !== volunteerToDelete));
     };
 
-    const filteredOptions = volunteers.filter((volunteer) => !selectedVolunteers.includes(volunteer));
+    const filteredOptions = volunteer_list.filter((volunteer) => !selectedVolunteers.includes(volunteer));
 
     function setToggle() {
         setToggleState(false);
@@ -215,8 +215,6 @@ const AdminAssignVolunteerPopup = ({props, setToggleState}) => {
         <div className="popup-center">
             <div className="volunteer-container">
                 <div style={{ marginBottom: '20%' }}>
-                    <div style={{fontSize: '16px', fontFamily: 'Avenir', position: 'absolute', top: '30px', left: '30px'}}>Assign Volunteer</div>
-                    <div style={{fontSize: '24px', fontFamily: 'Avenir', fontWeight: 'bold', position: 'absolute', top: '60px', left: '30px'}}> {props.workshop.name}</div>
                     <button onClick={setToggle} className="popup-admin-icon-corner">
                         <StyledClearIcon />
                     </button>
@@ -224,11 +222,9 @@ const AdminAssignVolunteerPopup = ({props, setToggleState}) => {
                     <br/>
                 </div>
                 <div className="popup-full-width">
-                <div style={{ display: 'flex', 
-                    flexWrap: 'wrap', 
-                    gap: '4px', 
-                    margin: '4px 0',  
-                }}>
+                <div style={{fontSize: '16px', fontFamily: 'Avenir', top: '30px', left: '30px'}}>Assign Volunteer</div>
+                <div style={{fontSize: '24px', fontFamily: 'Avenir', fontWeight: 'bold', top: '60px', left: '30px'}}> {props.workshop.name}</div>
+                <div className='assign-chips'>
                     {OriginalAccepted.map((volunteer) => (
                     <Chip 
                         style={{ borderColor: "#1398A0", color: "#0e8830",  backgroundColor:'#FFFFFF', mr: 1,}} 
