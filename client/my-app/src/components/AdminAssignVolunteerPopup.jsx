@@ -1,7 +1,7 @@
 import './WorkshopPopup.css';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
-import { Autocomplete, InputAdornment, TextField, Paper, Chip } from '@mui/material';
+import { Autocomplete, TextField, Chip } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
 import React, { useEffect, useState } from "react";
 
@@ -174,8 +174,8 @@ const AdminAssignVolunteerPopup = ({props, setToggleState}) => {
                     <br/>
                 </div>
                 <div className="popup-full-width">
-                <div style={{fontSize: '16px', fontFamily: 'Avenir', top: '30px', left: '30px'}}>Assign Volunteer</div>
-                <div style={{fontSize: '24px', fontFamily: 'Avenir', fontWeight: 'bold', top: '60px', left: '30px'}}> {props.workshop.name}</div>
+                <div style={{fontSize: '16px', fontFamily: 'Avenir', top: '0px', left: '30px'}}>Assign Volunteer</div>
+                <div style={{fontSize: '24px', fontFamily: 'Avenir', fontWeight: 'bold', top: '30px', left: '30px'}}> {props.workshop.name}</div>
                 <div className='assign-chips'>
                     {OriginalAccepted.map((volunteer) => (
                     <Chip 

@@ -13,10 +13,10 @@
 
 .volunteer-container{
     position: relative;
-    height: calc(50% - 40px);
+    height: calc(40% - 40px);
     width: calc(53% - 40px);
     min-width: 600px;
-    min-height: 400px;
+    min-height: 350px;
     justify-content: center;
     align-items: center;
     z-index: 100;
@@ -104,7 +104,6 @@
 }
 
 .popup-full-width {
-    margin-top: 10%;
     width: 100%;
 }
 
