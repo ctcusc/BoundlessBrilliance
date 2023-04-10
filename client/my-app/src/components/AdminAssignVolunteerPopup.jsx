@@ -4,6 +4,9 @@ import Button from '@mui/material/Button';
 import { Autocomplete, TextField, Chip } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
 import React, { useEffect, useState } from "react";
+import accept_vector from  "../images/accept_vector.svg"
+import declined_vector from "../images/declined_vector.svg"
+import pending_vector from "../images/pending_vector.svg"
 
 const ContainedButton = styled(Button)({
     backgroundColor: '#1398A0',
@@ -86,8 +89,8 @@ const AdminAssignVolunteerPopup = ({props, setToggleState}) => {
         setSelectedVolunteers([...selectedVolunteers, value]);
         }
 
-        if (value  && !NewlySelected.includes(value)) {
-            setNewlySelected([...NewlySelected, value]);
+        if (value  && !OriginalUndecided.includes(value)) {
+            setOriginalUndecided([...OriginalUndecided, value]);
         }
     };
 
@@ -96,7 +99,6 @@ const AdminAssignVolunteerPopup = ({props, setToggleState}) => {
         setOriginalAccepted(OriginalAccepted.filter((volunteer) => volunteer !== volunteerToDelete));
         setOriginalUndecided(OriginalUndecided.filter((volunteer) => volunteer !== volunteerToDelete));
         setOriginalDeclined(OriginalDeclined.filter((volunteer) => volunteer !== volunteerToDelete));
-        setNewlySelected(NewlySelected.filter((volunteer) => volunteer !== volunteerToDelete));
     };
 
     const filteredOptions = volunteers.filter((volunteer) => !selectedVolunteers.includes(volunteer));
@@ -174,29 +176,45 @@ const AdminAssignVolunteerPopup = ({props, setToggleState}) => {
                     <br/>
                 </div>
                 <div className="popup-full-width">
-                <div style={{fontSize: '16px', fontFamily: 'Avenir', top: '0px', left: '30px'}}>Assign Volunteer</div>
+                <div style={{fontSize: '16px', fontFamily: 'Avenir', top: '10px', left: '30px'}}>Assign Volunteer</div>
                 <div style={{fontSize: '24px', fontFamily: 'Avenir', fontWeight: 'bold', top: '30px', left: '30px'}}> {props.workshop.name}</div>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <img src={accept_vector} style={{ width: '1.7%', marginTop:'4.2%', marginRight: '1%' }} alt='accept'/>
+                    <div style={{ fontSize: '14px', fontFamily: 'Avenir', paddingTop: '30px' }}>Accepted</div>
+                </div>
                 <div className='assign-chips'>
-                    {OriginalAccepted.map((volunteer) => (
+                {OriginalAccepted.map((volunteer) => (
                     <Chip 
-                        style={{ borderColor: "#0e8830", color: "#FFFFFF",  backgroundColor:'#0e8830', mr: 1,}} 
+                        style={{ borderColor: "#1398A0", color: "#1398A0", backgroundColor:'#FFFFFF', mr: 1 }} 
                         key={volunteer} 
                         variant="outlined" 
                         label={volunteer} 
                         onDelete={handleDelete(volunteer)}
-                        deleteIcon={<ClearIcon style={{ color: '#FFFFFF' }} />}
+                        deleteIcon={<ClearIcon style={{ color: '#1398A0' }} />}
                     />
-                    ))}
+                ))}
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <img src={declined_vector} style={{ width: '1.7%', marginTop:'4.5%', marginRight: '1%' }} alt='accept'/>
+                    <div style={{ fontSize: '14px', fontFamily: 'Avenir', paddingTop: '30px' }}>Declined</div>
+            </div>
+                <div className='assign-chips'>
                     {OriginalDeclined.map((volunteer) => (
                     <Chip 
-                        style={{ borderColor: "#d90000", color: "#FFFFFF",  backgroundColor:'#d90000',  mr: 1,}} 
+                        style={{ borderColor: "#1398A0", color: "#1398A0",  backgroundColor:'#FFFFFF',  mr: 1,}} 
                         key={volunteer} 
                         variant="outlined" 
                         label={volunteer} 
                         onDelete={handleDelete(volunteer)}
-                        deleteIcon={<ClearIcon style={{ color: '#FFFFFF' }} />}
+                        deleteIcon={<ClearIcon style={{ color: '#1398A0' }} />}
                     />
                     ))}
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <img src={pending_vector} style={{ width: '1.7%', marginTop:'4.5%', marginRight: '1%' }} alt='accept'/>
+                    <div style={{ fontSize: '14px', fontFamily: 'Avenir', paddingTop: '30px' }}>Pending</div>
+                </div>
+                <div className='assign-chips'>
                      {OriginalUndecided.map((volunteer) => (
                     <Chip 
                         style={{ borderColor: "#1398A0", color: "#1398A0", backgroundColor:'#FFFFFF',  mr: 1,}} 
@@ -207,6 +225,9 @@ const AdminAssignVolunteerPopup = ({props, setToggleState}) => {
                         deleteIcon={<ClearIcon style={{ color: '#1398A0' }} />}
                     />
                     ))}
+                </div>
+            
+                <div className='assign-chips'>
                      {NewlySelected.map((volunteer) => (
                     <Chip 
                         style={{ borderColor: "#1398A0", color: "#1398A0", backgroundColor:'#FFFFFF',  mr: 1,}} 
