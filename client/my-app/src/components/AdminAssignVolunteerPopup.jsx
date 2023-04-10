@@ -1,7 +1,7 @@
 import './WorkshopPopup.css';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
-import { Autocomplete, TextField, Chip } from '@mui/material';
+import {Paper, Autocomplete, TextField, Chip } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
 import React, { useEffect, useState } from "react";
 import accept_vector from  "../images/accept_vector.svg"
@@ -176,7 +176,7 @@ const AdminAssignVolunteerPopup = ({props, setToggleState}) => {
                     <br/>
                 </div>
                 <div className="popup-full-width">
-                <div style={{fontSize: '16px', fontFamily: 'Avenir', top: '10px', left: '30px'}}>Assign Volunteer</div>
+                <div style={{fontSize: '16px', fontFamily: 'Avenir', left: '30px'}}>Assign Volunteer</div>
                 <div style={{fontSize: '24px', fontFamily: 'Avenir', fontWeight: 'bold', top: '30px', left: '30px'}}> {props.workshop.name}</div>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     <img src={accept_vector} style={{ width: '1.7%', marginTop:'4.2%', marginRight: '1%' }} alt='accept'/>
@@ -240,40 +240,53 @@ const AdminAssignVolunteerPopup = ({props, setToggleState}) => {
                     ))}
                 </div>
                 <div className="popup-searchbar" style={{ overflow: 'hidden' }}>
-                    <Autocomplete
-                            disablePortal
-                            options={filteredOptions}
-                            fullWidth
-                            onChange={handleVolunteerSelection}
-                            sx={{
-                            mb: '30px',
-                            mt: '30px',
-                            '& .MuiInputBase-root': { 
-                                borderRadius: '14px !important',
+                    
+                <Autocomplete
+                    disablePortal
+                    options={filteredOptions}
+                    onChange={handleVolunteerSelection}
+                    ListboxProps={
+                        {
+                          style:{
+                              maxHeight: '200px',
+                          }
+                        }
+                     }
+                    sx={{
+                        mb: '30px',
+                        mt: '30px',
+                        '& .MuiInputBase-root': {
+                        borderRadius: '14px !important',
+                        },
+                        '& .MuiAutocomplete-inputRoot': {
+                        paddingBottom: '14px !important',
+                        },
+                        '& .MuiAutocomplete-popupIndicator': {
+                        display: 'none',
+                        },
+                    }}
+                    renderInput={(params) => (
+                        <TextField
+                        {...params}
+                        placeholder="Search for a volunteer"
+                        InputProps={{
+                            ...params.InputProps,
+                            style: {
+                            borderRadius: '14px !important',
+                            padding: '6px',
+                            fontSize: '14px',
+                            fontFamily: 'Avenir', // change the font family here
                             },
-                            '& .MuiAutocomplete-popupIndicator': { 
-                                display: 'none' 
-                            }
-                            }}
-                            renderInput={(params) => <TextField 
-                            {...params}
-                            placeholder="Search for a volunteer"
-                            InputProps={{
-                                ...params.InputProps,
-                                style: { 
-                                borderRadius: '14px !important',
-                                padding: '6px', 
-                                fontSize: '14px',
-                                fontFamily: 'Avenir', // change the font family here
-                                },
-                            }} 
-                            style={{
-                                borderRadius: '14px !important',
-                                fontSize: '14px', // change the font size here
-                                fontFamily: 'Avenir', // change the font family here as well
-                            }}
-                            />}
+                        }}
+                        style={{
+                            borderRadius: '14px !important',
+                            fontSize: '14px', // change the font size here
+                            fontFamily: 'Avenir', // change the font family here as well
+                        }}
                         />
+                    )}
+                    />
+
                     </div>
                     <div className="popup-assign-button">
                         <ContainedButton onClick={handleSubmit}>Update</ContainedButton>
