@@ -26,7 +26,12 @@ const Admin = () => {
 
     const [adminWorkshop, setAdminWorkshop] = useState([]);
     const [adminSignups, setAdminSignups] = useState([]);
-    const [searchName, setSearchName] = useState([]);
+    const [value, setValue] = React.useState();
+    const [displayedMembers, setDisplayedMembers] = React.useState([]]);
+    const [inputValue, setInputValue] = React.useState('');
+
+
+
 
     useEffect(() => {
         fetch(`/api/adminWorkshop`)
@@ -37,6 +42,11 @@ const Admin = () => {
         fetch(`/api/adminSignups`)
             .then(response => response.json())
             .then(data => setAdminSignups(data))
+            .catch(error => console.error(error));
+
+        fetch(`/api/allActiveUsers`)
+            .then(response => response.json())
+            .then(data => setDisplayedMembers(data))
             .catch(error => console.error(error));
 
     }, []);
@@ -74,10 +84,6 @@ const Admin = () => {
         marginBottom: '60px'
     }
 
-    const handleSearch = searchName => {
-        //...
-        console.log(searchName);
-    };
 
     function renderSwitch() {
         switch (tab) {
@@ -118,12 +124,36 @@ const Admin = () => {
                     <Autocomplete
                         disablePortal
                         id="combo-box-demo"
-                        options={members.map((data) => data.name)}
+                        options={members.map((data) => `${data.user_firstname} ${data.user_lastname}`)}
                         fullWidth
+                        value={value}
+                        onChange={(event, newValue) => {
+                            setValue(newValue);
+                            if (newValue === null || newValue === "") {
+                                setDisplayedMembers(members);
+                            }
+                            else {
+                                setDisplayedMembers(members.filter(mem => `${mem.user_firstname} ${mem.user_lastname}` === (newValue)));
+                            }
+
+
+                        }}
+                        inputValue={inputValue}
+                        onInputChange={(event, newInputValue) => {
+                            setInputValue(newInputValue);
+                            if (newInputValue === null || newInputValue === "") {
+                                setDisplayedMembers(members);
+                            }
+                            else {
+
+                                setDisplayedMembers(members.filter(mem => `${mem.user_firstname} ${mem.user_lastname}`.toLowerCase().includes(newInputValue.toLowerCase())));
+                            }
+
+                        }}
 
                         sx={{ mb: '60px', mt: '30px', '& .MuiInputBase-root': { borderRadius: '28px !important' }, '& .MuiAutocomplete-popupIndicator': { display: 'none' } }}
-                        renderInput={(params) => <TextField 
-                             {...params}
+                        renderInput={(params) => <TextField
+                            {...params}
                             InputProps={{
                                 ...params.InputProps,
                                 startAdornment: (
@@ -132,12 +162,12 @@ const Admin = () => {
                                     </InputAdornment>
                                 ),
                             }
-                            } 
-                            />}
+                            }
+                        />}
                     />
-                   
+
                     <Grid container spacing={4}>
-                        {members.map((data) => (
+                        {displayedMembers.map((data) => (
                             <Grid item xs={6}>
                                 <MemberCard member={data}></MemberCard>
                             </Grid>
