@@ -84,6 +84,27 @@
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
 }
 
+.edit-member-container {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    flex-direction: row;
+    align-items: top;
+    width: 45%;
+    height: 45%;
+    min-width: 600px;
+    min-height: 550px;
+    max-width: 750px;
+    max-height: 700px;
+    background: white;
+    padding: 3vh;
+    padding-top: 5vh;
+    text-align: left;
+    border-radius: 12px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+
 .popup-inputs-container {
     display: flex;
     flex-direction: column;
