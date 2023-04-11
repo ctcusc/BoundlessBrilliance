@@ -112,7 +112,7 @@ export default function MemberCard(props) {
 
 
                 <Typography sx={cardHeaderStyles} color="text.secondary" gutterBottom>
-                    {props.member.name}
+                    {props.member.user_firstname} {props.member.user_lastname}
                 </Typography>
 
 
@@ -122,7 +122,7 @@ export default function MemberCard(props) {
                         <Typography sx={
                             cardDetailStyles
                         } color="text.secondary">
-                            {props.member.phone}
+                            {props.member.user_phone}
                         </Typography>
                     </div>
                     <div style={{ display: "flex", paddingLeft: '20px', width: '60%' }} >
@@ -130,7 +130,7 @@ export default function MemberCard(props) {
                         <Typography sx={
                             cardDetailStyles
                         } color="text.secondary">
-                            {props.member.email}
+                            {props.member.user_email}
                         </Typography>
                     </div>
                 </div>
