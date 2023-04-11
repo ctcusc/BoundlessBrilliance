@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from "react"
-import Header from "../components/Header"
-import HomePageTab from "../components/HomePageTab"
 import { Autocomplete, Box, Card, Grid, InputAdornment, TextField, Typography, FormControl, Input, InputLabel, FilledInput, OutlinedInput } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-
 import AdminAssignmentCard from '../components/AdminAssignmentCard'
 import AdminWorkshopCard from '../components/AdminWorkshopCard'
 import AdminSideBar from '../components/AdminSideBar'
 import AdminMetrics from '../routes/AdminMetrics'
 import MemberCard from '../components/MemberCard'
-import assignmentData from '../components/workshopCardAssignment.json'
-// import members from '../components/members.json'
 import CreateWorkshopModal from '../components/CreateWorkshopModal'
-// import upcomingData from "../components/workshopCardUpcoming.json"
 import WorkshopHeader from "../components/WorkshopHeader";
 import { useCookies } from 'react-cookie';
 
@@ -27,8 +21,8 @@ const Admin = () => {
     const [adminWorkshop, setAdminWorkshop] = useState([]);
     const [adminSignups, setAdminSignups] = useState([]);
     const [value, setValue] = React.useState();
-    const [displayedMembers, setDisplayedMembers] = React.useState([]]);
-    const [members, setAllMembers] = React.useState([]]);
+    const [displayedMembers, setDisplayedMembers] = React.useState([]);
+    const [members, setAllMembers] = React.useState([]);
 
     const [inputValue, setInputValue] = React.useState('');
 
@@ -49,7 +43,7 @@ const Admin = () => {
 
         fetch(`/api/allActiveUsers`)
             .then(response => response.json())
-            .then(data => setAllMembers(data))
+            .then(data => setDisplayedMembers(data))
             .catch(error => console.error(error));
 
     }, []);
