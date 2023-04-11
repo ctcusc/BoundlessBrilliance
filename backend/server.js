@@ -208,6 +208,61 @@ app.get("/api/adminSignups", (req, res) => {
   );
 });
 
+app.get("/api/allActiveUserNames", (req, res) => {
+  userController.allActiveUserNames()
+  .then((data) =>
+    res.status(200).json(data)
+  );
+});
+
+app.get("/api/allActiveUserIDName", (req, res) => {
+  userController.allActiveUserIDName()
+  .then((data) =>
+    res.status(200).json(data)
+  );
+});
+
+app.get("/api/userAssignedWorkshop", (req, res) => {
+  const { workshop_id } = req.query;
+  userController.userAssignedWorkshop(workshop_id)
+  .then((data) =>
+    res.status(200).json(data)
+  );
+});
+
+app.delete("/api/removeAssignment", (req, res) => {
+  const { user_id } = req.query;
+  const { workshop_id } = req.query;
+  workshopController.removeAssignment(user_id, workshop_id)
+  .then((data) =>
+    res.status(200).json(data)
+  );
+});
+
+app.get("/api/userAssignedWorkshopStatusA", (req, res) => {
+  const { workshop_id } = req.query;
+  userController.userAssignedWorkshopStatusA(workshop_id)
+  .then((data) =>
+    res.status(200).json(data)
+  );
+});
+
+app.get("/api/userAssignedWorkshopStatusB", (req, res) => {
+  const { workshop_id } = req.query;
+  userController.userAssignedWorkshopStatusB(workshop_id)
+  .then((data) =>
+    res.status(200).json(data)
+  );
+});
+
+app.get("/api/userAssignedWorkshopStatusC", (req, res) => {
+  const { workshop_id } = req.query;
+  userController.userAssignedWorkshopStatusC(workshop_id)
+  .then((data) =>
+    res.status(200).json(data)
+  );
+});
+
 // Start Backend Port 
 app.listen(port, () => {
   console.log(`Server listening on the port  ${port}`);
