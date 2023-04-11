@@ -10,6 +10,7 @@ import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 
 import '../index.css'
 import AdminEditWorkshopPopup from './AdminEditWorkshopPopup';
+import AdminAssignVolunteerPopup from './AdminAssignVolunteerPopup'
 
 import { ReactComponent as DateIcon } from '../images/date_icon.svg'
 import { ReactComponent as TimeIcon } from '../images/time_icon.svg';
@@ -80,14 +81,22 @@ const verticalLine = {
 export default function WorkshopCard(props) {
 
     const [toggleEditPopup, setToggleEditPopup] = useState(false);
+    const [toggleAssignPopup, setToggleAssignPopup] = useState(false);
 
     const togglePopup = () => {
         setToggleEditPopup(!toggleEditPopup);
+    };
+    const setAssignPopup = () => {
+        setToggleAssignPopup(!toggleAssignPopup);
     };
 
     let editPopup;
     if (toggleEditPopup) {
         editPopup = <AdminEditWorkshopPopup props={props} setToggleState={setToggleEditPopup}/>;
+    }
+    let AssignPopup;
+    if (toggleAssignPopup) {
+        AssignPopup = <AdminAssignVolunteerPopup props={props} setToggleState={setAssignPopup}/>;
     }
 
     return (
@@ -95,6 +104,7 @@ export default function WorkshopCard(props) {
         <Card sx={cardStyles}>
 
             {editPopup}
+            {AssignPopup}
 
             <CardContent sx={cardContentStyles}>
                 <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -102,7 +112,7 @@ export default function WorkshopCard(props) {
                         {props.workshop.name}
                     </Typography>
                     <div style={{ display: "flex", width: '60px', justifyContent: "space-between" }}>
-                        <PersonAddAlt1Icon sx={{ color: '#1398A0', cursor: 'pointer' }} />
+                        <PersonAddAlt1Icon onClick={() => setAssignPopup(props)} sx={{ color: '#1398A0', cursor: 'pointer' }} />
                         <EditIcon onClick={togglePopup} sx={{ color: '#616161', cursor: 'pointer' }} />
                     </div>
                 </div>

@@ -114,8 +114,16 @@ const races = [
     label: 'Asian',
   },
   {
+    value: 'Hispanic',
+    label: 'Hispanic',
+  },
+  {
     value: 'Native Hawaiian or Other Pacific Islander',
     label: 'Native Hawaiian or Other Pacific Islander',
+  },
+  {
+    value: 'Two or More Races',
+    label: 'Two or More Races',
   },
 ];
 

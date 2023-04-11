@@ -167,17 +167,14 @@ app.post("/api/assignUser", (req, res) => {
 });
 
 app.get('/api/allActiveUsers', (req, res) => {
-  userController.allActiveUsers(req).then(
-      data => res.status(200).json({
-          api_status: "success",
-          data: {
-            user_ids: data,
-          },
-        })
-      ).catch(err=>{
-      return res.sendStatus(500).send({
-          message:err.message|| "API Error allActiveUsers"
-      });
+  userController.allActiveUsers(req)
+  .then((data) =>
+    res.status(200).json(data)
+  )
+  .catch((err) => {
+    return res.sendStatus(500).send({
+      message: err.message || "API Error allActiveUsers",
+    });
   });
 });
 
@@ -206,6 +203,61 @@ app.get("/api/adminWorkshop", (req, res) => {
 
 app.get("/api/adminSignups", (req, res) => {
   workshopController.adminSignups()
+  .then((data) =>
+    res.status(200).json(data)
+  );
+});
+
+app.get("/api/allActiveUserNames", (req, res) => {
+  userController.allActiveUserNames()
+  .then((data) =>
+    res.status(200).json(data)
+  );
+});
+
+app.get("/api/allActiveUserIDName", (req, res) => {
+  userController.allActiveUserIDName()
+  .then((data) =>
+    res.status(200).json(data)
+  );
+});
+
+app.get("/api/userAssignedWorkshop", (req, res) => {
+  const { workshop_id } = req.query;
+  userController.userAssignedWorkshop(workshop_id)
+  .then((data) =>
+    res.status(200).json(data)
+  );
+});
+
+app.delete("/api/removeAssignment", (req, res) => {
+  const { user_id } = req.query;
+  const { workshop_id } = req.query;
+  workshopController.removeAssignment(user_id, workshop_id)
+  .then((data) =>
+    res.status(200).json(data)
+  );
+});
+
+app.get("/api/userAssignedWorkshopStatusA", (req, res) => {
+  const { workshop_id } = req.query;
+  userController.userAssignedWorkshopStatusA(workshop_id)
+  .then((data) =>
+    res.status(200).json(data)
+  );
+});
+
+app.get("/api/userAssignedWorkshopStatusB", (req, res) => {
+  const { workshop_id } = req.query;
+  userController.userAssignedWorkshopStatusB(workshop_id)
+  .then((data) =>
+    res.status(200).json(data)
+  );
+});
+
+app.get("/api/userAssignedWorkshopStatusC", (req, res) => {
+  const { workshop_id } = req.query;
+  userController.userAssignedWorkshopStatusC(workshop_id)
   .then((data) =>
     res.status(200).json(data)
   );
