@@ -7,8 +7,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ClearIcon from '@mui/icons-material/Clear';
 
 
-import RejectWorkshopPopup from './RejectWorkshopPopup';
-import WorkshopRejectedPopup from './WorkshopRejectedPopup';
+import CancelWorkshopPopup from './CancelWorkshopPopup';
+import WorkshopCancelledPopup from './WorkshopCancelledPopup';
 
 import '../index.css'
 
@@ -129,10 +129,10 @@ export default function WorkshopCard(props) {
     <Card sx={cardStyles}>
       <ClearIcon onClick={() => setToggleReject(true)} sx={clearStyles}></ClearIcon>
       {toggleReject && (
-          <RejectWorkshopPopup setToggleState={setToggleReject} setToggleYesState={setToggleYesReject} name={props.workshop.workshop_name} user_id = {parseInt(props.user_id, 10)} workshop_id = {props.workshop.workshop_id}/>
+          <CancelWorkshopPopup setToggleState={setToggleReject} setToggleYesState={setToggleYesReject} name={props.workshop.workshop_name} user_id = {parseInt(props.user_id, 10)} workshop_id = {props.workshop.workshop_id}/>
       )}
       {toggleYesReject && (
-          <WorkshopRejectedPopup setToggleState={setToggleYesReject}/>
+          <WorkshopCancelledPopup setToggleState={setToggleYesReject}/>
       )}
       <CardContent sx={cardContentStyles}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
