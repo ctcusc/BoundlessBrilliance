@@ -124,7 +124,7 @@ export default function MemberCard(props) {
 
 
                 <Typography sx={cardHeaderStyles} color="text.secondary" gutterBottom>
-                    {props.member.user_firstname + " " + props.member.user_lastname}
+                    {props.member.user_firstname} {props.member.user_lastname}
                 </Typography>
 
 

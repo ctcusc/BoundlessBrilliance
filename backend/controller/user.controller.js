@@ -130,15 +130,121 @@ class userController {
   async allActiveUsers(req) {
     // Sprint 1: Olivia
     try {
-      const result = await db.query(
-        "select user_id from user_status WHERE user_status = 1;"
-      );
-      // compiles user_ids into an int array
-      var user_ids = [];
+      const result = await db.query(`
+      SELECT *
+      FROM master_users
+      JOIN user_status ON master_users.user_id = user_status.user_id
+      WHERE user_status.user_status = 1;
+      `);
+      return result.rows;
+    } catch(error){
+      return error;
+    }
+  }
+
+  async allActiveUserNames() {
+    try {
+      const result = await db.query(`
+      SELECT master_users.user_id, CONCAT(user_firstname, ' ', user_lastname) AS Name
+      FROM master_users
+      JOIN user_status ON master_users.user_id = user_status.user_id
+      WHERE user_status.user_status = 1;
+      `);
+      var res = []
       for (let i = 0;i < result.rows.length;i ++) {
-        user_ids.push(result.rows[i].user_id);
+        res.push(result.rows[i].name);
       }
-      return user_ids;
+      return res;
+    } catch(error){
+      return error;
+    }
+  }
+
+  async allActiveUserIDName() {
+    try {
+      const result = await db.query(`
+      SELECT master_users.user_id, CONCAT(user_firstname, ' ', user_lastname) AS Name
+      FROM master_users
+      JOIN user_status ON master_users.user_id = user_status.user_id
+      WHERE user_status.user_status = 1;
+      `);
+      var res = []
+      for (let i = 0;i < result.rows.length;i ++) {
+        res.push(result.rows[i].name);
+      }
+      return result.rows;
+    } catch(error){
+      return error;
+    }
+  }
+
+  async userAssignedWorkshop(workshop_id) {
+    try {
+      const result = await db.query(`
+      SELECT CONCAT(user_firstname, ' ', user_lastname) AS Name
+      FROM master_users
+      JOIN workshop_assignments ON master_users.user_id = workshop_assignments.user_id
+      WHERE workshop_assignments.workshop_id = $1;
+      `,[workshop_id]);
+      var res = []
+      for (let i = 0;i < result.rows.length;i ++) {
+        res.push(result.rows[i].name);
+      }
+      return res;
+    } catch(error){
+      return error;
+    }
+  }
+
+  async userAssignedWorkshopStatusA(workshop_id) {
+    try {
+      const result = await db.query(`
+      SELECT CONCAT(user_firstname, ' ', user_lastname) AS Name
+      FROM master_users
+      JOIN workshop_assignments ON master_users.user_id = workshop_assignments.user_id
+      WHERE workshop_assignments.workshop_id = $1 and workshop_assignments.has_accepted = 1;
+      `,[workshop_id]);
+      var res = []
+      for (let i = 0;i < result.rows.length;i ++) {
+        res.push(result.rows[i].name);
+      }
+      return res;
+    } catch(error){
+      return error;
+    }
+  }
+
+  async userAssignedWorkshopStatusB(workshop_id) {
+    try {
+      const result = await db.query(`
+      SELECT CONCAT(user_firstname, ' ', user_lastname) AS Name
+      FROM master_users
+      JOIN workshop_assignments ON master_users.user_id = workshop_assignments.user_id
+      WHERE workshop_assignments.workshop_id = $1 and workshop_assignments.has_accepted = 0;
+      `,[workshop_id]);
+      var res = []
+      for (let i = 0;i < result.rows.length;i ++) {
+        res.push(result.rows[i].name);
+      }
+      return res;
+    } catch(error){
+      return error;
+    }
+  }
+
+  async userAssignedWorkshopStatusC(workshop_id) {
+    try {
+      const result = await db.query(`
+      SELECT CONCAT(user_firstname, ' ', user_lastname) AS Name
+      FROM master_users
+      JOIN workshop_assignments ON master_users.user_id = workshop_assignments.user_id
+      WHERE workshop_assignments.workshop_id = $1 and workshop_assignments.has_accepted = -1;
+      `,[workshop_id]);
+      var res = []
+      for (let i = 0;i < result.rows.length;i ++) {
+        res.push(result.rows[i].name);
+      }
+      return res;
     } catch(error){
       return error;
     }
