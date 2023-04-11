@@ -10,11 +10,11 @@ import AdminSideBar from '../components/AdminSideBar'
 import AdminMetrics from '../routes/AdminMetrics'
 import MemberCard from '../components/MemberCard'
 import assignmentData from '../components/workshopCardAssignment.json'
-import members from '../components/members.json'
+// import members from '../components/members.json'
+import CreateWorkshopModal from '../components/CreateWorkshopModal'
 // import upcomingData from "../components/workshopCardUpcoming.json"
-import WorkshopAssignmentPlaceholder from "../components/WorkshopAssignmentPlaceholder"
+import WorkshopHeader from "../components/WorkshopHeader";
 import { useCookies } from 'react-cookie';
-import SearchBar from '@mkyy/mui-search-bar';
 
 
 
@@ -28,10 +28,13 @@ const Admin = () => {
     const [adminSignups, setAdminSignups] = useState([]);
     const [value, setValue] = React.useState();
     const [displayedMembers, setDisplayedMembers] = React.useState([]]);
+    const [members, setAllMembers] = React.useState([]]);
+
     const [inputValue, setInputValue] = React.useState('');
 
-
-
+    const [showCreateWorkshopModal, setShowCreateWorkshopModal] = useState(false);
+    const closeModal = () => setShowCreateWorkshopModal(false);
+    const showModal = () => setShowCreateWorkshopModal(true);
 
     useEffect(() => {
         fetch(`/api/adminWorkshop`)
@@ -46,7 +49,7 @@ const Admin = () => {
 
         fetch(`/api/allActiveUsers`)
             .then(response => response.json())
-            .then(data => setDisplayedMembers(data))
+            .then(data => setAllMembers(data))
             .catch(error => console.error(error));
 
     }, []);
@@ -89,8 +92,10 @@ const Admin = () => {
         switch (tab) {
             case 1:
                 return (<>
+                    <WorkshopHeader />
                     <h1 style={{ paddingTop: '40px', paddingBottom: '20px', fontFamily: 'Avenir Heavy' }}>Workshops</h1>
-                    <div style={blueButton}>+ Create Workshop</div>
+                    <div style={blueButton} onClick={showModal}>+ Create Workshop</div>
+                    <CreateWorkshopModal show={showCreateWorkshopModal} handleClose={closeModal} />
                     <Grid container spacing={4}>
                         {adminWorkshop.map((data) => (
                             <Grid item xs={6}>
