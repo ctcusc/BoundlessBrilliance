@@ -44,7 +44,7 @@ const Home = () => {
                             <Grid container spacing={4}>
                                 {upcomingData.map((data) => (
                                     <Grid item xs={5}>
-                                        <WorkshopCard workshop={data}></WorkshopCard>
+                                        <WorkshopCard workshop={data} user_id={user_id}></WorkshopCard>
                                     </Grid>
                                 ))
                                 }

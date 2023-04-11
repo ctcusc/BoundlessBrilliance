@@ -4,6 +4,11 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ClearIcon from '@mui/icons-material/Clear';
+
+
+import RejectWorkshopPopup from './RejectWorkshopPopup';
+import WorkshopRejectedPopup from './WorkshopRejectedPopup';
 
 import '../index.css'
 
@@ -17,7 +22,8 @@ const cardStyles = {
     minWidth: 275,
     dropShadow: '0px 2px 8px rgba(0, 0, 0, 0.15)',
     borderRadius: '30px',
-    minHeight: '320px'
+    minHeight: '320px',
+    position: 'relative'
 };
 
 const cardContentStyles = {
@@ -65,9 +71,22 @@ const workshopAddToCalendarStyles = {
     fontFamily: 'Avenir Heavy',
 }
 
+const clearStyles = {
+    position: 'absolute',
+    right: '1.5rem',
+    top: '1.5rem',
+    width: '24px',
+    height: '24px',
+    cursor: 'pointer' 
+}
+
 
 export default function WorkshopCard(props) {
     const [showMore, setShowMore] = useState(false);
+
+    const [toggleReject, setToggleReject] = useState(false);
+    const [toggleYesReject, setToggleYesReject] = useState(false);
+
 
     const toggleShowMore = () => {
       setShowMore(!showMore);
@@ -104,9 +123,17 @@ export default function WorkshopCard(props) {
       const timezoneName = timezone ? timezone.name : null;
       return timezoneName;
     }
+
     
   return (
     <Card sx={cardStyles}>
+      <ClearIcon onClick={() => setToggleReject(true)} sx={clearStyles}></ClearIcon>
+      {toggleReject && (
+          <RejectWorkshopPopup setToggleState={setToggleReject} setToggleYesState={setToggleYesReject} name={props.workshop.workshop_name} user_id = {parseInt(props.user_id, 10)} workshop_id = {props.workshop.workshop_id}/>
+      )}
+      {toggleYesReject && (
+          <WorkshopRejectedPopup setToggleState={setToggleYesReject}/>
+      )}
       <CardContent sx={cardContentStyles}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <Typography sx={cardHeaderStyles} color="text.secondary" gutterBottom>
