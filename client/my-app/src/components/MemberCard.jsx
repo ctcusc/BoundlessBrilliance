@@ -108,13 +108,13 @@ export default function MemberCard(props) {
             <CardContent sx={cardContentStyles}>
                 <div style={{ display: "flex", justifyContent: "space-between" }}>
                     <Typography sx={dateStyles} color="text.secondary" gutterBottom>
-                        {props.member.chapter}
+                        {props.member.user_chapter}
                     </Typography>
                     <div style={{ display: "flex", width: '60px', justifyContent: "space-between" }}>
                         <EditIcon sx={{ color: '#1398A0', cursor: 'pointer' }} />
                         <DeleteIcon onClick={() => setToggleDelete(true)} sx={{ color: '#616161', cursor: 'pointer' }} />
                         {toggleDelete && (
-                            <DeleteUserPopup setToggleState={setToggleDelete} setToggleYesState={setToggleYesDelete} name={props.member.name} user_id = {parseInt(props.member.user_id, 10)}/>
+                            <DeleteUserPopup setToggleState={setToggleDelete} setToggleYesState={setToggleYesDelete} name={props.member.user_firstname + " " + props.member.user_lastname} user_id = {parseInt(props.member.user_id, 10)}/>
                         )}
                         {toggleYesDelete && (
                             <UserDeletedPopup setToggleState={setToggleYesDelete}/>
@@ -124,7 +124,7 @@ export default function MemberCard(props) {
 
 
                 <Typography sx={cardHeaderStyles} color="text.secondary" gutterBottom>
-                    {props.member.name}
+                    {props.member.user_firstname + " " + props.member.user_lastname}
                 </Typography>
 
 
@@ -134,7 +134,7 @@ export default function MemberCard(props) {
                         <Typography sx={
                             cardDetailStyles
                         } color="text.secondary">
-                            {props.member.phone}
+                            {props.member.user_phone}
                         </Typography>
                     </div>
                     <div style={{ display: "flex", paddingLeft: '20px', width: '60%' }} >
@@ -142,7 +142,7 @@ export default function MemberCard(props) {
                         <Typography sx={
                             cardDetailStyles
                         } color="text.secondary">
-                            {props.member.email}
+                            {props.member.user_email}
                         </Typography>
                     </div>
                 </div>
