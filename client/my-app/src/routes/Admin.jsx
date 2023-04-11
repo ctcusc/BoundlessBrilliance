@@ -45,6 +45,11 @@ const Admin = () => {
             .then(response => response.json())
             .then(data => setDisplayedMembers(data))
             .catch(error => console.error(error));
+        
+        fetch(`/api/allActiveUsers`)
+            .then(response => response.json())
+            .then(data => setAllMembers(data))
+            .catch(error => console.error(error));
 
     }, []);
 
