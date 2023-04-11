@@ -22,7 +22,6 @@ const App = () => {
         <Route exact path="/admin-home" component={Admin} />
         <Route exact path="/volunteer-application" component={VolunteerApplication} />
         <Route exact path="/application-submitted" component={ApplicationSubmitted} />
-        <Route exact path = "/metrics" component={AdminMetrics}/>
       </Switch>
     </Router>
   </div>
