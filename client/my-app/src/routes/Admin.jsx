@@ -1,22 +1,14 @@
 import React, { useEffect, useState } from "react"
-import Header from "../components/Header"
-import HomePageTab from "../components/HomePageTab"
 import { Autocomplete, Box, Card, Grid, InputAdornment, TextField, Typography, FormControl, Input, InputLabel, FilledInput, OutlinedInput } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-
 import AdminAssignmentCard from '../components/AdminAssignmentCard'
 import AdminWorkshopCard from '../components/AdminWorkshopCard'
 import AdminSideBar from '../components/AdminSideBar'
 import AdminMetrics from '../routes/AdminMetrics'
 import MemberCard from '../components/MemberCard'
-import assignmentData from '../components/workshopCardAssignment.json'
-import members from '../components/members.json'
 import CreateWorkshopModal from '../components/CreateWorkshopModal'
-// import upcomingData from "../components/workshopCardUpcoming.json"
 import WorkshopHeader from "../components/WorkshopHeader";
-import WorkshopAssignmentPlaceholder from "../components/WorkshopAssignmentPlaceholder"
 import { useCookies } from 'react-cookie';
-import SearchBar from '@mkyy/mui-search-bar';
 
 
 
@@ -28,7 +20,12 @@ const Admin = () => {
 
     const [adminWorkshop, setAdminWorkshop] = useState([]);
     const [adminSignups, setAdminSignups] = useState([]);
-    const [searchName, setSearchName] = useState([]);
+    const [value, setValue] = React.useState();
+    const [displayedMembers, setDisplayedMembers] = React.useState([]);
+    const [members, setAllMembers] = React.useState([]);
+
+    const [inputValue, setInputValue] = React.useState('');
+
     const [showCreateWorkshopModal, setShowCreateWorkshopModal] = useState(false);
     const closeModal = () => setShowCreateWorkshopModal(false);
     const showModal = () => setShowCreateWorkshopModal(true);
@@ -42,6 +39,11 @@ const Admin = () => {
         fetch(`/api/adminSignups`)
             .then(response => response.json())
             .then(data => setAdminSignups(data))
+            .catch(error => console.error(error));
+
+        fetch(`/api/allActiveUsers`)
+            .then(response => response.json())
+            .then(data => setDisplayedMembers(data))
             .catch(error => console.error(error));
 
     }, []);
@@ -79,19 +81,15 @@ const Admin = () => {
         marginBottom: '60px'
     }
 
-    const handleSearch = searchName => {
-        //...
-        console.log(searchName);
-    };
 
     function renderSwitch() {
         switch (tab) {
             case 1:
                 return (<>
-                    <WorkshopHeader/>
+                    <WorkshopHeader />
                     <h1 style={{ paddingTop: '40px', paddingBottom: '20px', fontFamily: 'Avenir Heavy' }}>Workshops</h1>
                     <div style={blueButton} onClick={showModal}>+ Create Workshop</div>
-                    <CreateWorkshopModal show={showCreateWorkshopModal} handleClose={closeModal}/>
+                    <CreateWorkshopModal show={showCreateWorkshopModal} handleClose={closeModal} />
                     <Grid container spacing={4}>
                         {adminWorkshop.map((data) => (
                             <Grid item xs={6}>
@@ -125,12 +123,36 @@ const Admin = () => {
                     <Autocomplete
                         disablePortal
                         id="combo-box-demo"
-                        options={members.map((data) => data.name)}
+                        options={members.map((data) => `${data.user_firstname} ${data.user_lastname}`)}
                         fullWidth
+                        value={value}
+                        onChange={(event, newValue) => {
+                            setValue(newValue);
+                            if (newValue === null || newValue === "") {
+                                setDisplayedMembers(members);
+                            }
+                            else {
+                                setDisplayedMembers(members.filter(mem => `${mem.user_firstname} ${mem.user_lastname}` === (newValue)));
+                            }
+
+
+                        }}
+                        inputValue={inputValue}
+                        onInputChange={(event, newInputValue) => {
+                            setInputValue(newInputValue);
+                            if (newInputValue === null || newInputValue === "") {
+                                setDisplayedMembers(members);
+                            }
+                            else {
+
+                                setDisplayedMembers(members.filter(mem => `${mem.user_firstname} ${mem.user_lastname}`.toLowerCase().includes(newInputValue.toLowerCase())));
+                            }
+
+                        }}
 
                         sx={{ mb: '60px', mt: '30px', '& .MuiInputBase-root': { borderRadius: '28px !important' }, '& .MuiAutocomplete-popupIndicator': { display: 'none' } }}
-                        renderInput={(params) => <TextField 
-                             {...params}
+                        renderInput={(params) => <TextField
+                            {...params}
                             InputProps={{
                                 ...params.InputProps,
                                 startAdornment: (
@@ -139,12 +161,12 @@ const Admin = () => {
                                     </InputAdornment>
                                 ),
                             }
-                            } 
-                            />}
+                            }
+                        />}
                     />
-                   
+
                     <Grid container spacing={4}>
-                        {members.map((data) => (
+                        {displayedMembers.map((data) => (
                             <Grid item xs={6}>
                                 <MemberCard member={data}></MemberCard>
                             </Grid>
