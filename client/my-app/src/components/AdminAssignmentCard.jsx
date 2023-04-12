@@ -155,7 +155,7 @@ export default function WorkshopCard(props) {
                             <Typography sx={cardDetailStyles} color="text.secondary">
                                 <div><span style={{fontWeight: 'bold'}}>Role: </span> Volunteer <br /></div>
                                 <div><span style={{fontWeight: 'bold'}}>Race: </span> {props.workshop.user_ethnicity}</div>
-                                <div><span style={{fontWeight: 'bold'}}>Gedner: </span> {props.workshop.user_gender}</div>
+                                <div><span style={{fontWeight: 'bold'}}>Gender: </span> {props.workshop.user_gender}</div>
                                 <div
                                 style={infoLinkStyles}
                                 onClick={toggleDescription}
