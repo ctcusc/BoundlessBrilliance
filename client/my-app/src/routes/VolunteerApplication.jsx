@@ -4,12 +4,12 @@ import { useTheme, styled } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
+
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
-import FormHelperText from '@mui/material/FormHelperText';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import { useHistory } from 'react-router-dom';
 
@@ -144,7 +144,7 @@ const genders = [
 
 const teams = [
   {
-    value: 'CTC',
+    value: 'CTC Chapter',
     label: 'CTC Chapter',
   },
   {
@@ -334,6 +334,7 @@ const VolunteerApplication = () => {
         valid = false;
       }
       setFormStates(changedStates);
+      console.log(valid);
       return valid;
     };
 

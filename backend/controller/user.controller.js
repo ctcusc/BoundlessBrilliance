@@ -127,6 +127,18 @@ class userController {
     }
   }
 
+  async editUser(req, user_id) {
+    try {
+        const result = await db.query(
+            "UPDATE master_users SET user_firstname = $1, user_lastname = $2, user_chapter = $3, user_phone = $4, user_ethnicity = $5, user_email = $6, user_gender = $7 WHERE user_id = $8;",
+            [req.body.user_firstname, req.body.user_lastname, req.body.user_chapter, req.body.user_phone, req.body.user_ethnicity, req.body.user_email, req.body.user_gender, user_id]
+        );
+        return result.rows[0];
+    } catch (error){
+        return error;
+    } 
+  }
+
   async allActiveUsers(req) {
     // Sprint 1: Olivia
     try {
