@@ -92,7 +92,22 @@ const linkStyles = {
     paddingBottom: '20px'
 }
 
+const moreInfoStyles = {
+    paddingLeft: 1,
+    lineHeight: '24px',
+    fontSize: 16,
+    fontFamily: 'Avenir',
+    fontWeight: 500,
+    color: '#222222'
+};
+
 export default function MemberCard(props) {
+
+    const [showDescription, setShowDescription] = useState(false);
+
+    const toggleDescription = () => {
+        setShowDescription(!showDescription);
+    };
 
     const [toggleEditPopup, setToggleEditPopup] = useState(false);
 
@@ -149,9 +164,28 @@ export default function MemberCard(props) {
                     </div>
                 </div>
 
-                <Typography sx={linkStyles} gutterBottom>
-                    More Info
-                </Typography>
+                {showDescription ? (
+                     <div style={{ marginTop: "30px", marginRight: "100px"}}>
+                         <div style={moreInfoStyles}>
+                             <div><span style={{fontWeight: 'bold'}}>Role: </span> Volunteer <br /></div>
+                             <div><span style={{fontWeight: 'bold'}}>Race: </span> {props.member.user_ethnicity}</div>
+                             <div><span style={{fontWeight: 'bold'}}>Gender: </span> {props.member.user_gender}</div>
+                             <div
+                             style={linkStyles}
+                             onClick={toggleDescription}
+                             >
+                                 Less Info
+                             </div>
+                         </div>
+                     </div>
+                 ) : (
+                     <div
+                         style={linkStyles}
+                         onClick={toggleDescription}
+                     >
+                         More Info
+                     </div>
+                 )}
 
 
             </CardContent>
