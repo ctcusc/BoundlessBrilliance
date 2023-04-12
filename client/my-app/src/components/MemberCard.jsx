@@ -1,14 +1,12 @@
-import React from 'react';
-import Box from '@mui/material/Box';
+import { React, useState } from 'react';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import EditIcon from '@mui/icons-material/Edit';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
-import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import DeleteIcon from '@mui/icons-material/Delete';
+import EditMemberContactPopup from './EditMemberContactPopup';
 
 import '../index.css'
 
@@ -95,16 +93,32 @@ const linkStyles = {
 }
 
 export default function MemberCard(props) {
+
+    const [toggleEditPopup, setToggleEditPopup] = useState(false);
+
+    const togglePopup = () => {
+        setToggleEditPopup(!toggleEditPopup);
+    };
+
+    let editPopup;
+    if (toggleEditPopup) {
+        editPopup = <EditMemberContactPopup props={props} setToggleState={setToggleEditPopup}/>;
+    }
+
     return (
 
+
         <Card sx={cardStyles}>
+
+            {editPopup}
+
             <CardContent sx={cardContentStyles}>
                 <div style={{ display: "flex", justifyContent: "space-between" }}>
                     <Typography sx={dateStyles} color="text.secondary" gutterBottom>
-                        {props.member.chapter}
+                        {props.member.user_chapter}
                     </Typography>
                     <div style={{ display: "flex", width: '60px', justifyContent: "space-between" }}>
-                        <EditIcon sx={{ color: '#1398A0', cursor: 'pointer' }} />
+                        <EditIcon onClick={togglePopup} sx={{ color: '#1398A0', cursor: 'pointer' }} />
                         <DeleteIcon sx={{ color: '#616161', cursor: 'pointer' }} />
 
                     </div>

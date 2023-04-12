@@ -131,7 +131,7 @@ const AdminEditWorkshopPopup = ({props, setToggleState}) => {
                         InputProps={{ disableUnderline: true }}
                     />
                     <StyledTextField
-                        id="date"
+                        id="filled-basic"
                         type="date"
                         name="date"
                         defaultValue={moment(formValues.date).format("YYYY-MM-DD")}

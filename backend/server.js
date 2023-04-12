@@ -49,6 +49,22 @@ app.put("/api/editWorkshop", (req, res) => {
     });
 });
 
+// editUser: updates the a member's info given the new user params and the user id
+app.put("/api/editUser", (req, res) => {
+  userController
+    .editUser(req, req.body.user_id)
+    .then(() =>
+      res.status(200).json({
+        status: "success",
+      })
+    )
+    .catch((err) => {
+      return res.sendStatus(500).send({
+        message: err.message || "API Error editWorkshop",
+      });
+    });
+});
+
 // approveUser: changes user_status from 0 (waiting approval) to 1 (approved by admin)
 app.put("/api/approveUser", (req, res) => {
   userController
