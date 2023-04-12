@@ -7,7 +7,7 @@ import gdata from "./genderData.json";
 import edata from "./raceData.json";
 import pdata from "./progressData.json";
 
-const AdminMetrics = () => {
+const AdminMetrics = (props) => {
   const colors = [
     "#1398A0",
     "#DC7700",
@@ -16,38 +16,29 @@ const AdminMetrics = () => {
     "rgba(220, 119, 0, 0.7)",
   ];
 
-  const [userData, setUserData] = useState([]);
   const [chapterData, setChapterData] = useState([]);
-  const [genderData, setGenderData] = useState([]);
   const [ethnicityData, setEthnicityData] = useState([]);
-  const [workshopData, setWorkshopData] = useState([]);
 
-  
+  console.log(props.genderData);
+
+
   useEffect(() => {
-      fetch(`/api/`)
-        .then(response => response.json())
-        .then(data => setUserData(data))
-        .catch(error => console.error(error));
+          
 
-      fetch(`/api/`)
-          .then(response => response.json())
-          .then(data => setChapterData(data))
-          .catch(error => console.error(error));
+      // fetch(`/api/`)
+      //   .then(response => response.json())
+      //   .then(data => setGenderData(data))
+      //   .catch(error => console.error(error));
 
-      fetch(`/api/`)
-        .then(response => response.json())
-        .then(data => setGenderData(data))
-        .catch(error => console.error(error));
+      // fetch(`/api/`)
+      //   .then(response => response.json())
+      //   .then(data => setEthnicityData(data))
+      //   .catch(error => console.error(error));
 
-      fetch(`/api/`)
-        .then(response => response.json())
-        .then(data => setEthnicityData(data))
-        .catch(error => console.error(error));
-
-      fetch(`/api/`)
-        .then(response => response.json())
-        .then(data => setWorkshopData(data))
-        .catch(error => console.error(error));
+      // fetch(`/api/`)
+      //   .then(response => response.json())
+      //   .then(data => setWorkshopData(data))
+      //   .catch(error => console.error(error));
         
     }, []);
 
@@ -88,7 +79,7 @@ const AdminMetrics = () => {
                     fontFamily: "Roboto Mono",
                     fontSize: "20px",
                   }}
-                >Users</div>
+                >User Accounts</div>
                 <div className="" style={{ height: "50%" }}>
                   <div className="row h-100 pl-2 pr-3">
                     <div className="col-4">
@@ -103,7 +94,7 @@ const AdminMetrics = () => {
                             fontFamily: "Avenir",
                             fontSize: "40px",
                           }}
-                        >68</p>
+                        >{props.userData.total.total}</p>
                       </div>
                       <div style={{ height: "40%" }} className = "users-under">
                         <p
@@ -131,7 +122,7 @@ const AdminMetrics = () => {
                             fontFamily: "Avenir",
                             fontSize: "40px",
                           }}
-                        >23</p>
+                        >{props.userData.admin.admin}</p>
                       </div>
                       <div style={{ height: "40%" }}>
                         <p
@@ -144,7 +135,7 @@ const AdminMetrics = () => {
                             fontFamily: "Avenir",
                             fontSize: "14px",
                           }}
-                        >interns</p>
+                        >admins</p>
                       </div>
                     </div>
                     <div className="col-4">
@@ -159,7 +150,7 @@ const AdminMetrics = () => {
                             fontFamily: "Avenir",
                             fontSize: "40px",
                           }}
-                        >45</p>
+                        >{props.userData.user.user}</p>
                       </div>
                       <div style={{ height: "40%" }}>
                         <p
@@ -250,7 +241,7 @@ const AdminMetrics = () => {
               >
                 User Gender
               </p>
-              <PieChart data={gdata} COLORS={colors} />
+              <PieChart data={props.genderData} COLORS={colors} />
             </div>
             <div className="user-re card m-3">
               <p
@@ -266,7 +257,7 @@ const AdminMetrics = () => {
               >
                 User Ethnicity
               </p>
-              <PieChart data={edata} COLORS={colors} />
+              <PieChart data={props.ethnicityData} COLORS={colors} />
             </div>
             <div className="workshops card m-3">
               <div
@@ -297,7 +288,7 @@ const AdminMetrics = () => {
                           fontSize: "40px",
                         }}
                       >
-                        12
+                        {props.workshopData.upcoming.workshop}
                       </p>
                     </div>
                     <div style={{ height: "40%" }}>
@@ -329,7 +320,7 @@ const AdminMetrics = () => {
                           fontSize: "40px",
                         }}
                       >
-                        3
+                        {props.workshopData.completed.workshop}
                       </p>
                     </div>
                     <div style={{ height: "40%" }}>

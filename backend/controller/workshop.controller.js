@@ -171,6 +171,25 @@ class workshopController {
         }
     }
 
+    async generateWorkshopMetrics() {
+        try{
+          const completed_workshop = await db.query(
+            "SELECT COUNT(*) as workshop FROM workshop WHERE TO_TIMESTAMP(workshop_date, 'Month DD YYYY') < CURRENT_DATE;",
+          );
+          var completed = completed_workshop.rows[0];
+          const upcoming_workshop = await db.query(
+            "SELECT COUNT(*) as workshop FROM workshop WHERE TO_TIMESTAMP(workshop_date, 'Month DD YYYY') >= CURRENT_DATE;",
+          );
+          var upcoming = upcoming_workshop.rows[0];
+          const res = { 
+              completed,
+              upcoming
+          };
+          return res;
+          } catch(error){
+            return error;
+          }
+    }
 
 
 }

@@ -279,6 +279,41 @@ app.get("/api/userAssignedWorkshopStatusC", (req, res) => {
   );
 });
 
+app.get("/api/generateMetrics", (req, res) => {
+  userController.generateMetrics(req)
+  .then((data) =>
+    res.status(200).json(data)
+  );
+});
+
+app.get("/api/generateUserMetrics", (req, res) => {
+  userController.generateUserMetrics()
+  .then((data) =>
+    res.status(200).json(data)
+  );
+});
+
+app.get("/api/generateWorkshopMetrics", (req, res) => {
+  workshopController.generateWorkshopMetrics()
+  .then((data) =>
+    res.status(200).json(data)
+  );
+});
+
+app.get("/api/generateGenderMetrics", (req, res) => {
+  userController.generateGenderMetrics()
+    .then((data) => {
+      res.status(200).send(data);
+    });
+});
+
+app.get("/api/generateEthnicityMetrics", (req, res) => {
+  userController.generateEthnicityMetrics()
+    .then((data) => {
+      res.status(200).send(data);
+    });
+});
+
 // Start Backend Port 
 app.listen(port, () => {
   console.log(`Server listening on the port  ${port}`);
