@@ -30,6 +30,11 @@ const Admin = () => {
     const closeModal = () => setShowCreateWorkshopModal(false);
     const showModal = () => setShowCreateWorkshopModal(true);
 
+    const [userData, setUserData] = useState([]);
+    const [workshopData, setWorkshopData] = useState([]);
+    const [genderData, setGenderData] = useState([]);
+    const [ethnicityData, setEthnicityData] = useState([]);
+
     useEffect(() => {
         fetch(`/api/adminWorkshop`)
             .then(response => response.json())
@@ -50,6 +55,28 @@ const Admin = () => {
             .then(response => response.json())
             .then(data => setAllMembers(data))
             .catch(error => console.error(error));
+
+        fetch(`/api/generateUserMetrics`)
+            .then(response => response.json())
+            .then(data => setUserData(data))
+            .catch(error => console.error(error));
+        
+        fetch(`/api/generateWorkshopMetrics`)
+            .then(response => response.json())
+            .then(data => setWorkshopData(data))
+            .catch(error => console.error(error));
+        
+        fetch(`/api/generateGenderMetrics`)
+            .then(response => response.json())
+            .then(data => setGenderData(data))
+            .catch(error => console.error(error));
+
+        fetch(`/api/generateEthnicityMetrics`)
+            .then(response => response.json())
+            .then(data => setEthnicityData(data))
+            .catch(error => console.error(error));
+        
+        console.log(genderData);
 
     }, []);
 
@@ -121,7 +148,7 @@ const Admin = () => {
             case 3:
                 return (<>
                     <WorkshopHeader/>
-                    <AdminMetrics></AdminMetrics>
+                    <AdminMetrics userData={userData} workshopData = {workshopData} genderData = {genderData} ethnicityData = {ethnicityData}></AdminMetrics>
                 </>)
 
             case 4:

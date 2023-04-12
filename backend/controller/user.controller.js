@@ -302,6 +302,54 @@ class userController {
       return error;
     }
   }
+
+  async generateUserMetrics() {
+    try{
+      const admin_result = await db.query(
+        "select count(user_id) as admin from master_users where is_admin = 1;",
+      );
+      var admin = admin_result.rows[0];
+      const user_result = await db.query(
+        "select count(user_id) as user from master_users where is_admin = 0;",
+      );
+      var users = user_result.rows[0];
+      const total_result = await db.query(
+        "select count(user_id) as total from master_users where is_admin = 0 or is_admin = 1;",
+      );
+      var total = total_result.rows[0];
+      const res = { 
+        admin: admin,
+        user: users,
+        total: total
+      };
+      return res;
+      } catch(error){
+        return error;
+      }
+  }
+
+  async generateGenderMetrics() {
+    try{
+      var data = await db.query(
+        "SELECT user_gender as name, CAST(COUNT(*) as int) as value FROM master_users GROUP BY user_gender;",
+      );
+      return data.rows;
+      } catch(error){
+        return error;
+      }
+  }
+
+  async generateEthnicityMetrics() {
+    try{
+      var data = await db.query(
+        "SELECT user_ethnicity as name, CAST(COUNT(*) as int) as value FROM master_users GROUP BY user_ethnicity;",
+      );
+      return data.rows;
+      } catch(error){
+        return error;
+      }
+  }
+
 } 
         
 module.exports = new userController();   

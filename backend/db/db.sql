@@ -64,9 +64,15 @@ INSERT INTO master_users (
 )
 VALUES  ('Boundless', 'Brilliance', 'White', 'bb@usc.edu', 'password', 'Male', 1, '111-111-1111', 'CTC Chapter'),
         ('Admin', 'Admin', 'White', 'bb@usc.edu', 'password', 'Male', 1, '222-222-2222', 'CTC Chapter'),
+        
         ('Raymond', 'Kuan', 'Asian', 'rkuan@usc.edu', 'password', 'Male', 0, '510-598-7307', 'CTC Chapter'),
         ('Wesley', 'Tong', 'Asian', 'wytong@usc.edu', 'password', 'Male', 0, '127-345-8195', 'CTC Chapter'),
-        ('Fred', 'Liu', 'White', 'liufrede@usc.edu', 'password', 'Male', 0, '891-624-7282', 'CTC Chapter'),
+        ('Fred', 'Liu', 'Asian', 'liufrede@usc.edu', 'password', 'Male', 0, '891-624-7282', 'CTC Chapter'),
+        ('Olivia', 'Lai', 'Asian', 'oslai@usc.edu', 'password', 'Female', 0, '111-111-1111', 'CTC Chapter'),
+        ('Wonjun', 'Lee', 'Asian', 'wonjunle@usc.edu', 'password', 'Male', 0, '111-111-1111', 'CTC Chapter'),
+        ('Natalie', 'Abreu', 'Asian', 'nrabreu@usc.edu', 'password', 'Female', 0, '111-111-1111', 'CTC Chapter'),
+        ('Evans', 'Chun', 'Asian', 'ejchun@usc.edu', 'password', 'Male', 0, '510-598-7307', 'CTC Chapter'),
+
         ('User', 'Two', 'White', 'user2@usc.edu', 'password', 'Female', 0, '235-745-1247', 'CTC Chapter'),
         ('User', 'Three', 'White', 'user3@usc.edu', 'password', 'Female', 0, '910-235-8932', 'CTC Chapter'),
         ('Sarah', 'Nguyen', 'Asian', 'snguyen@gmail.com', 'password', 'Female', 0, '408-555-1234', 'ASB Chapter'),
@@ -83,9 +89,9 @@ VALUES  ('Boundless', 'Brilliance', 'White', 'bb@usc.edu', 'password', 'Male', 1
         ('Brian', 'Li', 'Asian', 'bli@cmu.edu', 'password', 'Male', 0, '412-555-7890', 'Community Chapter'),
         ('Maggie', 'Hsu', 'Asian', 'mhsu@brown.edu', 'password', 'Female', 0, '401-555-2345', 'Community Chapter'),
         ('Daniel', 'Wong', 'Asian', 'dwong@duke.edu', 'password', 'Male', 0, '919-555-8765', 'Community Chapter'),
-        ('Natalie', 'Kim', 'Asian', 'nkim@northwestern.edu', 'password', 'Female', 0, '847-555-4321', 'Community Chapter'),
+        ('Natalie', 'Kim', 'Hispanic', 'nkim@northwestern.edu', 'password', 'Female', 0, '847-555-4321', 'Community Chapter'),
         ('Steven', 'Choi', 'Asian', 'schoi@ucla.edu', 'password', 'Male', 0, '310-555-1234', 'Community Chapter'),
-        ('Angela', 'Wu', 'Asian', 'awu@princeton.edu', 'password', 'Female', 0, '609-555-5678', 'Community Chapter'),
+        ('Angela', 'Wu', 'Two or More Races', 'awu@princeton.edu', 'password', 'Female', 0, '609-555-5678', 'Community Chapter'),
         ('Joshua', 'Lee', 'Asian', 'jlee@usc.edu', 'password', 'Male', 0, '213-555-8765', 'Community Chapter'),
         ('Catherine', 'Zhang', 'Asian', 'czhang@berkeley.edu', 'password', 'Female', 0, '510-555-2345', 'Community Chapter'),
         ('Jason', 'Ng', 'Asian', 'jng@harvard.edu', 'password', 'Male', 0, '617-555-7890', 'Community Chapter'),
@@ -98,8 +104,8 @@ VALUES  ('Boundless', 'Brilliance', 'White', 'bb@usc.edu', 'password', 'Male', 1
         ('Jennifer', 'Chang', 'Asian', 'jchang@northwestern.edu', 'password', 'Female', 0, '847-555-8765', 'Community Chapter'),
         ('Jonathan', 'Huang', 'Asian', 'jhuang@duke.edu', 'password', 'Male', 0, '919-555-4321', 'Community Chapter'),
         ('Katherine', 'Ng', 'Asian', 'kng@cornell.edu', 'password', 'Female', 0, '607-555-1234', 'Community Chapter'),
-        ('Kevin', 'Chen', 'Asian', 'kchen@ucla.edu', 'password', 'Male', 0, '310-555-5678', 'Community Chapter'),
-        ('Lily', 'Wu', 'Asian', 'lwu@princeton.edu', 'password', 'Female', 0, '609-555-8765', 'Community Chapter');
+        ('Kevin', 'Chen', 'Asian', 'kchen@ucla.edu', 'password', 'Other', 0, '310-555-5678', 'Community Chapter'),
+        ('Lily', 'Wu', 'Asian', 'lwu@princeton.edu', 'password', 'Other', 0, '609-555-8765', 'Community Chapter');
                             
 
 INSERT INTO user_status (user_id, user_status)
@@ -108,8 +114,8 @@ VALUES  (1, 1),
         (3, 1),
         (4, 1),
         (5, 1),
-        (6, 0),
-        (7, 0),
+        (6, 1),
+        (7, 1),
         (8, 1),
         (9, 1),
         (10, 1),
@@ -140,7 +146,9 @@ VALUES  (1, 1),
         (35, 1),
         (36, 1),
         (37, 1),
-        (38, 1);
+        (38, 0),
+        (39, 0),
+        (40, 0);
 
 
 INSERT INTO workshop
@@ -215,8 +223,33 @@ INSERT INTO workshop_assignments
             (3, 3, 1),
             (3, 4, 0),
             (3, 5, 0),
+            (4, 1, 1),
+            (4, 2, 1),
+            (4, 3, 1),
+            (4, 4, 0),
+            (4, 5, 0),
             (5, 6, 1),
             (5, 7, 1),
             (5, 8, 1),
             (5, 9, 0),
-            (5, 10, 0);
+            (5, 10, 0),
+            (6, 1, 1),
+            (6, 2, 1),
+            (6, 3, 1),
+            (6, 4, 0),
+            (6, 5, 0),
+            (7, 1, 1),
+            (7, 2, 1),
+            (7, 3, 1),
+            (7, 4, 0),
+            (7, 5, 0),
+            (8, 1, 1),
+            (8, 2, 1),
+            (8, 3, 1),
+            (8, 4, 0),
+            (8, 5, 0),
+            (9, 1, 1),
+            (9, 2, 1),
+            (9, 3, 1),
+            (9, 4, 0),
+            (9, 5, 0);
