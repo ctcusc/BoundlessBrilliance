@@ -6,8 +6,9 @@ import EditIcon from '@mui/icons-material/Edit';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteUserPopup from '../components/adminPopups/DeleteUserPopup'
+import UserDeletedPopup from '../components/adminPopups/UserDeletedPopup'
 import EditMemberContactPopup from './EditMemberContactPopup';
-
 import '../index.css'
 
 const cardStyles = {
@@ -103,6 +104,8 @@ const moreInfoStyles = {
 
 export default function MemberCard(props) {
 
+    const [toggleDelete, setToggleDelete] = useState(false);
+    const [toggleYesDelete, setToggleYesDelete] = useState(false);
     const [showDescription, setShowDescription] = useState(false);
 
     const toggleDescription = () => {
@@ -133,10 +136,15 @@ export default function MemberCard(props) {
                         {props.member.user_chapter}
                     </Typography>
                     <div style={{ display: "flex", width: '60px', justifyContent: "space-between" }}>
-                        <EditIcon onClick={togglePopup} sx={{ color: '#1398A0', cursor: 'pointer' }} />
-                        <DeleteIcon sx={{ color: '#616161', cursor: 'pointer' }} />
-
-                    </div>
+                        <EditIcon sx={{ color: '#1398A0', cursor: 'pointer' }} />
+                        <DeleteIcon onClick={() => setToggleDelete(true)} sx={{ color: '#616161', cursor: 'pointer' }} />
+                        {toggleDelete && (
+                            <DeleteUserPopup setToggleState={setToggleDelete} setToggleYesState={setToggleYesDelete} name={props.member.user_firstname + " " + props.member.user_lastname} user_id = {parseInt(props.member.user_id, 10)}/>
+                        )}
+                        {toggleYesDelete && (
+                            <UserDeletedPopup setToggleState={setToggleYesDelete}/>
+                        )}
+                        </div>
                 </div>
 
 
