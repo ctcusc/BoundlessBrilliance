@@ -1,8 +1,8 @@
 const express = require("express");
 require("dotenv").config();
 
-const userController = require("./user.controller.js");
-const workshopController = require("./workshop.controller");
+const userController = require("./controller/user.controller");
+const workshopController = require("./controller/workshop.controller");
 const app = express();
 const port = process.env.PORT || 3000;
 

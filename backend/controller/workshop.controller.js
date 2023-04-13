@@ -1,5 +1,5 @@
 require("dotenv").config();
-const db = require("./db.config")
+const db = require("../db")
 
 
 class workshopController {

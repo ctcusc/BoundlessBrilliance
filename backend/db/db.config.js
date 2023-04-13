@@ -24,10 +24,10 @@ const connect = () => {
     const db = {};
     db.Sequelize = Sequelize;
     db.sequelize = sequelize;
-    db.master_user = require("./model/master_user.model")(sequelize, DataTypes, Model);
-    db.workshop = require("./model/workshop.model")(sequelize, DataTypes, Model);
-    db.user_status = require("./model/user_status.model")(sequelize, DataTypes, Model);
-    db.workshop_assignments = require("./model/workshop_assignments.model")(sequelize, DataTypes, Model);
+    db.master_user = require("../model/master_user.model")(sequelize, DataTypes, Model);
+    db.workshop = require("../model/workshop.model")(sequelize, DataTypes, Model);
+    db.user_status = require("../model/user_status.model")(sequelize, DataTypes, Model);
+    db.workshop_assignments = require("../model/workshop_assignments.model")(sequelize, DataTypes, Model);
 
     return db;
 
