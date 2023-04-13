@@ -10,11 +10,14 @@ import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 
 import '../index.css'
 import AdminEditWorkshopPopup from './AdminEditWorkshopPopup';
-import AdminAssignVolunteerPopup from './AdminAssignVolunteerPopup'
+import AdminAssignVolunteerPopup from './AdminAssignVolunteerPopup';
+import DeleteWorkshopPopup from './adminPopups/DeleteWorkshopPopup';
+import WorkshopDeletedPopup from './adminPopups/WorkshopDeletedPopup'
 
 import { ReactComponent as DateIcon } from '../images/date_icon.svg'
 import { ReactComponent as TimeIcon } from '../images/time_icon.svg';
 import { ReactComponent as LocationIcon } from '../images/location_icon.svg';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const cardStyles = {
     minWidth: 275,
@@ -80,6 +83,10 @@ const verticalLine = {
 
 export default function WorkshopCard(props) {
 
+
+    const [toggleDelete, setToggleDelete] = useState(false);
+    const [toggleYesDelete, setToggleYesDelete] = useState(false);
+
     const [toggleEditPopup, setToggleEditPopup] = useState(false);
     const [toggleAssignPopup, setToggleAssignPopup] = useState(false);
 
@@ -111,9 +118,16 @@ export default function WorkshopCard(props) {
                     <Typography sx={cardHeaderStyles} color="text.secondary" gutterBottom>
                         {props.workshop.name}
                     </Typography>
-                    <div style={{ display: "flex", width: '60px', justifyContent: "space-between" }}>
+                    <div style={{ display: "flex", width: '90px', justifyContent: "space-between" }}>
                         <PersonAddAlt1Icon onClick={() => setAssignPopup(props)} sx={{ color: '#1398A0', cursor: 'pointer' }} />
                         <EditIcon onClick={togglePopup} sx={{ color: '#616161', cursor: 'pointer' }} />
+                        <DeleteIcon onClick={() => setToggleDelete(true)} sx={{ color: '#616161', cursor: 'pointer' }} />
+                        {toggleDelete && (
+                            <DeleteWorkshopPopup setToggleState={setToggleDelete} setToggleYesState={setToggleYesDelete} name={props.workshop.name} workshop_id = {parseInt(props.workshop.id, 10)}/>
+                        )}
+                        {toggleYesDelete && (
+                            <WorkshopDeletedPopup setToggleState={setToggleYesDelete}/>
+                        )}
                     </div>
                 </div>
                 <div style={{ display: "flex" }} >
