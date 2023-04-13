@@ -33,10 +33,10 @@ const WorkshopApprovedPopup = ({setToggleState}) => {
         <div className="popup-center">
             <div className="popup-container">
                 <button onClick={setToggle} className="popup-icon-corner">
-                    <StyledClearIcon />
+                    <StyledClearIcon/>
                 </button>
                 <div className="popup-icon-center">
-                    <StyledCheckCircleIcon />
+                    <StyledCheckCircleIcon alt="Approved Check Icon"/>
                 </div>
                 <h1 className="h1-popup">Workshop Approved</h1>
                 <p className="p-popup">To undo this action, you must <span><a className="a-popup" href="#">contact admin</a></span></p>
