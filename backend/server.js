@@ -314,6 +314,13 @@ app.get("/api/generateEthnicityMetrics", (req, res) => {
     });
 });
 
+app.put("/api/approveAllUsers", (req, res) => {
+  userController.approveAllUsers()
+    .then(() => {
+      res.status(200);
+    });
+});
+
 // Start Backend Port 
 app.listen(port, () => {
   console.log(`Server listening on the port  ${port}`);
