@@ -39,7 +39,7 @@ const WorkshopApprovedPopup = ({setToggleState}) => {
                     <StyledCheckCircleIcon alt="Approved Check Icon"/>
                 </div>
                 <h1 className="h1-popup">Workshop Approved</h1>
-                <p className="p-popup">To undo this action, you must <span><a className="a-popup" href="#">contact admin</a></span></p>
+                <p className="p-popup">To undo this action, you must contact admin.</p>
             </div>
             
         </div>

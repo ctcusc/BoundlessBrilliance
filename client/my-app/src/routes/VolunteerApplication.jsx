@@ -4,7 +4,6 @@ import { useTheme, styled } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
@@ -13,15 +12,7 @@ import Box from '@mui/material/Box';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import { useHistory } from 'react-router-dom';
 
-
-interface TabPanelProps {
-    children?: React.ReactNode;
-    dir?: string;
-    index: number;
-    value: number;
-};
-  
-function TabPanel(props: TabPanelProps) {
+function TabPanel(props) {
     const { children, value, index, ...other } = props;
   
     return (
@@ -41,7 +32,7 @@ function TabPanel(props: TabPanelProps) {
     );
 };
   
-function a11yProps(index: number) {
+function a11yProps(index) {
     return {
       id: `full-width-tab-${index}`,
       'aria-controls': `full-width-tabpanel-${index}`,
@@ -194,19 +185,17 @@ const defaultFormStates = {
   passwordConfirmVariant: "filled",
 };
 
-
 const VolunteerApplication = () => {
     const theme = useTheme();
     const history = useHistory();
 
     const [value, setValue] = React.useState(0);
   
-  
-    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    const handleChange = (event, newValue) => {
       setValue(newValue);
     };
   
-    const handleChangeIndex = (index: number) => {
+    const handleChangeIndex = (index) => {
       setValue(index);
     };
 
@@ -214,15 +203,12 @@ const VolunteerApplication = () => {
     const [formValues, setFormValues] = useState(defaultValues)
     const [formStates, setFormStates] = useState(defaultFormStates)
 
-
     const handleSubmit = (event) => {
       event.preventDefault();
       if (!validateForm()) {
         return;
       }
       setFormStates(defaultFormStates);
-      console.log(formValues.gender);
-      console.log(formValues.phoneNum);
 
       async function sendData(formValues) {
         const response = await fetch('/api/createUser', {  
@@ -334,7 +320,6 @@ const VolunteerApplication = () => {
         valid = false;
       }
       setFormStates(changedStates);
-      console.log(valid);
       return valid;
     };
 
@@ -445,7 +430,6 @@ const VolunteerApplication = () => {
                               </div>
                             </TabPanel>
                       </Box>
-                      
                 </div>
                 {/* next and submit button */}
                 <div className="button-position">
