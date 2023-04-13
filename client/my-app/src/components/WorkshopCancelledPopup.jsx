@@ -36,7 +36,7 @@ const WorkshopCancelledPopup = ({setToggleState}) => {
                     <StyledClearIcon />
                 </button>
                 <div className="popup-icon-center">
-                    <StyledHighlightOffIcon />
+                    <StyledHighlightOffIcon alt="Rejected X Icon" />
                 </div>
                 <h1 className="h1-popup">Workshop Declined</h1>
                 <p className="p-popup">To undo this action, you must <span><a className="a-popup" href="#">contact admin</a></span></p>

@@ -19,7 +19,8 @@ const WorkshopAssignmentPlaceholder = () => {
                     height: "325px",
                 }}
             >
-                <img src={emptyWorkshopAssignment}
+                <img alt="Cartoon lady sitting in a black chair reading a book in front of a lamp"
+                src={emptyWorkshopAssignment}
                     style={{
                         width: "auto",
                         height: "233px",

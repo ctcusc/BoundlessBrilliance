@@ -11,7 +11,7 @@
     z-index: 2;
 }
 
-.volunteer-container{
+.volunteer-container {
     position: relative;
     height: calc(40% - 40px);
     width: calc(53% - 40px);
@@ -32,18 +32,17 @@
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-.assign-chips{
+.assign-chips {
     display: flex;
     flex-wrap: nowrap;
     gap: 4px;
-    margin: 4px 0;  
-    /* margin-top: 2%; */
+    margin: 4px 0;
     overflow: auto;
 }
 
 .assign-chips::-webkit-scrollbar {
     display: none;
-  }
+}
 
 .popup-container {
     display: flex;
@@ -196,7 +195,7 @@
     color: black;
 }
 
-.popup-description { 
+.popup-description {
     color: grey;
     font-size: 14px;
     margin-bottom: 0;
@@ -224,5 +223,3 @@
     justify-content: right;
     width: 100%;
 }
-
-

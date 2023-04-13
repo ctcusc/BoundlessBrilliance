@@ -125,7 +125,7 @@ const AdminEditWorkshopPopup = ({props, setToggleState}) => {
                     <StyledTextField 
                         id="filled-basic" 
                         name="name"
-                        defaultValue={formValues.name} 
+                        defaultValue={formValues.name === "" ? "Name" : formValues.name} 
                         onChange={handleInputChange} 
                         variant="filled" 
                         InputProps={{ disableUnderline: true }}
@@ -142,7 +142,7 @@ const AdminEditWorkshopPopup = ({props, setToggleState}) => {
                      <StyledTextField 
                         id="filled-basic" 
                         name="start_time"
-                        defaultValue={formValues.start_time} 
+                        defaultValue={formValues.start_time === "" ? "Start Time" : formValues.start_time} 
                         onChange={handleInputChange} 
                         className="popup-half-textfield" 
                         variant="filled" 
@@ -152,7 +152,7 @@ const AdminEditWorkshopPopup = ({props, setToggleState}) => {
                     <StyledTextField 
                         id="filled-basic" 
                         name="end_time"
-                        defaultValue={formValues.end_time} 
+                        defaultValue={formValues.end_time === "" ? "End Time" : formValues.end_time} 
                         onChange={handleInputChange} 
                         className="popup-half-textfield" 
                         variant="filled" 
@@ -161,7 +161,7 @@ const AdminEditWorkshopPopup = ({props, setToggleState}) => {
                     <StyledTextField 
                         id="filled-basic" 
                         name="location"
-                        defaultValue={formValues.location} 
+                        defaultValue={formValues.location === "" ? "Location" : formValues.location} 
                         onChange={handleInputChange} 
                         variant="filled" 
                         InputProps={{ disableUnderline: true, shrink: "false" }}
@@ -172,7 +172,7 @@ const AdminEditWorkshopPopup = ({props, setToggleState}) => {
                             className="popup-full-width" 
                             id="filled-basic" 
                             name="description"
-                            defaultValue={formValues.description} 
+                            defaultValue={formValues.description === "" ? "Description" : formValues.description} 
                             onChange={handleInputChange} 
                             variant="filled" 
                             InputProps={{ disableUnderline: true, shrink: "false" }} 

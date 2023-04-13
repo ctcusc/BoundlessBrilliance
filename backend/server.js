@@ -1,21 +1,12 @@
-const express = require("express"); //import express
-require("dotenv").config(); //import enviornment
+const express = require("express");
+require("dotenv").config();
 
 const userController = require("./controller/user.controller");
 const workshopController = require("./controller/workshop.controller");
-const app = express(); //create instance of express named "app"
-const port = process.env.PORT || 3000; //define port value in .env, default to port 3000
+const app = express();
+const port = process.env.PORT || 3000;
 
 app.use(express.json());
-
-app.get("/api/apiTest", (req, res) => {
-  res.status(200).json({
-    status: "success",
-    username: "rkuan",
-    password: "password",
-  });
-  console.log("call to /api/test");
-});
 
 // createWorkshop: given workshop params, post data to database
 app.post("/api/createWorkshop", (req, res) => {
@@ -111,20 +102,20 @@ app.post('/api/createUser', (req, res) => {
   });
 });
 
-//acceptWorkshop: 
-
+//acceptWorkshop : Updates workshop status for specific user as accepted
 app.post('/api/acceptWorkshop', (req, res) => {
   workshopController.acceptWorkshop(req.body.user_id, req.body.workshop_id).then(
-      data => res.status(200).json({
-          api_status: "success",
-          error: data
-        })
-      ).catch(err=>{
-      return res.sendStatus(500).send({
-          message:err.message|| "API Error acceptWorkshop"
-      });;
+    data => res.status(200).json({
+      api_status: "success",
+      error: data
+    })
+  ).catch(err => {
+    return res.sendStatus(500).send({
+      message: err.message || "API Error acceptWorkshop"
+    });;
   });
 });
+
 
 
 app.delete('/api/deleteWorkshop', (req, res) => {
@@ -140,24 +131,22 @@ app.delete('/api/deleteWorkshop', (req, res) => {
   });
 });
 
-//declineWorkshop: 
-
 app.post('/api/declineWorkshop', (req, res) => {
   workshopController.declineWorkshop(req.body.user_id, req.body.workshop_id).then(
-      data => res.status(200).json({
-          api_status: "success",
-          error: data
-        })
-      ).catch(err=>{
-      return res.sendStatus(500).send({
-          message:err.message|| "API Error declineWorkshop"
-      });;
+    data => res.status(200).json({
+      api_status: "success",
+      error: data
+    })
+  ).catch(err => {
+    return res.sendStatus(500).send({
+      message: err.message || "API Error declineWorkshop"
+    });;
   });
 });
 
 // validateUser: returns true if the user credentials are valid/user has been approved by admin, else false
 // returns:
- //auth_val: (-1 = Fail, 0 = User not verified, 1 = Pass)
+//auth_val: (-1 = Fail, 0 = User not verified, 1 = Pass)
 //is_admin: (0 = User, 1 = Admin)
 //user_id: (-1 = Fail, else all other cases = user_id)
 
@@ -166,8 +155,8 @@ app.post('/api/validateUser', (req, res) => {
     data => res.status(200).json({
       api_status: "success",
       authentication: data[0],
-      user_type : data[1],
-      user_id : data[2]
+      user_type: data[1],
+      user_id: data[2]
     })
   ).catch(err => {
     return res.sendStatus(500).send({
@@ -198,120 +187,120 @@ app.post("/api/assignUser", (req, res) => {
 
 app.get('/api/allActiveUsers', (req, res) => {
   userController.allActiveUsers(req)
-  .then((data) =>
-    res.status(200).json(data)
-  )
-  .catch((err) => {
-    return res.sendStatus(500).send({
-      message: err.message || "API Error allActiveUsers",
+    .then((data) =>
+      res.status(200).json(data)
+    )
+    .catch((err) => {
+      return res.sendStatus(500).send({
+        message: err.message || "API Error allActiveUsers",
+      });
     });
-  });
 });
 
 // returns details for workshop that have been undecided by the user
 app.get("/api/undecidedWorkshop", (req, res) => {
   workshopController.undecidedWorkshops(req.query.id)
-  .then((data) =>
-    res.status(200).json(data)
-  );
+    .then((data) =>
+      res.status(200).json(data)
+    );
 });
 
 app.get("/api/upcomingWorkshop", (req, res) => {
   workshopController.upcomingWorkshop(req.query.id)
-  .then((data) =>
-    res.status(200).json(data)
-  );
+    .then((data) =>
+      res.status(200).json(data)
+    );
 });
 
 //Admin Page APIs
 app.get("/api/adminWorkshop", (req, res) => {
   workshopController.adminWorkshops()
-  .then((data) =>
-    res.status(200).json(data)
-  );
+    .then((data) =>
+      res.status(200).json(data)
+    );
 });
 
 app.get("/api/adminSignups", (req, res) => {
   workshopController.adminSignups()
-  .then((data) =>
-    res.status(200).json(data)
-  );
+    .then((data) =>
+      res.status(200).json(data)
+    );
 });
 
 app.get("/api/allActiveUserNames", (req, res) => {
   userController.allActiveUserNames()
-  .then((data) =>
-    res.status(200).json(data)
-  );
+    .then((data) =>
+      res.status(200).json(data)
+    );
 });
 
 app.get("/api/allActiveUserIDName", (req, res) => {
   userController.allActiveUserIDName()
-  .then((data) =>
-    res.status(200).json(data)
-  );
+    .then((data) =>
+      res.status(200).json(data)
+    );
 });
 
 app.get("/api/userAssignedWorkshop", (req, res) => {
   const { workshop_id } = req.query;
   userController.userAssignedWorkshop(workshop_id)
-  .then((data) =>
-    res.status(200).json(data)
-  );
+    .then((data) =>
+      res.status(200).json(data)
+    );
 });
 
 app.delete("/api/removeAssignment", (req, res) => {
   const { user_id } = req.query;
   const { workshop_id } = req.query;
   workshopController.removeAssignment(user_id, workshop_id)
-  .then((data) =>
-    res.status(200).json(data)
-  );
+    .then((data) =>
+      res.status(200).json(data)
+    );
 });
 
 app.get("/api/userAssignedWorkshopStatusA", (req, res) => {
   const { workshop_id } = req.query;
   userController.userAssignedWorkshopStatusA(workshop_id)
-  .then((data) =>
-    res.status(200).json(data)
-  );
+    .then((data) =>
+      res.status(200).json(data)
+    );
 });
 
 app.get("/api/userAssignedWorkshopStatusB", (req, res) => {
   const { workshop_id } = req.query;
   userController.userAssignedWorkshopStatusB(workshop_id)
-  .then((data) =>
-    res.status(200).json(data)
-  );
+    .then((data) =>
+      res.status(200).json(data)
+    );
 });
 
 app.get("/api/userAssignedWorkshopStatusC", (req, res) => {
   const { workshop_id } = req.query;
   userController.userAssignedWorkshopStatusC(workshop_id)
-  .then((data) =>
-    res.status(200).json(data)
-  );
+    .then((data) =>
+      res.status(200).json(data)
+    );
 });
 
 app.get("/api/generateMetrics", (req, res) => {
   userController.generateMetrics(req)
-  .then((data) =>
-    res.status(200).json(data)
-  );
+    .then((data) =>
+      res.status(200).json(data)
+    );
 });
 
 app.get("/api/generateUserMetrics", (req, res) => {
   userController.generateUserMetrics()
-  .then((data) =>
-    res.status(200).json(data)
-  );
+    .then((data) =>
+      res.status(200).json(data)
+    );
 });
 
 app.get("/api/generateWorkshopMetrics", (req, res) => {
   workshopController.generateWorkshopMetrics()
-  .then((data) =>
-    res.status(200).json(data)
-  );
+    .then((data) =>
+      res.status(200).json(data)
+    );
 });
 
 app.get("/api/generateGenderMetrics", (req, res) => {
