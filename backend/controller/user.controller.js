@@ -350,6 +350,17 @@ class userController {
       }
   }
 
+  async approveAllUsers() {
+    try{
+      var data = await db.query(
+        "UPDATE user_status SET user_status = 1 WHERE user_status = 0;",
+      );
+      return 0;
+      } catch(error){
+        return error;
+      }
+  }
+
 } 
         
 module.exports = new userController();   

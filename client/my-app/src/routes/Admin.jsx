@@ -80,6 +80,21 @@ const Admin = () => {
 
     }, []);
 
+    function handleAcceptAll() {
+        console.log("Ping");
+        async function Accept() {
+            const response = await fetch('/api/approveAllUsers', {  
+                method: 'put',
+                headers: {'Content-Type': 'application/json'},
+            })
+            const data = await response.json();
+        }
+
+        Accept();
+        document.location.reload();
+    }
+     
+
 
     const blueButton = {
         height: '48px',
@@ -111,6 +126,7 @@ const Admin = () => {
         fontSize: '18px',
         marginTop: '30px',
         marginBottom: '60px'
+
     }
 
 
@@ -134,7 +150,7 @@ const Admin = () => {
                 return (<>
                     <WorkshopHeader/>
                     <h1 style={{ paddingTop: '40px', paddingBottom: '20px', fontFamily: 'Avenir Heavy' }}>Volunteer Applications</h1>
-                    <div style={acceptButton}>Accept All</div>
+                    <div style={acceptButton} onClick={handleAcceptAll}>Accept All</div>
                     <Grid container spacing={4}>
                         {adminSignups.map((data) => (
                             <Grid item xs={12}>
