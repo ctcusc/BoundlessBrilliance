@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from "react"
-import AdminSidebar from "../components/AdminSideBar";
+import React from "react"
 import "./AdminMetrics.css";
 import PieChart from "../components/PieChart";
 import PieBarChart from "../components/PieBarChart";
-import gdata from "./genderData.json";
-import edata from "./raceData.json";
 import pdata from "./progressData.json";
 
 const AdminMetrics = (props) => {
@@ -15,32 +12,6 @@ const AdminMetrics = (props) => {
     "rgba(220, 119, 0, 0.3)",
     "rgba(220, 119, 0, 0.7)",
   ];
-
-  const [chapterData, setChapterData] = useState([]);
-  const [ethnicityData, setEthnicityData] = useState([]);
-
-  console.log(props.genderData);
-
-
-  useEffect(() => {
-          
-
-      // fetch(`/api/`)
-      //   .then(response => response.json())
-      //   .then(data => setGenderData(data))
-      //   .catch(error => console.error(error));
-
-      // fetch(`/api/`)
-      //   .then(response => response.json())
-      //   .then(data => setEthnicityData(data))
-      //   .catch(error => console.error(error));
-
-      // fetch(`/api/`)
-      //   .then(response => response.json())
-      //   .then(data => setWorkshopData(data))
-      //   .catch(error => console.error(error));
-        
-    }, []);
 
   return (
     <div>
