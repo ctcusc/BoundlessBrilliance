@@ -124,7 +124,9 @@ const Login = () => {
                                         <input id="password" type="password" className="form-control" name="password" placeholder="Password" style={{fontFamily:"Avenir", fontSize : "16px"}}/>
                                     </div>
                                 </div>
-                            <div class="pb-5 mt-3 card-text" style={{fontFamily:"Avenir", fontSize : "14px"}}><a href="/">Forgot password?</a></div>
+                                <div className="pb-5 mt-3 card-text" style={{fontFamily:"Avenir", fontSize : "14px"}}>
+                                <a href="mailto:info@boundlessbrilliance.org?subject=Forgot%20Password&body=Dear%20Boundless%20Brilliance%20Support,%0D%0A%0D%0AI%20have%20forgotten%20my%20password.%20Please%20help%20me%20reset%20it.%0D%0A%0D%0AMy%20account%20email%20(username)%20is%20<email>.%0D%0A%0D%0AThanks,%0D%0A<Your%20Name>">Forgot password?</a>
+                                </div>
                                 <button type="submit" id="sendlogin" className="btn btn-primary w-100" style={{fontFamily:"Avenir Heavy", fontSize : "14px", backgroundColor: "#1398A0", borderRadius: "12px"}}>Login</button>
                             </form>
                         </div>
