@@ -10,7 +10,7 @@ import { useCookies } from "react-cookie";
 const Header = () => {
 
     const history = useHistory();
-    const [setCookie] = useCookies(['user']);
+    const [cookies, setCookie] = useCookies(['user']);
 
     function logout() {
         setCookie('user_id', -1, { path: '/', secure: 'true' });
