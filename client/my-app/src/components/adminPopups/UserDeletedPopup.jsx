@@ -17,7 +17,7 @@ const StyledClearIcon = styled(ClearIcon)({
     height: '24px',
 });
 
-const UserDeletedPopup = ({setToggleState}) => {
+const UserDeletedPopup = ({ setToggleState }) => {
 
     const history = useHistory();
 
@@ -40,7 +40,6 @@ const UserDeletedPopup = ({setToggleState}) => {
                 </div>
                 <h1 className="h1-popup">Volunteer Deleted</h1>
             </div>
-            
         </div>
     )
 }

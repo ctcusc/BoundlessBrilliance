@@ -1,13 +1,12 @@
 import React from 'react';
 import './WorkshopPopup.css';
 import { styled } from '@mui/material/styles';
-import CheckCircleIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
+import HighlightOffIcon from '@mui/icons-material/HighlightOffOutlined';
 import ClearIcon from '@mui/icons-material/Clear';
-
 import { useHistory } from "react-router-dom";
 
-const StyledCheckCircleIcon = styled(CheckCircleIcon)({
-    color: '#429900',
+const StyledHighlightOffIcon = styled(HighlightOffIcon)({
+    color: '#e32727',
     width: '36px',
     height: '36px',
 });
@@ -18,7 +17,7 @@ const StyledClearIcon = styled(ClearIcon)({
     height: '24px',
 });
 
-const WorkshopApprovedPopup = ({ setToggleState }) => {
+const WorkshopDeletedPopup = ({setToggleState}) => {
 
     const history = useHistory();
 
@@ -26,7 +25,8 @@ const WorkshopApprovedPopup = ({ setToggleState }) => {
         setToggleState(false);
 
         history.push("/admin-home");
-        document.location.reload()
+        document.location.reload();
+
     }
 
     return (
@@ -36,13 +36,15 @@ const WorkshopApprovedPopup = ({ setToggleState }) => {
                     <StyledClearIcon />
                 </button>
                 <div className="popup-icon-center">
-                    <StyledCheckCircleIcon />
+                    <StyledHighlightOffIcon />
                 </div>
-                <h1 className="h1-popup">User Approved</h1>
+                <h1 className="h1-popup">Workshop Deleted</h1>
+                <p className="p-popup">To undo this action, you must <span><a className="a-popup" href="#">contact admin</a></span></p>
             </div>
+            
         </div>
     )
 }
 
 
-export default WorkshopApprovedPopup;
+export default WorkshopDeletedPopup;

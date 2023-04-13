@@ -2,8 +2,6 @@ import React from 'react';
 import './WorkshopPopup.css';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
-import { useState } from 'react';
-import { useHistory } from "react-router-dom";
 
 const OutlinedButton = styled(Button)({
     color: '#1398A0',
@@ -44,9 +42,8 @@ const ContainedButton = styled(Button)({
     },
 });
 
-const DeleteUserPopup = ({setToggleState, setToggleYesState, name, user_id}) => {
+const DeleteUserPopup = ({ setToggleState, setToggleYesState, name, user_id }) => {
 
-    const history = useHistory();
 
     function setToggle() {
         setToggleState(false);
@@ -57,10 +54,10 @@ const DeleteUserPopup = ({setToggleState, setToggleYesState, name, user_id}) => 
         setToggleYesState(true);
 
         const rejectUser = async () => {
-            const response = await fetch('/api/rejectUser', {
-              method: 'DELETE',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ user_id: user_id}),
+            await fetch('/api/rejectUser', {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ user_id: user_id }),
             });
         }
         rejectUser();
@@ -69,7 +66,7 @@ const DeleteUserPopup = ({setToggleState, setToggleYesState, name, user_id}) => 
     return (
         <div className="popup-center">
             <div className="popup-container">
-                <p className="p-popup">You are <span style={{color: '#D90000'}}>deleting</span> volunteer:</p>
+                <p className="p-popup">You are <span style={{ color: '#D90000' }}>deleting</span> volunteer:</p>
                 <h2 className="h2-popup">{name}</h2>
                 <p className="p-popup">This cannot be undone.</p>
                 <div className="flex-horizontal">
@@ -77,10 +74,9 @@ const DeleteUserPopup = ({setToggleState, setToggleYesState, name, user_id}) => 
                     <ContainedButton onClick={setToggleYes} variant="contained">Yes, delete</ContainedButton>
                 </div>
             </div>
-            
         </div>
     )
 }
 
 
-export default DeleteUserPopup
+export default DeleteUserPopup;

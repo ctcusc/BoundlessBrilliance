@@ -52,6 +52,22 @@ class workshopController {
         }
     }
 
+    async deleteWorkshop(workshop_id) {
+        try{
+        await db.query(
+            "DELETE FROM workshop_assignments WHERE workshop_id=$1;",
+            [workshop_id]
+        )
+        await db.query(
+            "DELETE FROM workshop WHERE workshop_id=$1;",
+            [workshop_id]
+        );
+        return result.rows[0];
+        } catch(error){
+            return error;
+        }
+    }
+
     async declineWorkshop(user_id, workshop_id) {
         try {
             await db.query(

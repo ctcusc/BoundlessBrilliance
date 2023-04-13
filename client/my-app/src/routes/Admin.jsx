@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Autocomplete, Box, Card, Grid, InputAdornment, TextField, Typography, FormControl, Input, InputLabel, FilledInput, OutlinedInput } from '@mui/material';
+import { Autocomplete, Box, Grid, InputAdornment, TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import AdminAssignmentCard from '../components/AdminAssignmentCard'
 import AdminWorkshopCard from '../components/AdminWorkshopCard'
@@ -8,15 +8,11 @@ import AdminMetrics from '../routes/AdminMetrics'
 import MemberCard from '../components/MemberCard'
 import CreateWorkshopModal from '../components/CreateWorkshopModal'
 import WorkshopHeader from "../components/WorkshopHeader";
-import { useCookies } from 'react-cookie';
-
 
 
 const Admin = () => {
 
     const [tab, setTab] = useState(1);
-    const [cookies] = useCookies(['user']);
-    const user_id = cookies.user_id;
 
     const [adminWorkshop, setAdminWorkshop] = useState([]);
     const [adminSignups, setAdminSignups] = useState([]);
@@ -50,7 +46,7 @@ const Admin = () => {
             .then(response => response.json())
             .then(data => setDisplayedMembers(data))
             .catch(error => console.error(error));
-        
+
         fetch(`/api/allActiveUsers`)
             .then(response => response.json())
             .then(data => setAllMembers(data))
@@ -60,12 +56,12 @@ const Admin = () => {
             .then(response => response.json())
             .then(data => setUserData(data))
             .catch(error => console.error(error));
-        
+
         fetch(`/api/generateWorkshopMetrics`)
             .then(response => response.json())
             .then(data => setWorkshopData(data))
             .catch(error => console.error(error));
-        
+
         fetch(`/api/generateGenderMetrics`)
             .then(response => response.json())
             .then(data => setGenderData(data))
@@ -75,25 +71,21 @@ const Admin = () => {
             .then(response => response.json())
             .then(data => setEthnicityData(data))
             .catch(error => console.error(error));
-        
-        console.log(genderData);
-
     }, []);
 
     function handleAcceptAll() {
-        console.log("Ping");
         async function Accept() {
-            const response = await fetch('/api/approveAllUsers', {  
+            const response = await fetch('/api/approveAllUsers', {
                 method: 'put',
-                headers: {'Content-Type': 'application/json'},
+                headers: { 'Content-Type': 'application/json' },
             })
-            const data = await response.json();
+            await response.json();
         }
 
         Accept();
         document.location.reload();
     }
-     
+
 
 
     const blueButton = {
@@ -146,9 +138,10 @@ const Admin = () => {
                         ))
                         }
                     </Grid></>);
+
             case 2:
                 return (<>
-                    <WorkshopHeader/>
+                    <WorkshopHeader />
                     <h1 style={{ paddingTop: '40px', paddingBottom: '20px', fontFamily: 'Avenir Heavy' }}>Volunteer Applications</h1>
                     <div style={acceptButton} onClick={handleAcceptAll}>Accept All</div>
                     <Grid container spacing={4}>
@@ -169,7 +162,7 @@ const Admin = () => {
 
             case 4:
                 return (<>
-                    <WorkshopHeader/>
+                    <WorkshopHeader />
                     <h1 style={{ paddingTop: '40px', paddingBottom: '20px', fontFamily: 'Avenir Heavy' }}>Member List</h1>
                     <Autocomplete
                         disablePortal
@@ -200,7 +193,6 @@ const Admin = () => {
                             }
 
                         }}
-
                         sx={{ mb: '60px', mt: '30px', '& .MuiInputBase-root': { borderRadius: '28px !important' }, '& .MuiAutocomplete-popupIndicator': { display: 'none' } }}
                         renderInput={(params) => <TextField
                             {...params}
@@ -233,8 +225,6 @@ const Admin = () => {
         }
     }
 
-
-
     return (
         <div style={{ display: 'flex', height: '100%' }}>
             <AdminSideBar tab={tab} setTab={setTab} style={{ height: '100%' }}></AdminSideBar>
@@ -247,4 +237,4 @@ const Admin = () => {
     );
 };
 
-export default Admin
+export default Admin;

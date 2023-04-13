@@ -42,8 +42,7 @@ const ContainedButton = styled(Button)({
     },
 });
 
-const RejectWorkshopPopup = ({ setToggleState, setToggleYesState, firstname, lastname, user_id }) => {
-
+const DeleteWorkshopPopup = ({ setToggleState, setToggleYesState, name, workshop_id }) => {
 
     function setToggle() {
         setToggleState(false);
@@ -53,25 +52,25 @@ const RejectWorkshopPopup = ({ setToggleState, setToggleYesState, firstname, las
         setToggleState(false);
         setToggleYesState(true);
 
-        const rejectUser = async () => {
-            await fetch('/api/rejectUser', {
+        const deleteWorkshop = async () => {
+            await fetch('/api/deleteWorkshop', {
                 method: 'DELETE',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ user_id: user_id }),
+                body: JSON.stringify({ workshop_id: workshop_id }),
             });
+            }
+            deleteWorkshop();
         }
-        rejectUser();
-    }
 
     return (
         <div className="popup-center">
             <div className="popup-container">
-                <p className="p-popup">You are <span style={{ color: '#D90000' }}>declining</span> new volunteer:</p>
-                <h2 className="h2-popup">{firstname + " " + lastname}</h2>
+                <p className="p-popup">You are <span style={{ color: '#D90000' }}>deleting</span> workshop:</p>
+                <h2 className="h2-popup">{name}</h2>
                 <p className="p-popup">This cannot be undone.</p>
                 <div className="flex-horizontal">
                     <OutlinedButton onClick={setToggle} variant="outlined">No, go back</OutlinedButton>
-                    <ContainedButton onClick={setToggleYes} variant="contained">Yes, decline</ContainedButton>
+                    <ContainedButton onClick={setToggleYes} variant="contained">Yes, delete</ContainedButton>
                 </div>
             </div>
         </div>
@@ -79,4 +78,4 @@ const RejectWorkshopPopup = ({ setToggleState, setToggleYesState, firstname, las
 }
 
 
-export default RejectWorkshopPopup;
+export default DeleteWorkshopPopup;

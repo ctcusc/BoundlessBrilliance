@@ -6,11 +6,7 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 import { useState } from 'react';
 
-import '../index.css'
-
-import { ReactComponent as DateIcon } from '../images/date_icon.svg'
-import { ReactComponent as TimeIcon } from '../images/time_icon.svg';
-import { ReactComponent as LocationIcon } from '../images/location_icon.svg';
+import '../index.css';
 
 import ApproveWorkshopPopup from './adminPopups/ApproveWorkshopPopup';
 import RejectWorkshopPopup from './adminPopups/RejectWorkshopPopup';
@@ -27,7 +23,6 @@ const cardStyles = {
 const cardContentStyles = {
     padding: '45px',
     margin: 'auto',
-    // height: '320px'
 }
 
 const cardHeaderStyles = {
@@ -40,7 +35,6 @@ const cardHeaderStyles = {
 
 const cardDetailStyles = {
     paddingLeft: 1,
-    // textAlign: 'center',
     lineHeight: '22px',
     fontSize: 16,
     fontFamily: 'Avenir',
@@ -71,7 +65,6 @@ const mainContentDiv = {
 }
 
 const cardButtonsDiv = {
-    // flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     margin: 'auto'
@@ -116,7 +109,7 @@ export default function WorkshopCard(props) {
 
     const toggleDescription = () => {
         setShowDescription(!showDescription);
-      };
+    };
 
     return (
 
@@ -129,7 +122,7 @@ export default function WorkshopCard(props) {
                         </Typography>
                         <div style={{ display: "flex", justifyContent: "space-between" }}>
                             <Typography sx={cardHeaderStyles} color="text.secondary" gutterBottom>
-                                {props.workshop.user_firstname+" "+props.workshop.user_lastname}
+                                {props.workshop.user_firstname + " " + props.workshop.user_lastname}
                             </Typography>
                         </div>
                         <div style={{ display: "flex" }}>
@@ -151,48 +144,46 @@ export default function WorkshopCard(props) {
                             </div>
                         </div>
                         {showDescription ? (
-                            <div style={{ marginTop: "30px", marginRight: "100px"}}>
-                            <Typography sx={cardDetailStyles} color="text.secondary">
-                                <div><span style={{fontWeight: 'bold'}}>Role: </span> Volunteer <br /></div>
-                                <div><span style={{fontWeight: 'bold'}}>Race: </span> {props.workshop.user_ethnicity}</div>
-                                <div><span style={{fontWeight: 'bold'}}>Gender: </span> {props.workshop.user_gender}</div>
-                                <div
-                                style={infoLinkStyles}
-                                onClick={toggleDescription}
-                                >
-                                Less Info
-                            </div>
-                            </Typography>
+                            <div style={{ marginTop: "30px", marginRight: "100px" }}>
+                                <Typography sx={cardDetailStyles} color="text.secondary">
+                                    <div><span style={{ fontWeight: 'bold' }}>Role: </span> Volunteer <br /></div>
+                                    <div><span style={{ fontWeight: 'bold' }}>Race: </span> {props.workshop.user_ethnicity}</div>
+                                    <div><span style={{ fontWeight: 'bold' }}>Gender: </span> {props.workshop.user_gender}</div>
+                                    <div
+                                        style={infoLinkStyles}
+                                        onClick={toggleDescription}
+                                    >
+                                        Less Info
+                                    </div>
+                                </Typography>
                             </div>
                         ) : (
                             <div
-                            style={infoLinkStyles}
-                            onClick={toggleDescription}
+                                style={infoLinkStyles}
+                                onClick={toggleDescription}
                             >
-                            More Info
+                                More Info
                             </div>
                         )}
                     </div>
                     <div style={cardButtonsDiv}>
-                        <div onClick = {() => setToggleReject(true)} style={declineCardButton}>Decline</div>
-                        <div onClick = {() => setToggleApprove(true)} style={approveCardButton}>Approve</div>
+                        <div onClick={() => setToggleReject(true)} style={declineCardButton}>Decline</div>
+                        <div onClick={() => setToggleApprove(true)} style={approveCardButton}>Approve</div>
                     </div>
                     {toggleApprove && (
-                        <ApproveWorkshopPopup setToggleState={setToggleApprove} setToggleYesState={setToggleYesApprove} firstname={props.workshop.user_firstname} lastname={props.workshop.user_lastname} user_id = {parseInt(props.workshop.user_id,10)}/>
+                        <ApproveWorkshopPopup setToggleState={setToggleApprove} setToggleYesState={setToggleYesApprove} firstname={props.workshop.user_firstname} lastname={props.workshop.user_lastname} user_id={parseInt(props.workshop.user_id, 10)} />
                     )}
                     {toggleReject && (
-                        <RejectWorkshopPopup setToggleState={setToggleReject} setToggleYesState={setToggleYesReject} firstname={props.workshop.user_firstname} lastname={props.workshop.user_lastname} user_id = {parseInt(props.workshop.user_id, 10)}/>
+                        <RejectWorkshopPopup setToggleState={setToggleReject} setToggleYesState={setToggleYesReject} firstname={props.workshop.user_firstname} lastname={props.workshop.user_lastname} user_id={parseInt(props.workshop.user_id, 10)} />
                     )}
                     {toggleYesApprove && (
-                        <WorkshopApprovedPopup setToggleState={setToggleYesApprove}/>
+                        <WorkshopApprovedPopup setToggleState={setToggleYesApprove} />
                     )}
                     {toggleYesReject && (
-                        <WorkshopRejectedPopup setToggleState={setToggleYesReject}/>
+                        <WorkshopRejectedPopup setToggleState={setToggleYesReject} />
                     )}
                 </div>
-
             </CardContent>
-
         </Card >
     );
 }

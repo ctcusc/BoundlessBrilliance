@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react"
 import Header from "../components/Header"
 import HomePageTab from "../components/HomePageTab"
-import { Box, Card, Grid, unstable_composeClasses } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import AssignmentCard from '../components/AssignmentCard'
 
 import WorkshopCard from '../components/WorkshopCard'
 import WorkshopAssignmentPlaceholder from '../components/WorkshopAssignmentPlaceholder'
 import WorkshopUpcomingPlaceholder from '../components/WorkshopUpcomingPlaceholder'
-// import assignmentData from '../components/workshopCardAssignment.json'
-// import upcomingData from "../components/workshopCardUpcoming.json"
 import { useCookies } from 'react-cookie';
 
 const Home = () => {
@@ -69,11 +67,9 @@ const Home = () => {
                         </Box>
                         : <WorkshopAssignmentPlaceholder />
                 }
-
-
             </div>
         </div >
     );
 };
 
-export default Home
+export default Home;
