@@ -1,20 +1,14 @@
 require("dotenv").config();
-const cors = require("cors");
 const db = require("../db");
-const morgan = require("morgan");
-const bcrypt = require('bcrypt');
-const e = require("cors");
 
 class userController {
 
   async createUser(req) {
-    // Sprint 0: Wonjun
     try {
-
       const alreadyExist = await db.query( //get password
-              "select count(user_email) from master_users where user_email = $1",
-              [req.body.user_email]
-            );
+        "select count(user_email) from master_users where user_email = $1",
+        [req.body.user_email]
+      );
         
       const isValid = alreadyExist.rows[0].count;
       if (isValid == 0){
@@ -40,63 +34,61 @@ class userController {
   }
 
   async validateUser(req) {
-     // Sprint 0: Evans
      try{
-         const idQuery = await db.query(
-             "select user_id from master_users WHERE user_email = $1",
-             [req.body.user_email]
-         );
+      const idQuery = await db.query(
+          "select user_id from master_users WHERE user_email = $1",
+          [req.body.user_email]
+      );
 
-         if (idQuery.rows.length == 0) { //username doesn't exist
-             return [-1, -1, -1];
-         }
-         else {
-            const user_id = idQuery.rows[0].user_id;
-            
-            const passwordQuery = await db.query( //get password
-              "select user_password from master_users WHERE user_id = $1",
+      if (idQuery.rows.length == 0) { //username doesn't exist
+          return [-1, -1, -1];
+      }
+      else {
+        const user_id = idQuery.rows[0].user_id;
+        
+        const passwordQuery = await db.query( //get password
+          "select user_password from master_users WHERE user_id = $1",
+          [user_id]
+        );
+
+        const stored_password = passwordQuery.rows[0].user_password;
+        const entered_password = req.body.user_password;
+
+        if (stored_password != entered_password){ //compare password
+          return [-1, -1, -1];
+        }
+
+        const statusQuery = await db.query( //get user status
+          "select user_status from user_status WHERE user_id = $1",
+          [user_id]
+        );
+
+        const userStatus = statusQuery.rows[0].user_status;  // 0 = Not Approved, 1 = Approved
+
+        const isAdminQuery = await db.query( //get user status
+              "select is_admin from master_users WHERE user_id = $1",
               [user_id]
-            );
+        );
 
-            const stored_password = passwordQuery.rows[0].user_password;
-            const entered_password = req.body.user_password;
+        const isAdmin = isAdminQuery.rows[0].is_admin;
 
-            if (stored_password != entered_password){ //compare password
-              return [-1, -1, -1];
+        if (userStatus == 0){
+            return [0, 0, -1]; // user not approved
+        }
+        else {
+            if (isAdmin == 1){
+              return [1, 1, user_id];
+            } else {
+              return [1, 0, user_id]; 
             }
- 
-             const statusQuery = await db.query( //get user status
-                 "select user_status from user_status WHERE user_id = $1",
-                 [user_id]
-             );
- 
-            const userStatus = statusQuery.rows[0].user_status;  // 0 = Not Approved, 1 = Approved
-
-            const isAdminQuery = await db.query( //get user status
-                 "select is_admin from master_users WHERE user_id = $1",
-                 [user_id]
-             );
-
-            const isAdmin = isAdminQuery.rows[0].is_admin;
-
-            if (userStatus == 0){
-                return [0, 0, -1]; // user not approved
-            }
-            else{
-                if (isAdmin == 1){
-                  return [1, 1, user_id];
-                } else {
-                  return [1, 0, user_id]; 
-                }
-            }
-         } 
-         }catch (error){
-             return [-1, -1, -1]; // other error cases
-         }
+        }
+      } 
+    } catch (error){
+      return [-1, -1, -1]; // other error cases
+    }
   }
 
   async approveUser(user_id) {
-    // Sprint 0: Fred
     try{
       const result = await db.query(
         "UPDATE user_status SET user_status = 1 WHERE user_id = $1;",
@@ -109,7 +101,6 @@ class userController {
   }
 
   async rejectUser(user_id) {
-    // Sprint 1: Fred
     try {
         const result = await db.query(
           "DELETE FROM user_status WHERE user_id = $1;",
@@ -140,7 +131,6 @@ class userController {
   }
 
   async allActiveUsers(req) {
-    // Sprint 1: Olivia
     try {
       const result = await db.query(`
       SELECT *
@@ -323,9 +313,9 @@ class userController {
         total: total
       };
       return res;
-      } catch(error){
-        return error;
-      }
+    } catch(error){
+      return error;
+    }
   }
 
   async generateGenderMetrics() {
@@ -334,9 +324,9 @@ class userController {
         "SELECT user_gender as name, CAST(COUNT(*) as int) as value FROM master_users GROUP BY user_gender;",
       );
       return data.rows;
-      } catch(error){
-        return error;
-      }
+    } catch(error){
+      return error;
+    }
   }
 
   async generateEthnicityMetrics() {
@@ -345,9 +335,9 @@ class userController {
         "SELECT user_ethnicity as name, CAST(COUNT(*) as int) as value FROM master_users GROUP BY user_ethnicity;",
       );
       return data.rows;
-      } catch(error){
-        return error;
-      }
+    } catch(error){
+      return error;
+    }
   }
 
   async approveAllUsers() {
@@ -356,9 +346,9 @@ class userController {
         "UPDATE user_status SET user_status = 1 WHERE user_status = 0;",
       );
       return 0;
-      } catch(error){
-        return error;
-      }
+    } catch(error){
+      return error;
+    }
   }
 
 } 
