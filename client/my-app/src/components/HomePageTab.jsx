@@ -3,22 +3,22 @@ import './HomePageTab.css';
 
 const HomePageTab = (props) => {
     const pageIndex = props.pageIndex;
-    // index 0 is the "upcoming" tab
-    // index 1 is the "assignments" tab
+
 
     // switches between tabs using index passed in
+
     const switchTab = (num) => {
         var upcoming = document.getElementById("upcoming");
         var assignments = document.getElementById("assignments");
-        // pageIndex = num;
+
         props.setPageIndex(num); // updates state variable
-        if (num == 0) {
+        if (num == 0) { // index 0 is the "upcoming" tab
             upcoming.classList.add("list-item-active");
             upcoming.classList.remove("list-item");
             assignments.classList.add("list-item");
             assignments.classList.remove("list-item-active");
         }
-        else if (num == 1) {
+        else if (num == 1) { // index 1 is the "assignments" tab
             assignments.classList.add("list-item-active");
             assignments.classList.remove("list-item");
             upcoming.classList.add("list-item");

@@ -19,6 +19,7 @@ const WorkshopUpcomingPlaceholder = () => {
                 }}
             >
                 <img src={emptyWorkshop}
+                    alt="No upcoming workshops image"
                     style={{
                         width: "auto",
                         height: "233px",

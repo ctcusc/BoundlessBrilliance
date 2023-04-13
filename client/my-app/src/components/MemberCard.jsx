@@ -9,20 +9,17 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import DeleteUserPopup from '../components/adminPopups/DeleteUserPopup'
 import UserDeletedPopup from '../components/adminPopups/UserDeletedPopup'
 import EditMemberContactPopup from './EditMemberContactPopup';
-
 import '../index.css'
 
 const cardStyles = {
     minWidth: 275,
     dropShadow: '0px 2px 8px rgba(0, 0, 0, 0.15)',
     borderRadius: '30px',
-    //   height: '320px'
 };
 
 const cardContentStyles = {
     padding: '45px',
     margin: 'auto',
-    // height: '320px'
 }
 
 const cardHeaderStyles = {
@@ -59,7 +56,6 @@ const numberLabelStyles = {
     lineHeight: '19px',
 }
 
-
 const dateStyles = {
     color: '#686868',
     lineHeight: '20px',
@@ -94,11 +90,25 @@ const linkStyles = {
     paddingBottom: '20px'
 }
 
+const moreInfoStyles = {
+    paddingLeft: 1,
+    lineHeight: '24px',
+    fontSize: 16,
+    fontFamily: 'Avenir',
+    fontWeight: 500,
+    color: '#222222'
+};
+
 export default function MemberCard(props) {
 
     const [toggleDelete, setToggleDelete] = useState(false);
     const [toggleYesDelete, setToggleYesDelete] = useState(false);
     const [toggleEditPopup, setToggleEditPopup] = useState(false);
+    const [showDescription, setShowDescription] = useState(false);
+
+    const toggleDescription = () => {
+        setShowDescription(!showDescription);
+    };
 
     const togglePopup = () => {
         setToggleEditPopup(!toggleEditPopup);
@@ -106,11 +116,10 @@ export default function MemberCard(props) {
 
     let editPopup;
     if (toggleEditPopup) {
-        editPopup = <EditMemberContactPopup props={props} setToggleState={setToggleEditPopup}/>;
+        editPopup = <EditMemberContactPopup props={props} setToggleState={setToggleEditPopup} />;
     }
 
     return (
-
 
         <Card sx={cardStyles}>
 
@@ -125,14 +134,13 @@ export default function MemberCard(props) {
                         <EditIcon onClick={togglePopup} sx={{ color: '#1398A0', cursor: 'pointer' }} />
                         <DeleteIcon onClick={() => setToggleDelete(true)} sx={{ color: '#616161', cursor: 'pointer' }} />
                         {toggleDelete && (
-                            <DeleteUserPopup setToggleState={setToggleDelete} setToggleYesState={setToggleYesDelete} name={props.member.user_firstname + " " + props.member.user_lastname} user_id = {parseInt(props.member.user_id, 10)}/>
+                            <DeleteUserPopup setToggleState={setToggleDelete} setToggleYesState={setToggleYesDelete} name={props.member.user_firstname + " " + props.member.user_lastname} user_id={parseInt(props.member.user_id, 10)} />
                         )}
                         {toggleYesDelete && (
-                            <UserDeletedPopup setToggleState={setToggleYesDelete}/>
+                            <UserDeletedPopup setToggleState={setToggleYesDelete} />
                         )}
-                        </div>
+                    </div>
                 </div>
-
 
 
                 <Typography sx={cardHeaderStyles} color="text.secondary" gutterBottom>
@@ -159,11 +167,28 @@ export default function MemberCard(props) {
                     </div>
                 </div>
 
-                <Typography sx={linkStyles} gutterBottom>
-                    More Info
-                </Typography>
-
-
+                {showDescription ? (
+                     <div style={{ marginTop: "30px", marginRight: "100px"}}>
+                         <div style={moreInfoStyles}>
+                             <div><span style={{fontWeight: 'bold'}}>Role: </span> Volunteer <br /></div>
+                             <div><span style={{fontWeight: 'bold'}}>Race: </span> {props.member.user_ethnicity}</div>
+                             <div><span style={{fontWeight: 'bold'}}>Gender: </span> {props.member.user_gender}</div>
+                             <div
+                             style={linkStyles}
+                             onClick={toggleDescription}
+                             >
+                                 Less Info
+                             </div>
+                         </div>
+                     </div>
+                 ) : (
+                     <div
+                         style={linkStyles}
+                         onClick={toggleDescription}
+                     >
+                         More Info
+                     </div>
+                 )}
             </CardContent>
         </Card >
     );
