@@ -2,8 +2,6 @@ import React from 'react';
 import './WorkshopPopup.css';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
-import { useState } from 'react';
-import { useHistory } from "react-router-dom";
 
 const OutlinedButton = styled(Button)({
     color: '#1398A0',
@@ -44,9 +42,8 @@ const ContainedButton = styled(Button)({
     },
 });
 
-const RejectWorkshopPopup = ({setToggleState, setToggleYesState, firstname, lastname, user_id}) => {
+const RejectWorkshopPopup = ({ setToggleState, setToggleYesState, firstname, lastname, user_id }) => {
 
-    const history = useHistory();
 
     function setToggle() {
         setToggleState(false);
@@ -56,12 +53,11 @@ const RejectWorkshopPopup = ({setToggleState, setToggleYesState, firstname, last
         setToggleState(false);
         setToggleYesState(true);
 
-        //TODO: Make API Call to Reject Workshop Assignment
         const rejectUser = async () => {
-            const response = await fetch('/api/rejectUser', {
-              method: 'DELETE',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ user_id: user_id}),
+            await fetch('/api/rejectUser', {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ user_id: user_id }),
             });
         }
         rejectUser();
@@ -70,18 +66,17 @@ const RejectWorkshopPopup = ({setToggleState, setToggleYesState, firstname, last
     return (
         <div className="popup-center">
             <div className="popup-container">
-                <p className="p-popup">You are <span style={{color: '#D90000'}}>declining</span> new volunteer:</p>
-                <h2 className="h2-popup">{firstname+" "+lastname}</h2>
+                <p className="p-popup">You are <span style={{ color: '#D90000' }}>declining</span> new volunteer:</p>
+                <h2 className="h2-popup">{firstname + " " + lastname}</h2>
                 <p className="p-popup">This cannot be undone.</p>
                 <div className="flex-horizontal">
                     <OutlinedButton onClick={setToggle} variant="outlined">No, go back</OutlinedButton>
                     <ContainedButton onClick={setToggleYes} variant="contained">Yes, decline</ContainedButton>
                 </div>
             </div>
-            
         </div>
     )
 }
 
 
-export default RejectWorkshopPopup
+export default RejectWorkshopPopup;

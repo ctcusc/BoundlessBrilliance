@@ -2,7 +2,6 @@ import React from 'react';
 import './WorkshopPopup.css';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
-import { useHistory } from "react-router-dom";
 
 const OutlinedButton = styled(Button)({
     color: '#1398A0',
@@ -43,9 +42,7 @@ const ContainedButton = styled(Button)({
     },
 });
 
-const ApproveWorkshopPopup = ({setToggleState, setToggleYesState, firstname, lastname, user_id}) => {
-
-    const history = useHistory();
+const ApproveWorkshopPopup = ({ setToggleState, setToggleYesState, firstname, lastname, user_id }) => {
 
     function setToggle() {
         setToggleState(false);
@@ -55,12 +52,11 @@ const ApproveWorkshopPopup = ({setToggleState, setToggleYesState, firstname, las
         setToggleState(false);
         setToggleYesState(true);
 
-        //TODO: Make API Call to Accept Workshop Assignment
         const approveUser = async () => {
-            const response = await fetch('/api/approveUser', {
-              method: 'PUT',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ user_id: user_id}),
+            await fetch('/api/approveUser', {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ user_id: user_id }),
             });
         }
         approveUser();
@@ -70,18 +66,17 @@ const ApproveWorkshopPopup = ({setToggleState, setToggleYesState, firstname, las
     return (
         <div className="popup-center">
             <div className="popup-container">
-                <p className="p-popup">You are <span style={{color: '#0E8830'}}>accepting</span> new volunteer:</p>
-                <h2 className="h2-popup">{firstname+" "+lastname}</h2>
+                <p className="p-popup">You are <span style={{ color: '#0E8830' }}>accepting</span> new volunteer:</p>
+                <h2 className="h2-popup">{firstname + " " + lastname}</h2>
                 <p className="p-popup">This cannot be undone.</p>
                 <div className="flex-horizontal">
                     <OutlinedButton onClick={setToggle} variant="outlined">No, go back</OutlinedButton>
                     <ContainedButton onClick={setToggleYes} variant="contained">Yes, approve</ContainedButton>
                 </div>
             </div>
-            
         </div>
     )
 }
 
 
-export default ApproveWorkshopPopup
+export default ApproveWorkshopPopup;

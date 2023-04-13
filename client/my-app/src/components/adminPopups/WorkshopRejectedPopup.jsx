@@ -17,7 +17,7 @@ const StyledClearIcon = styled(ClearIcon)({
     height: '24px',
 });
 
-const WorkshopRejectedPopup = ({setToggleState}) => {
+const WorkshopRejectedPopup = ({ setToggleState }) => {
 
     const history = useHistory();
 
@@ -26,7 +26,6 @@ const WorkshopRejectedPopup = ({setToggleState}) => {
 
         history.push("/admin-home");
         document.location.reload()
-
     }
 
     return (
@@ -39,9 +38,7 @@ const WorkshopRejectedPopup = ({setToggleState}) => {
                     <StyledHighlightOffIcon />
                 </div>
                 <h1 className="h1-popup">Volunteer Declined</h1>
-                {/* <p className="p-popup">To undo this action, you must <span><a className="a-popup" href="#">contact admin</a></span></p> */}
             </div>
-            
         </div>
     )
 }
