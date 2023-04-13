@@ -15,19 +15,18 @@ h2 {
 h3 {
     width: 118px;
     height: 20px;
+    margin-top: 7%;
 
     font-family: 'Avenir';
     font-style: normal;
     font-weight: 800;
     font-size: 20px;
     line-height: 100%;
-
     display: flex;
     align-items: center;
     letter-spacing: -0.035em;
 
     color: #4E4E4E;
-    margin-top: 7%;
 }
 
 h4 {
@@ -62,6 +61,7 @@ p {
     top: 0px;
     z-index: 2;
 
+    /* banner image */
     background: url("../images/logo.svg");
     background-size: contain;
     background-repeat: no-repeat;
