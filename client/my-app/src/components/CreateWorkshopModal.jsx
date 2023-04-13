@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import LoginLogo from "../images/login_logo.svg";
-import { Modal, Form, Button } from "react-bootstrap";
+import { Modal, Form } from "react-bootstrap";
 import moment from "moment";
 import { useHistory } from "react-router-dom";
-
-import "react-datepicker/dist/react-datepicker.css";
 
 const CreateWorkshopModal = (props) => {
   const history = useHistory();
@@ -55,11 +53,11 @@ const CreateWorkshopModal = (props) => {
   }
 
   return (
-    <>
+    <div style={{ display: "flex", justifyContent: "center", alignItems: "center"}}>
       <Modal
         show={props.show}
         onHide={props.handleClose}
-        style={{ marginTop: "10%" }}
+        style={{ marginTop: "10vh" }}
         size="lg"
       >
         <Modal.Body style={{}}>
@@ -181,9 +179,9 @@ const CreateWorkshopModal = (props) => {
             <div className="col-4 pr-5">
               <div className="h-90">
                 <img
-                  className="card-img-top p-5 mt-4 mb-5"
+                  className="card-img-top"
                   src={LoginLogo}
-                  style={{ height: "25%" }}
+                  style={{ height: "40%", minHeight: "50px", padding:"20%", marginLeft: "10%", marginTop: "10%", marginBottom: "10%" }}
                   alt="Card image cap"
                 />
               </div>
@@ -198,6 +196,7 @@ const CreateWorkshopModal = (props) => {
                     fontSize: "14px",
                     backgroundColor: "#1398A0",
                     borderRadius: "12px",
+                    marginRight: "5%"
                   }}
                 >
                   Create
@@ -207,7 +206,7 @@ const CreateWorkshopModal = (props) => {
           </div>
         </Modal.Body>
       </Modal>
-    </>
+    </div>
   );
 };
 
