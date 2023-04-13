@@ -9,6 +9,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import DeleteUserPopup from '../components/adminPopups/DeleteUserPopup'
 import UserDeletedPopup from '../components/adminPopups/UserDeletedPopup'
 import EditMemberContactPopup from './EditMemberContactPopup';
+
 import '../index.css'
 
 const cardStyles = {
@@ -93,25 +94,10 @@ const linkStyles = {
     paddingBottom: '20px'
 }
 
-const moreInfoStyles = {
-    paddingLeft: 1,
-    lineHeight: '24px',
-    fontSize: 16,
-    fontFamily: 'Avenir',
-    fontWeight: 500,
-    color: '#222222'
-};
-
 export default function MemberCard(props) {
 
     const [toggleDelete, setToggleDelete] = useState(false);
     const [toggleYesDelete, setToggleYesDelete] = useState(false);
-    const [showDescription, setShowDescription] = useState(false);
-
-    const toggleDescription = () => {
-        setShowDescription(!showDescription);
-    };
-
     const [toggleEditPopup, setToggleEditPopup] = useState(false);
 
     const togglePopup = () => {
@@ -136,7 +122,7 @@ export default function MemberCard(props) {
                         {props.member.user_chapter}
                     </Typography>
                     <div style={{ display: "flex", width: '60px', justifyContent: "space-between" }}>
-                        <EditIcon sx={{ color: '#1398A0', cursor: 'pointer' }} />
+                        <EditIcon onClick={togglePopup} sx={{ color: '#1398A0', cursor: 'pointer' }} />
                         <DeleteIcon onClick={() => setToggleDelete(true)} sx={{ color: '#616161', cursor: 'pointer' }} />
                         {toggleDelete && (
                             <DeleteUserPopup setToggleState={setToggleDelete} setToggleYesState={setToggleYesDelete} name={props.member.user_firstname + " " + props.member.user_lastname} user_id = {parseInt(props.member.user_id, 10)}/>
@@ -146,6 +132,7 @@ export default function MemberCard(props) {
                         )}
                         </div>
                 </div>
+
 
 
                 <Typography sx={cardHeaderStyles} color="text.secondary" gutterBottom>
@@ -172,28 +159,9 @@ export default function MemberCard(props) {
                     </div>
                 </div>
 
-                {showDescription ? (
-                     <div style={{ marginTop: "30px", marginRight: "100px"}}>
-                         <div style={moreInfoStyles}>
-                             <div><span style={{fontWeight: 'bold'}}>Role: </span> Volunteer <br /></div>
-                             <div><span style={{fontWeight: 'bold'}}>Race: </span> {props.member.user_ethnicity}</div>
-                             <div><span style={{fontWeight: 'bold'}}>Gender: </span> {props.member.user_gender}</div>
-                             <div
-                             style={linkStyles}
-                             onClick={toggleDescription}
-                             >
-                                 Less Info
-                             </div>
-                         </div>
-                     </div>
-                 ) : (
-                     <div
-                         style={linkStyles}
-                         onClick={toggleDescription}
-                     >
-                         More Info
-                     </div>
-                 )}
+                <Typography sx={linkStyles} gutterBottom>
+                    More Info
+                </Typography>
 
 
             </CardContent>
