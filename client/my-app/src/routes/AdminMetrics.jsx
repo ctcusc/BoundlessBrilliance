@@ -141,7 +141,9 @@ const AdminMetrics = (props) => {
                 </div>
                 <div style={{ textAlign: "center", height: "20%" }}>
                   <a
-                    href="/"
+                    id="memberListLink"
+                    href="#"
+                    onClick={() => props.setTab(4)}
                     style={{  
                       position: "relative",
                       top: "200%",
@@ -314,7 +316,8 @@ const AdminMetrics = (props) => {
               </div>
               <div style={{ textAlign: "center", height: "30%" }}>
                 <a
-                  href="/"
+                  href="#"
+                  onClick={() => props.setTab(1)}
                   style={{ fontFamily: "Avenir Black", fontSize: "14px" }}
                 >
                   View workshops

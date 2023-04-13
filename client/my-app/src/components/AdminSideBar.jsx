@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react';
 import LoginLogo from "../images/login_logo.svg"
 import { ReactComponent as ProfileIcon } from "../images/profile_icon.svg"
@@ -18,53 +18,67 @@ const AdminSideBar = (props) => {
     const [button3Text, setButton3Text] = useState("#9F9F9F");
     const [button4Text, setButton4Text] = useState("#9F9F9F");
 
+    useEffect(() => {
+        switch (props.tab) {
+            case 1:
+                setButton1Color('rgba(0, 167, 177, 0.1)');
+                setButton2Color('white');
+                setButton3Color('white');
+                setButton4Color('white');
+                setButton1Text("#00747B");
+                setButton2Text("#9F9F9F");
+                setButton3Text("#9F9F9F");
+                setButton4Text("#9F9F9F");
+                return;
+            case 2:
+                setButton1Color('white');
+                setButton2Color('rgba(0, 167, 177, 0.1)');
+                setButton3Color('white');
+                setButton4Color('white');
+                setButton1Text("#9F9F9F");
+                setButton2Text("#00747B");
+                setButton3Text("#9F9F9F");
+                setButton4Text("#9F9F9F");
+                return;
+            case 3:
+                setButton1Color('white');
+                setButton2Color('white');
+                setButton3Color('rgba(0, 167, 177, 0.1)');
+                setButton4Color('white');
+                setButton1Text("#9F9F9F");
+                setButton2Text("#9F9F9F");
+                setButton3Text("#00747B");
+                setButton4Text("#9F9F9F");
+                return;
+            case 4:
+                setButton1Color('white');
+                setButton2Color('white');
+                setButton3Color('white');
+                setButton4Color('rgba(0, 167, 177, 0.1)');
+                setButton1Text("#9F9F9F");
+                setButton2Text("#9F9F9F");
+                setButton3Text("#9F9F9F");
+                setButton4Text("#00747B");
+                return;
+            default:
+                return;
+        }
+    }, [props.tab])
 
     function handleButton1Click() {
         props.setTab(1);
-        setButton1Color('rgba(0, 167, 177, 0.1)');
-        setButton2Color('white');
-        setButton3Color('white');
-        setButton4Color('white');
-        setButton1Text("#00747B");
-        setButton2Text("#9F9F9F");
-        setButton3Text("#9F9F9F");
-        setButton4Text("#9F9F9F");
     }
 
     function handleButton2Click() {
         props.setTab(2);
-        setButton1Color('white');
-        setButton2Color('rgba(0, 167, 177, 0.1)');
-        setButton3Color('white');
-        setButton4Color('white');
-        setButton1Text("#9F9F9F");
-        setButton2Text("#00747B");
-        setButton3Text("#9F9F9F");
-        setButton4Text("#9F9F9F");
     }
 
     function handleButton3Click() {
         props.setTab(3);
-        setButton1Color('white');
-        setButton2Color('white');
-        setButton3Color('rgba(0, 167, 177, 0.1)');
-        setButton4Color('white');
-        setButton1Text("#9F9F9F");
-        setButton2Text("#9F9F9F");
-        setButton3Text("#00747B");
-        setButton4Text("#9F9F9F");
     }
 
     function handleButton4Click() {
         props.setTab(4);
-        setButton1Color('white');
-        setButton2Color('white');
-        setButton3Color('white');
-        setButton4Color('rgba(0, 167, 177, 0.1)');
-        setButton1Text("#9F9F9F");
-        setButton2Text("#9F9F9F");
-        setButton3Text("#9F9F9F");
-        setButton4Text("#00747B");
     }
 
     return (
