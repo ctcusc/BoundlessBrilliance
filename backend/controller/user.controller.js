@@ -1,20 +1,14 @@
 require("dotenv").config();
-const cors = require("cors");
 const db = require("../db");
-const morgan = require("morgan");
-const bcrypt = require('bcrypt');
-const e = require("cors");
 
 class userController {
 
   async createUser(req) {
-    // Sprint 0: Wonjun
     try {
-
       const alreadyExist = await db.query( //get password
-              "select count(user_email) from master_users where user_email = $1",
-              [req.body.user_email]
-            );
+        "select count(user_email) from master_users where user_email = $1",
+        [req.body.user_email]
+      );
         
       const isValid = alreadyExist.rows[0].count;
       if (isValid == 0){
@@ -40,7 +34,6 @@ class userController {
   }
 
   async validateUser(req) {
-     // Sprint 0: Evans
      try{
          const idQuery = await db.query(
              "select user_id from master_users WHERE user_email = $1",
@@ -96,7 +89,6 @@ class userController {
   }
 
   async approveUser(user_id) {
-    // Sprint 0: Fred
     try{
       const result = await db.query(
         "UPDATE user_status SET user_status = 1 WHERE user_id = $1;",
@@ -109,7 +101,6 @@ class userController {
   }
 
   async rejectUser(user_id) {
-    // Sprint 1: Fred
     try {
         const result = await db.query(
           "DELETE FROM user_status WHERE user_id = $1;",
@@ -140,7 +131,6 @@ class userController {
   }
 
   async allActiveUsers(req) {
-    // Sprint 1: Olivia
     try {
       const result = await db.query(`
       SELECT *
