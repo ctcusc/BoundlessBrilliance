@@ -2,8 +2,6 @@ import React from 'react';
 import './WorkshopPopup.css';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
-import { useState } from 'react';
-import { useHistory } from "react-router-dom";
 
 const OutlinedButton = styled(Button)({
     color: '#1398A0',
@@ -46,8 +44,6 @@ const ContainedButton = styled(Button)({
 
 const RejectWorkshopPopup = ({setToggleState, setToggleYesState, name, user_id, workshop_id}) => {
 
-    const history = useHistory();
-
     function setToggle() {
         setToggleState(false);
     }
@@ -56,12 +52,11 @@ const RejectWorkshopPopup = ({setToggleState, setToggleYesState, name, user_id, 
         setToggleState(false);
         setToggleYesState(true);
 
-        //TODO: Make API Call to Reject Workshop Assignment
         const declineWorkshop = async () => {
             const response = await fetch('/api/declineWorkshop', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ user_id: user_id, workshop_id: workshop_id }),
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ user_id: user_id, workshop_id: workshop_id }),
             });
         }
         declineWorkshop();

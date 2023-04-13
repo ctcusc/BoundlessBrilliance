@@ -4,8 +4,8 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ClearIcon from '@mui/icons-material/Clear';
-
 
 import CancelWorkshopPopup from './CancelWorkshopPopup';
 import WorkshopCancelledPopup from './WorkshopCancelledPopup';
@@ -29,7 +29,6 @@ const cardStyles = {
 const cardContentStyles = {
     padding: '45px',
     margin: 'auto',
-    // height: '320px'
 }
 
 const cardHeaderStyles = {
@@ -42,7 +41,6 @@ const cardHeaderStyles = {
 
 const cardDetailStyles = {
     paddingLeft: 1,
-    // textAlign: 'center',
     lineHeight: '20px',
     fontSize: 16,
     fontFamily: 'Avenir',
@@ -62,15 +60,6 @@ const workshopDescriptionStyles = {
     }
   }
   
-
-const workshopAddToCalendarStyles = {
-    color: '#1398A0',
-    cursor: 'pointer',
-    textDecoration: 'underline',
-    fontWeight: 500,
-    fontFamily: 'Avenir Heavy',
-}
-
 const clearStyles = {
     position: 'absolute',
     right: '1.5rem',
@@ -115,15 +104,11 @@ export default function WorkshopCard(props) {
     }
 
     function getTimezoneDatabaseName() {
-      const options = { timeZone: 'UTC', hour12: false };
-      const now = new Date().toLocaleDateString('en-US', options);
-      const timeZoneOffset = new Date(now).getTimezoneOffset();
       const timeZoneName = Intl.DateTimeFormat().resolvedOptions().timeZone;
       const timezone = moment.tz.zone(timeZoneName);
       const timezoneName = timezone ? timezone.name : null;
       return timezoneName;
     }
-
     
   return (
     <Card sx={cardStyles}>
@@ -163,7 +148,7 @@ export default function WorkshopCard(props) {
           {showMore ? props.workshop.workshop_description : `${props.workshop.workshop_description.slice(0, 100)}...`}
           {props.workshop.workshop_description.length > 100 && (
             <IconButton aria-label="show more" onClick={toggleShowMore} sx={{ marginLeft: 'auto', marginBottom: '-3px', marginTop: '-6px' }}>
-              <ExpandMoreIcon />
+              {showMore ? <ExpandLessIcon/> : <ExpandMoreIcon/>}
             </IconButton>
           )}
           <span></span>
