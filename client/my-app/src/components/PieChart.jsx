@@ -13,6 +13,7 @@ const mPieChart = ({data, COLORS}) => {
       }
     },
   };
+
   console.log(data);
   return (
     <ResponsiveContainer>

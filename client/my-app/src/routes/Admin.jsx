@@ -30,6 +30,11 @@ const Admin = () => {
     const closeModal = () => setShowCreateWorkshopModal(false);
     const showModal = () => setShowCreateWorkshopModal(true);
 
+    const [userData, setUserData] = useState([]);
+    const [workshopData, setWorkshopData] = useState([]);
+    const [genderData, setGenderData] = useState([]);
+    const [ethnicityData, setEthnicityData] = useState([]);
+
     useEffect(() => {
         fetch(`/api/adminWorkshop`)
             .then(response => response.json())
@@ -51,7 +56,44 @@ const Admin = () => {
             .then(data => setAllMembers(data))
             .catch(error => console.error(error));
 
+        fetch(`/api/generateUserMetrics`)
+            .then(response => response.json())
+            .then(data => setUserData(data))
+            .catch(error => console.error(error));
+        
+        fetch(`/api/generateWorkshopMetrics`)
+            .then(response => response.json())
+            .then(data => setWorkshopData(data))
+            .catch(error => console.error(error));
+        
+        fetch(`/api/generateGenderMetrics`)
+            .then(response => response.json())
+            .then(data => setGenderData(data))
+            .catch(error => console.error(error));
+
+        fetch(`/api/generateEthnicityMetrics`)
+            .then(response => response.json())
+            .then(data => setEthnicityData(data))
+            .catch(error => console.error(error));
+        
+        console.log(genderData);
+
     }, []);
+
+    function handleAcceptAll() {
+        console.log("Ping");
+        async function Accept() {
+            const response = await fetch('/api/approveAllUsers', {  
+                method: 'put',
+                headers: {'Content-Type': 'application/json'},
+            })
+            const data = await response.json();
+        }
+
+        Accept();
+        document.location.reload();
+    }
+     
 
 
     const blueButton = {
@@ -84,6 +126,7 @@ const Admin = () => {
         fontSize: '18px',
         marginTop: '30px',
         marginBottom: '60px'
+
     }
 
 
@@ -107,7 +150,7 @@ const Admin = () => {
                 return (<>
                     <WorkshopHeader/>
                     <h1 style={{ paddingTop: '40px', paddingBottom: '20px', fontFamily: 'Avenir Heavy' }}>Volunteer Applications</h1>
-                    <div style={acceptButton}>Accept All</div>
+                    <div style={acceptButton} onClick={handleAcceptAll}>Accept All</div>
                     <Grid container spacing={4}>
                         {adminSignups.map((data) => (
                             <Grid item xs={12}>
@@ -121,7 +164,7 @@ const Admin = () => {
             case 3:
                 return (<>
                     <WorkshopHeader/>
-                    <AdminMetrics></AdminMetrics>
+                    <AdminMetrics userData={userData} workshopData = {workshopData} genderData = {genderData} ethnicityData = {ethnicityData}></AdminMetrics>
                 </>)
 
             case 4:
