@@ -1,6 +1,7 @@
 {
   "name": "my-app",
   "version": "0.1.0",
+  "homepage": "./",
   "proxy": "https://boundless-brilliance.onrender.com",
   "private": true,
   "dependencies": {
