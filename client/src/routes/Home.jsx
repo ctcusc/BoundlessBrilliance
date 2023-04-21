@@ -18,12 +18,12 @@ const Home = () => {
     const [upcomingData, setUpcomingData] = useState([]);
 
     useEffect(() => {
-        fetch(`/api/undecidedWorkshop/?id=${user_id}`)
+        fetch(`https://boundless-brilliance.onrender.com/api/undecidedWorkshop/?id=${user_id}`)
             .then(response => response.json())
             .then(data => setUndecidedData(data))
             .catch(error => console.error(error));
 
-        fetch(`/api/upcomingWorkshop/?id=${user_id}`)
+        fetch(`https://boundless-brilliance.onrender.com/api/upcomingWorkshop/?id=${user_id}`)
             .then(response => response.json())
             .then(data => setUpcomingData(data))
             .catch(error => console.error(error));

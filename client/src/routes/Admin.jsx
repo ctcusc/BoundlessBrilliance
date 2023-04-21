@@ -32,42 +32,42 @@ const Admin = () => {
     const [ethnicityData, setEthnicityData] = useState([]);
 
     useEffect(() => {
-        fetch(`/api/adminWorkshop`)
+        fetch(`https://boundless-brilliance.onrender.com/api/adminWorkshop`)
             .then(response => response.json())
             .then(data => setAdminWorkshop(data))
             .catch(error => console.error(error));
 
-        fetch(`/api/adminSignups`)
+        fetch(`https://boundless-brilliance.onrender.com/api/adminSignups`)
             .then(response => response.json())
             .then(data => setAdminSignups(data))
             .catch(error => console.error(error));
 
-        fetch(`/api/allActiveUsers`)
+        fetch(`https://boundless-brilliance.onrender.com/api/allActiveUsers`)
             .then(response => response.json())
             .then(data => setDisplayedMembers(data))
             .catch(error => console.error(error));
 
-        fetch(`/api/allActiveUsers`)
+        fetch(`https://boundless-brilliance.onrender.com/api/allActiveUsers`)
             .then(response => response.json())
             .then(data => setAllMembers(data))
             .catch(error => console.error(error));
 
-        fetch(`/api/generateUserMetrics`)
+        fetch(`https://boundless-brilliance.onrender.com/api/generateUserMetrics`)
             .then(response => response.json())
             .then(data => setUserData(data))
             .catch(error => console.error(error));
 
-        fetch(`/api/generateWorkshopMetrics`)
+        fetch(`https://boundless-brilliance.onrender.com/api/generateWorkshopMetrics`)
             .then(response => response.json())
             .then(data => setWorkshopData(data))
             .catch(error => console.error(error));
 
-        fetch(`/api/generateGenderMetrics`)
+        fetch(`https://boundless-brilliance.onrender.com/api/generateGenderMetrics`)
             .then(response => response.json())
             .then(data => setGenderData(data))
             .catch(error => console.error(error));
 
-        fetch(`/api/generateEthnicityMetrics`)
+        fetch(`https://boundless-brilliance.onrender.com/api/generateEthnicityMetrics`)
             .then(response => response.json())
             .then(data => setEthnicityData(data))
             .catch(error => console.error(error));
