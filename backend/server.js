@@ -7,8 +7,8 @@ const workshopController = require("./controller/workshop.controller");
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(cors());
 app.use(express.json());
+app.use(cors());
 
 // createWorkshop: given workshop params, post data to database
 app.post("/api/createWorkshop", (req, res) => {
