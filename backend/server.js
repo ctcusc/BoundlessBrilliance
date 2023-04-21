@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 require("dotenv").config();
 
 const userController = require("./controller/user.controller");
@@ -6,7 +7,6 @@ const workshopController = require("./controller/workshop.controller");
 const app = express();
 const port = process.env.PORT || 3000;
 
-import cors from "cors";
 app.use(cors());
 app.use(express.json());
 
