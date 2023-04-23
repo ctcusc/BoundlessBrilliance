@@ -102,13 +102,18 @@ class userController {
 
   async rejectUser(user_id) {
     try {
-        const result = await db.query(
+        var result = await db.query(
           "DELETE FROM user_status WHERE user_id = $1;",
           [user_id]
         );
 
-        const res = await db.query(
+        result = await db.query(
           "DELETE FROM master_users WHERE user_id = $1;",
+          [user_id]
+        );
+
+        result = await db.query(
+          "DELETE FROM workshop_assignments WHERE user_id = $1;",
           [user_id]
         );
 

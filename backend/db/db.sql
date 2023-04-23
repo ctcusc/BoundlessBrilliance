@@ -66,12 +66,15 @@ VALUES  ('Boundless', 'Brilliance', 'White', 'bb@usc.edu', 'password', 'Male', 1
         ('Admin', 'Admin', 'White', 'bb@usc.edu', 'password', 'Male', 1, '222-222-2222', 'CTC Chapter'),
         
         ('Raymond', 'Kuan', 'Asian', 'rkuan@usc.edu', 'password', 'Male', 0, '510-598-7307', 'CTC Chapter'),
+        ('Eric', 'Cheng', 'Asian', 'echeng68@usc.edu', 'password', 'Male', 0, '510-598-7307', 'CTC Chapter'),
         ('Wesley', 'Tong', 'Asian', 'wytong@usc.edu', 'password', 'Male', 0, '127-345-8195', 'CTC Chapter'),
         ('Fred', 'Liu', 'Asian', 'liufrede@usc.edu', 'password', 'Male', 0, '891-624-7282', 'CTC Chapter'),
         ('Olivia', 'Lai', 'Asian', 'oslai@usc.edu', 'password', 'Female', 0, '111-111-1111', 'CTC Chapter'),
         ('Wonjun', 'Lee', 'Asian', 'wonjunle@usc.edu', 'password', 'Male', 0, '111-111-1111', 'CTC Chapter'),
         ('Natalie', 'Abreu', 'Asian', 'nrabreu@usc.edu', 'password', 'Female', 0, '111-111-1111', 'CTC Chapter'),
         ('Evans', 'Chun', 'Asian', 'ejchun@usc.edu', 'password', 'Male', 0, '510-598-7307', 'CTC Chapter'),
+        ('Amy', 'Liu', 'Asian', 'azliu@usc.edu', 'password', 'Female', 0, '111-111-1111', 'CTC Chapter'),
+        ('Ashley', 'Nam', 'Asian', 'namashle@usc.edu', 'password', 'Female', 0, '111-111-1111', 'CTC Chapter'),
 
         ('User', 'Two', 'White', 'user2@usc.edu', 'password', 'Female', 0, '235-745-1247', 'CTC Chapter'),
         ('User', 'Three', 'White', 'user3@usc.edu', 'password', 'Female', 0, '910-235-8932', 'CTC Chapter'),
@@ -148,7 +151,10 @@ VALUES  (1, 1),
         (37, 1),
         (38, 0),
         (39, 0),
-        (40, 0);
+        (40, 0),
+        (41, 0),
+        (42, 0),
+        (43, 0);
 
 
 INSERT INTO workshop
